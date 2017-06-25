@@ -16,6 +16,8 @@ from __future__ import absolute_import, unicode_literals
 import os
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# ROOT DIR
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
@@ -32,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
 ]
 
 MIDDLEWARE = [
