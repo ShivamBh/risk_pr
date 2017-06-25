@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 from __future__ import absolute_import, unicode_literals
-
+from django.core.urlresolvers import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
@@ -72,6 +72,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'riskproject.wsgi.application'
 
 
+
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
