@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Country List{% endblock %}
+
+{% block content %}
+	<h1>Country List</h1>
+	<hr>
+	{% for country in country_list %}
+		<h3>Country  : {{ country.name }}</h3>
+		<strong>Rating : {{ country.rating }}</strong>
+		<p>Risk Background : {{ country.risk_bg }}</p>
+		<hr>
+
+
+	{% endfor %}
+{% endblock %}

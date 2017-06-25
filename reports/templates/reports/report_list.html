@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Report List{% endblock %}
+
+{% block content %}
+	<h1>Reports List</h1>
+	<hr>
+	{% for report in report_list %}
+		<h3>Title : {{ report.title }}</h3>
+		<p>created at : {{ report.created_at }}</p>
+		<p>Advice : {{ report.advice }}</p>
+		<hr>
+
+
+	{% endfor %}
+{% endblock %}
