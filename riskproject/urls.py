@@ -20,11 +20,11 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-	url(r'^login', auth_views.login, name='login'),
+	url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^dashboard/', include('reports.urls'))
+    url(r'^', include('reports.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
