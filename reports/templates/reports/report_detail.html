@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}{{ report.title }}{% endblock %}
+
+{% block content %}
+	
+	<h3>Title : {{ report.title }}</h3>
+	<p>updated at :  {{ report.updated_at }}</p>
+	<h4>Summary : {{ report.summary }}</h4>
+{% endblock %}
