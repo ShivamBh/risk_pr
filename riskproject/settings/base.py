@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'riskproject.wsgi.application'
 
 
 
-LOGIN_REDIRECT_URL = reverse_lazy('report_list')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
 # Database

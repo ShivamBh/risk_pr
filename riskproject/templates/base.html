@@ -11,8 +11,12 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+        <!-- FONTS -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 
         <!-- GLOBAL STYLESHEET -->
         <link rel="stylesheet" href="{% static 'css/risk.css' %}"> 
@@ -23,6 +27,18 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+
+		<header class="site-header">
+			<div class="logo-container">
+				<img src="{% static 'img/logo.svg' %}" alt="ISSRISK Logo">
+			</div>
+		</header>
+
+
+
+
+
+
         {% block content %}{% endblock %}
 
         <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>

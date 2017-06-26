@@ -1,4 +1,33 @@
-.test{
-	color: lightcoral;
-	font-size: 80px;
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
+
+html, body {
+	height: 100%;
+	width: 100%;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding: 0;
+	margin: 0;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.site-header {
+	height: 10%;
+	background-color: lightblue;
+	
+}
+
+.site-header h3 {
+	font-family: 'Merriweather', sans-serif;
 }

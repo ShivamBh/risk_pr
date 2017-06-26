@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}ISSRISK Web Application Portal{% endblock %}
+
+{% block content %}
+	<h1>Okairi</h1>
+	{{request.user}}
+	<a href="/logout/">Logout</a>
+{% endblock %}
