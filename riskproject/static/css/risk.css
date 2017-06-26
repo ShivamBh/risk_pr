@@ -16,6 +16,11 @@ html, body {
 
 }
 
+a, a:hover, a:visited, a:link {
+	text-decoration: none;
+	
+}
+
 h1, h2, h3, h4, h5, h6 {
 	padding: 0;
 	margin: 0;
@@ -24,10 +29,34 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-header {
 	height: 10%;
-	background-color: lightblue;
+	background-color: #eee;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.site-header .logo-container {
+	height: 90%;
+	width: 30%;
+	margin: 0 10px 0 10px;
+	align-self: center;
+}
+
+.site-header .logo-container img {
+	height: 8vh;
+	width: 14vw;
+
+}
+
+.site-header .logout-btn {
+	
 	
 }
 
-.site-header h3 {
-	font-family: 'Merriweather', sans-serif;
+.site-header .logout-btn a {
+	margin: 0 10px 0 10px;
+	width: 10%;
+	color: lightcoral;
+	text-align: center;
+	font-family: 'Source Sans Pro', sans-serif;
 }
