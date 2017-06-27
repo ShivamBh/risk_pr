@@ -12,6 +12,7 @@ def index(request):
 
 class ReportListView(LoginRequiredMixin, ListView):
 	model = Report
+	#queryset = Report.objects.filter('-created_at')
 	context_object_name = 'report_list'
 	template_name = 'reports/report_list.html'
 

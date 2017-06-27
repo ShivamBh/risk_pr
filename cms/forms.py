@@ -18,3 +18,12 @@ class ReportForm(forms.ModelForm):
 			"impact_radius",
 			"report_type",
 					)
+
+class CountryForm(forms.ModelForm):
+	class Meta:
+		model = Country
+		fields = (
+			"name",
+			"rating",
+			"risk_bg",
+			)
