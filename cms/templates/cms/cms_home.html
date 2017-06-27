@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}CMS Home{% endblock %}
+
+{% block content %}
+
+	{% for report in reports %}
+		<a href="">{{ report.title }}</a><br>
+	{% endfor %}
+	<hr>
+	<hr>
+	{% for country in countries %}
+		<a href="}">{{ country.name }}</a><br>
+	{% endfor %}
+{% endblock %}

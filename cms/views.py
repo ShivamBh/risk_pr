@@ -5,6 +5,12 @@ from .forms import ReportForm, CountryForm
 from reports.models import Report, Country
 
 # Create your views here.
+def cms_home_view(request):
+	reports = Report.objects.all()
+	countries = Country.objects.all()
+	template = 'cms/cms_home.html'
+	return render(request, template, {'reports': reports, 'countries':countries})
+
 class CreateReportView(CreateView):
 	model = Report
 	template_name = 'cms/create_report.html'
@@ -17,7 +23,7 @@ class UpdateReportView(UpdateView):
 	slug_field='pk'
 	template_name = 'cms/update_report.html'
 	form_class = ReportForm
-	success_url = '/reports/'
+	success_url = '/cms/home/'
 
 class DeleteReportView(DeleteView):
 	model = Report
