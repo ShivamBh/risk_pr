@@ -21,6 +21,11 @@ class Country(models.Model):
 
 
 class Report(models.Model):
+	SUB_MODEL_CHOICES = (
+		('T', 'Travel'),
+		('C', 'Country'),
+		('TC', 'Travel & Country'),
+	)
 	location = models.ForeignKey(Country, on_delete=models.CASCADE)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
@@ -35,7 +40,11 @@ class Report(models.Model):
 	latitude = models.DecimalField(max_digits=10, decimal_places=4)
 	longitude = models.DecimalField(max_digits=10, decimal_places=4)
 	impact_radius = models.IntegerField()
-	report_type = models.CharField(max_length=25, blank=False, null=False)
+	report_type = models.CharField(
+		max_length=3,
+		choices=SUB_MODEL_CHOICES,
+		default="T",
+	)
 
 	def __str__(self):
 		return self.title

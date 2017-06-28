@@ -16,36 +16,36 @@ class CreateReportView(CreateView):
 	template_name = 'cms/create_report.html'
 	form_class = ReportForm
 	
-	success_url = '/reports/'
+	success_url = '/cms/'
 
 class UpdateReportView(UpdateView):
 	model = Report
 	slug_field='pk'
 	template_name = 'cms/update_report.html'
 	form_class = ReportForm
-	success_url = '/cms/home/'
+	success_url = '/cms/'
 
 class DeleteReportView(DeleteView):
 	model = Report
 	slug_field = 'pk'
 	template_name = 'cms/delete_report.html'
-	success_url = '/reports/'
+	success_url = '/cms/'
 
 class CreateCountryView(CreateView):
 	model = Country
 	template_name = 'cms/create_country.html'
 	form_class = CountryForm
-	success_url = '/country/'
+	success_url = '/cms/'
 
 class UpdateCountryView(UpdateView):
 	model = Country
 	slug_field = 'pk'
 	template_name = 'cms/update_country.html'
 	form_class = CountryForm
-	success_url = '/country/'
+	success_url = '/cms/'
 
 class DeleteCountryView(DeleteView):
 	model = Country
 	slug_field = 'pk'
 	template_name = 'cms/delete_country.html'
-	success_url = '/country/'
+	success_url = '/cms/'
