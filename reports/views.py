@@ -2,13 +2,17 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
-
+from accounts.models import Profile
 from .models import Report, Country
 
 # Create your views here.
 @login_required
 def index(request):
-	return render(request, 'reports/index.html')
+	user = request.user
+	qs = Profile.objects.get(user=user)
+	loc = qs.sub_country.all()
+
+	return render(request, 'reports/index.html', {'loc':loc})
 
 class ReportListView(LoginRequiredMixin, ListView):
 	model = Report

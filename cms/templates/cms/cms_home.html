@@ -12,4 +12,16 @@
 	{% for country in countries %}
 		<a href="">{{ country.name }}</a><br>
 	{% endfor %}
+
+	<hr>
+	<br>
+	<hr>
+	<div>
+		<h3>Users List:</h3>
+		<ul>
+			{% for user_obj in users %}
+				<li><a href="{% url "update_user" id=user_obj.id %}">{{ user_obj.username }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
 {% endblock %}

@@ -1,5 +1,8 @@
 from django import forms
+from django.contrib.auth.models import User
+
 from reports.models import Report, Country
+from accounts.models import Profile
 
 class ReportForm(forms.ModelForm):
 	class Meta:
@@ -26,4 +29,24 @@ class CountryForm(forms.ModelForm):
 			"name",
 			"rating",
 			"risk_bg",
+			)
+
+class UserForm(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = (
+			"first_name",
+			"last_name",
+			"username",
+			"is_active"
+			)
+
+class ProfileForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = (
+			"phone_number",
+			"company",
+			"sub_country",
+			"sub_model",
 			)

@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import CharField
 from django.contrib.auth.models import User
+
 from django.core.validators import RegexValidator
 from django.db.models.signals import post_save
 from django.db.models.signals import class_prepared
@@ -11,19 +12,19 @@ from reports.models import Country
 # Create your models here.
 
 class Profile(models.Model):
-	clist = Country.objects.values_list('name', flat=True)
+	
 	SUB_MODEL_CHOICES = (
 		('T', 'Travel'),
 		('C', 'Country'),
 		('TC', 'Travel & Country'),
 	)
 
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 	phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=20)
 	#contact_no = models.CharField(max_length=20, blank=False, default="12345")
 	company = models.CharField(max_length=120, blank=False, default="Company")
-	#sub_country = models.ModelChoiceField(queryset=clist)
+	sub_country = models.ManyToManyField(Country)
 	sub_model = models.CharField(
 		max_length=3,
 		choices=SUB_MODEL_CHOICES,
