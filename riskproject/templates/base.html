@@ -17,6 +17,7 @@
         <!-- FONTS -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
         <!-- GLOBAL STYLESHEET -->
         <link rel="stylesheet" href="{% static 'css/risk.css' %}"> 
@@ -27,22 +28,35 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+		<div class="site-wrapper">
+			<header class="site-header">
+				
+				<div class="logo-wrapper">
+					<div class="logo">
+						<img src="{% static "img/logo.png" %}" alt="LOGO ISSRISK">
+					</div>
+				</div>
 
-		<header class="site-header">
-			<div class="logo-container">
-				<img src="{% static 'img/logo.svg' %}" alt="ISSRISK Logo">
-			</div>
-			<div class="logout-btn">
-				<a href="/logout/">Logout</a>
-			</div>
-		</header>
+				<!-- <div class="divider"></div> -->
 
+				{% block header %}
+				{% endblock %}
 
+				{% if user.is_authenticated %}
 
+					<div class="logout">
+						<!-- <h3 class="welcome">Welcome, </h3>
+						<p class="username">{{ user.username }}</p> -->
+						<a href="/logout/" class="logout-link">Logout</a>
+					</div>
 
+				{% endif %}
 
+			</header>
 
-        {% block content %}{% endblock %}
+        	{% block content %}{% endblock %}
+		</div>
+		
 
         <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.4.min.js"><\/script>')</script>

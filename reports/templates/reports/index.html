@@ -2,10 +2,62 @@
 
 {% block title %}ISSRISK Web Application Portal{% endblock %}
 
+{% block header %}
+	<nav class="side-nav">
+		<div class="nav-menu">
+			<div class="nav-items">
+				<a href="{% url "report_list" %}" class="nav-links">Reports</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "country_list" %}" class="nav-links">Countries</a>
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+
 {% block content %}
-	<h1>Okairi</h1>
-	{{request.user}}
-	<hr>
-	{{ loc.all }}
+
+	<main class="container">
+		
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>Dashboard</h1>
+			</div>
+			
+		</section>
+
+		<section class="content-wrapper">
+
+			<div class="main-content">
+				<div class="main-header">
+					<h2 class="main-header-text">Subscribed Countries</h2>
+					
+				</div>
+				<div class="country-list">
+					<div class="country-item">
+						<div class="country-flag">
+							<img src="" alt="Flag">
+						</div>
+
+						<div class="country-name">
+							<h4>India</h4>
+						</div>
+
+						<div class="country-detail">
+							<a href="" class="country-detail-link">View more</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="secondary-content">
+				
+			</div>
+
+		</section>
+	</main>
+
 	
 {% endblock %}

@@ -1,14 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ReportForm, CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm
+
+from .forms import ReportForm, CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
 from reports.models import Report, Country
 from accounts.models import Profile 
 
-# Create your views here.
+# Create your views here
+@login_required
 def cms_home_view(request):
 	reports = Report.objects.all()
 	countries = Country.objects.all()
@@ -16,6 +19,25 @@ def cms_home_view(request):
 	user_list = User.objects.all()
 	template = 'cms/cms_home.html'
 	return render(request, template, {'reports': reports, 'countries':countries, 'users': user_list, 'perm': perm})
+
+# def cms_login(request):
+# 	if request.method == 'POST':
+# 		login_form = CMSLoginForm(request.POST)
+
+# 		if login_form.is_valid():
+# 			cd = form.cleaned_data
+# 			user = authenticate(username=cd['username'], password=cd['password'])
+
+# 			if user is not None:
+# 				if user.is_active:
+# 					login(request, user)
+# 					return redirect('cms_home')
+# 				else:
+# 					return HttpResponse('Disabled Account')
+# 			else:
+# 				return 
+
+
 
 @login_required
 @permission_required('auth.change_user', login_url='/login/')

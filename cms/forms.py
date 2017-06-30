@@ -5,6 +5,10 @@ from django.contrib.auth.forms import UserCreationForm
 from reports.models import Report, Country
 from accounts.models import Profile
 
+class CMSLoginForm(forms.Form):
+	username = forms.CharField(error_messages={'required': 'Please enter your username'})
+	password = forms.CharField(widget=forms.PasswordInput)
+
 class UserCreateForm(UserCreationForm):
 	class Meta:
 		model = User
