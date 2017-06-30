@@ -1,8 +1,35 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 from reports.models import Report, Country
 from accounts.models import Profile
+
+class UserCreateForm(UserCreationForm):
+	class Meta:
+		model = User
+		fields = (
+			"first_name",
+			"last_name",
+			"email",
+			"username",
+			"password1",
+			"password2",
+			"is_active",
+			"is_staff",
+			)
+
+class ProfileCreateForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = (
+			"phone_number",
+			"company",
+			"sub_country",
+			"sub_model",
+			"is_moderator",
+			"is_publisher",
+			)
 
 class ReportForm(forms.ModelForm):
 	class Meta:
@@ -38,6 +65,7 @@ class UserForm(forms.ModelForm):
 			"first_name",
 			"last_name",
 			"username",
+			"email",
 			"is_active"
 			)
 

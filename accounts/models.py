@@ -30,6 +30,9 @@ class Profile(models.Model):
 		choices=SUB_MODEL_CHOICES,
 		default="T",
 	)
+	email_confirmed = models.BooleanField(default=True)
+	is_moderator = models.BooleanField(default=False)
+	is_publisher = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.user.username
@@ -53,4 +56,5 @@ def save_user_profile(sender, instance, **kwargs):
 # 		field = CharField("New Field", max_length=100)
 # 		field.contribute_to_class(sender, "name")
 
-# class_prepared.connect(add_field)
+# class_prepared.connect(add_field) <- how does it connect? Check Docs.
+# class work_related {%  %}
