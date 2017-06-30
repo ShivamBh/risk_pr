@@ -203,9 +203,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-header-text {
-	font-weight: lighter;
+	font-weight: bold;
+	font-size: 1.3em;
 	font-family: 'Muli', 'sans-serif';
 	padding-bottom: 5px;
+	color: #4F4949;
 	/*border-bottom: 1px solid #111;*/
 }
 
@@ -214,10 +216,57 @@ h1, h2, h3, h4, h5, h6 {
 	display: flex;
 	flex-flow: row;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .country-item {
-	border: 1px solid black;
-	height: 20vh;
+	/*border: 1px solid black;*/
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	height: 22vh;
 	width: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.country-flag {
+	margin-top: 10px;
+	height: 40%;
+	width: 40%;
+	
+}
+
+.country-flag img {
+	height: 100%;
+	width: 100%;
+}
+
+.country-name {
+	margin-top: 5px;
+	height: 20%;
+}
+
+.country-name h4 {
+	font-weight: lighter;
+	color: #656565;
+}
+
+.c-name-bold {
+	font-weight: bold;
+}
+
+.country-detail {
+
+	height: 20%;
+}
+
+.country-detail a {
+	
+	padding: 6px;
+	font-family: 'Muli', 'sans-serif';
+	font-weight: bold;
+	color: #656565;
+	border: 1px solid #4F4949;
+	font-size: 0.7em;
 }

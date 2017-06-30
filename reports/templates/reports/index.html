@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}ISSRISK Web Application Portal{% endblock %}
 
@@ -32,23 +33,27 @@
 
 			<div class="main-content">
 				<div class="main-header">
-					<h2 class="main-header-text">Subscribed Countries</h2>
+					<h2 class="main-header-text">Subscribed Countries </h2>
+
 					
 				</div>
 				<div class="country-list">
-					<div class="country-item">
-						<div class="country-flag">
-							<img src="" alt="Flag">
-						</div>
+					{% for loc_obj in loc %}
+						<div class="country-item">
+							<div class="country-flag">
+								<img src="{% static "img/in.svg" %}" alt="Flag">
+							</div>
 
-						<div class="country-name">
-							<h4>India</h4>
-						</div>
+							<div class="country-name">
+								<h4>Country: <span class="c-name-bold">{{loc_obj.name}}</span></h4>
+							</div>
 
-						<div class="country-detail">
-							<a href="" class="country-detail-link">View more</a>
+							<div class="country-detail">
+								<a href="{% url "country_detail" pk=loc_obj.id %}" class="country-detail-link">View more</a>
+							</div>
 						</div>
-					</div>
+					{% endfor %}
+					
 				</div>
 			</div>
 
