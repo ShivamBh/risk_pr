@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.forms import UserCreationForm
 from .forms import ReportForm, CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm
@@ -16,6 +17,8 @@ def cms_home_view(request):
 	template = 'cms/cms_home.html'
 	return render(request, template, {'reports': reports, 'countries':countries, 'users': user_list, 'perm': perm})
 
+@login_required
+@permission_required('auth.change_user', login_url='/login/')
 def update_user_view(request, id):
 	instance_obj = get_object_or_404(User, pk=id)
 	if request.method == 'POST':
@@ -33,6 +36,8 @@ def update_user_view(request, id):
 
 	return render(request, 'cms/update_user.html', {'user_form': user_form, 'profile_form': profile_form})
 
+@login_required
+@permission_required('auth.add_user', login_url='/login/')
 def create_user_view(request):
 	mod = Group.objects.get(name='moderators')
 	pub = Group.objects.get(name='publishers')
@@ -75,40 +80,46 @@ def create_user_view(request):
 # 	#slug_url_kwarg = 'slug'
 
 
-class CreateReportView(CreateView):
+class CreateReportView(PermissionRequiredMixin, CreateView):
+	permission_required = ('reports.add_report')
 	model = Report
 	template_name = 'cms/create_report.html'
 	form_class = ReportForm
 	
 	success_url = '/cms/'
 
-class UpdateReportView(UpdateView):
+class UpdateReportView(PermissionRequiredMixin, UpdateView):
+	permission_required = ('reports.change_report')
 	model = Report
 	slug_field='pk'
 	template_name = 'cms/update_report.html'
 	form_class = ReportForm
 	success_url = '/cms/'
 
-class DeleteReportView(DeleteView):
+class DeleteReportView(PermissionRequiredMixin, DeleteView):
+	permission_required = ('reports.delete_report')
 	model = Report
 	slug_field = 'pk'
 	template_name = 'cms/delete_report.html'
 	success_url = '/cms/'
 
-class CreateCountryView(CreateView):
+class CreateCountryView(PermissionRequiredMixin, CreateView):
+	permission_required = ('reports.add_country')
 	model = Country
 	template_name = 'cms/create_country.html'
 	form_class = CountryForm
 	success_url = '/cms/'
 
-class UpdateCountryView(UpdateView):
+class UpdateCountryView(PermissionRequiredMixin, UpdateView):
+	permission_required = ('reports.change_country')
 	model = Country
 	slug_field = 'pk'
 	template_name = 'cms/update_country.html'
 	form_class = CountryForm
 	success_url = '/cms/'
 
-class DeleteCountryView(DeleteView):
+class DeleteCountryView(PermissionRequiredMixin, DeleteView):
+	permission_required = ('reports.delete_country')
 	model = Country
 	slug_field = 'pk'
 	template_name = 'cms/delete_country.html'
