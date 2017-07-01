@@ -58,7 +58,11 @@
 			</div>
 
 			<div class="secondary-content">
-				
+				{% for report in rep_qs %}
+					{{ report.title }} <br>
+					{{ report.impact_tc }} <br>
+					<hr>
+				{% endfor %}
 			</div>
 
 		</section>

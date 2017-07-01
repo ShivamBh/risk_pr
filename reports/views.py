@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
@@ -11,8 +12,10 @@ def index(request):
 	user = request.user
 	qs = Profile.objects.get(user=user)
 	loc = qs.sub_country.all()
+	rep_qs = [(Report.objects.filter(location__name__icontains=loc_obj.name)) for loc_obj in loc]
+	reports = [item for sublist in rep_qs for item in sublist]
 
-	return render(request, 'reports/index.html', {'loc':loc})
+	return render(request, 'reports/index.html', {'loc':loc, 'rep_qs': reports})
 
 class ReportListView(LoginRequiredMixin, ListView):
 	model = Report
