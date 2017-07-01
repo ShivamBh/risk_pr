@@ -1,9 +1,84 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}{{ country.name }}{% endblock %}
+{% block title %}{{ country.name }}- Detail {% endblock %}
+
+
+{% block header %}
+	<nav class="side-nav">
+		<div class="nav-menu">
+			<div class="nav-items">
+				<a href="{% url "report_list" %}" class="nav-links">Reports</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "country_list" %}" class="nav-links">Countries</a>
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
 
 {% block content %}
+
+	<main class="container">
+		
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>Dashboard</h1>
+			</div>
+			
+		</section>
+
+		<section class="content-wrapper">
+
+			<div class="main-content">
+				<div class="main-header">
+					<h2 class="main-header-text"><span class="country-name-header">
+						{{ country.name }}
+					</span></h2>
+
+				</div>
+
+				<div class="country-detail-wrapper">
+
+					<div class="ratings">
+						<div class="country-rating"></div>
+						<div class="security-level"></div>
+					</div>
+					<div class="country-bg"></div>
+					<div class="maps-wrapper"></div>
+					
+				</div>
+			</div>
+
+			<!-- <div class="secondary-content">
+
+				<div class="main-header">
+					<h2 class="main-header-text">Latest Reports : </h2>
+				</div>
+
+				<div class="report-list">
+					{% for report in rep_qs %}
+						<div class="report-item">
+							
+							<div class="report-title">
+								<h3>Title : <span class="rep-title-text">{{ report.title|truncatechars:40 }}</span></h3>
+							</div>
+							<div class="report-date">
+								<p>{{ report.updated_at }}</p>
+							</div>
+							<div class="report-detail">
+								<a href="{% url 'report_detail' pk=report.id %}">Details</a>
+							</div>
+
+						</div>
+					{% endfor %}
+				</div>
+			</div> -->
+
+		</section>
+	</main>
+
 	
-	<h3 class="hero">Title : {{ country.name }}</h3>
-	<p>Background : {{ country.risk_bg }}</p>
 {% endblock %}

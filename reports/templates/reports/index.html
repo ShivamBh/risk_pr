@@ -41,7 +41,7 @@
 					{% for loc_obj in loc %}
 						<div class="country-item">
 							<div class="country-flag">
-								<img src="{% static "img/in.svg" %}" alt="Flag">
+								<img src="{{ loc_obj.flag.url }}" alt="Flag">
 							</div>
 
 							<div class="country-name">
@@ -68,7 +68,7 @@
 						<div class="report-item">
 							
 							<div class="report-title">
-								<h3>Title : <span class="rep-title-text">{{ report.title }}</span></h3>
+								<h3>Title : <span class="rep-title-text">{{ report.title|truncatechars:40 }}</span></h3>
 							</div>
 							<div class="report-date">
 								<p>{{ report.updated_at }}</p>
@@ -80,11 +80,6 @@
 						</div>
 					{% endfor %}
 				</div>
-				<!-- 
-					{{ report.title }} <br>
-					{{ report.impact_tc }} <br>
-					<hr>
-				 -->
 			</div>
 
 		</section>
