@@ -1,1 +1,1 @@
-web: gunicorn riskproject.wsgi:application --log-file
+web: gunicorn riskproject.wsgi --log-file -
