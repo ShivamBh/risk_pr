@@ -216,7 +216,7 @@ h1, h2, h3, h4, h5, h6 {
 	display: flex;
 	flex-flow: row;
 	flex-wrap: wrap;
-	justify-content: center;
+
 }
 
 .country-item {
@@ -232,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .country-flag {
 	margin-top: 10px;
-	height: 40%;
+	height: 30%;
 	width: 40%;
 	
 }
