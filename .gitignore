@@ -5,6 +5,7 @@ __pycache__/
 
 # settings
 /riskproject/settings/dev.py
+/riskproject/static/css/risk_pre.css
 
 # C extensions
 *.so
