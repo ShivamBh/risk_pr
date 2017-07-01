@@ -1,0 +1,1 @@
+web: gunicorn riskproject.wsgi:application --log-file

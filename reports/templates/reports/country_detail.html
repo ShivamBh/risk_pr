@@ -11,7 +11,7 @@
 				<a href="{% url "report_list" %}" class="nav-links">Reports</a>
 			</div>
 			<div class="nav-items">
-				<a href="{% url "country_list" %}" class="nav-links">Countries</a>
+				<a href="{% url "home" %}" class="nav-links">Countries</a>
 			</div>
 		</div>
 	</nav>
@@ -43,39 +43,125 @@
 				<div class="country-detail-wrapper">
 
 					<div class="ratings">
-						<div class="country-rating"></div>
-						<div class="security-level"></div>
-					</div>
-					<div class="country-bg"></div>
-					<div class="maps-wrapper"></div>
-					
-				</div>
-			</div>
-
-			<!-- <div class="secondary-content">
-
-				<div class="main-header">
-					<h2 class="main-header-text">Latest Reports : </h2>
-				</div>
-
-				<div class="report-list">
-					{% for report in rep_qs %}
-						<div class="report-item">
-							
-							<div class="report-title">
-								<h3>Title : <span class="rep-title-text">{{ report.title|truncatechars:40 }}</span></h3>
+						<div class="country-rating">
+							<div class="rating-wrapper">
+								<div class="rating-item">
+									<div class="rating-name">
+										<h3>Political</h3>
+									</div>
+									<div class="rating-color" id="pol-rat">
+										<h6>{{ country.rating }}</h6>
+									</div>
+								</div>
+								<div class="rating-item">
+									<div class="rating-name">
+										<h3>Terror</h3>
+									</div>
+									<div class="rating-color">
+										<h6>{{ country.terror_rating }}</h6>
+									</div>
+								</div>
+								<div class="rating-item">
+									<div class="rating-name">
+										<h3>Security</h3>
+									</div>
+									<div class="rating-color">
+										<h6>{{ country.sec_rating }}</h6>
+									</div>
+								</div>
+								<div class="rating-item">
+									<div class="rating-name">
+										<h3>Travel</h3>
+									</div>
+									<div class="rating-color">
+										<h6>{{ country.travel_rating }}</h6>
+									</div>
+								</div>
 							</div>
-							<div class="report-date">
-								<p>{{ report.updated_at }}</p>
+							<div class="legend-wrapper">
+
+								<div class="rating-legend-item">
+									<div class="item-color-low color"></div>
+									<div class="item-text">
+										<p>Low</p>
+									</div>
+								</div>
+								<div class="rating-legend-item">
+									<div class="item-color-medium color"></div>
+									<div class="item-text">
+										<p>Medium</p>
+									</div>
+								</div>
+								<div class="rating-legend-item">
+									<div class="item-color-high color"></div>
+									<div class="item-text">
+										<p>High</p>
+									</div>
+								</div>
+								<div class="rating-legend-item">
+									<div class="item-color-extreme color"></div>
+									<div class="item-text">
+										<p>Extreme</p>
+									</div>
+								</div>
+
 							</div>
-							<div class="report-detail">
-								<a href="{% url 'report_detail' pk=report.id %}">Details</a>
+						</div>
+
+						<div class="security-level">
+							<div class="sec-level-header">
+								<h3>Security Preparedness Level</h3>
+
+							</div>
+							<div class="sec-level-rating">
+								<div class="sec-level-rating-text">
+									<h3>{{ country.sec_level }}</h3>
+								</div>
+								<div class="sec-level-rating-color"></div>
+							</div>
+							<div class="sec-level-legend">
+								<div class="level-table">
+									<div class="level-row">
+										<h5>Green : <span class="level-light-text">
+											Monitor
+										</span></h5>
+									</div>
+									<div class="level-row">
+										<h5>Yellow : <span class="level-light-text">
+											Review security posture
+										</span></h5>
+									</div>
+									<div class="level-row">
+										<h5>Amber : <span class="level-light-text">
+											Prepare emergency response option
+										</span></h5>
+									</div>
+									<div class="level-row">
+										<h5>Red : <span class="level-light-text">
+											Adopt emergency options
+										</span></h5>
+									</div>
+								</div>
 							</div>
 
 						</div>
-					{% endfor %}
+					</div>
+					<div class="country-bg">
+						<div class="country-bg-header">
+							<h2>Country Background :</h2>
+						</div>
+						<div class="country-bg-text">
+							<p>{{ country.risk_bg }}</p>
+						</div>
+					</div>
+					<div class="maps-wrapper">
+						<div class="map-header">
+							<h2>Map View :</h2>
+						</div>
+					</div>
+					
 				</div>
-			</div> -->
+			</div>
 
 		</section>
 	</main>
