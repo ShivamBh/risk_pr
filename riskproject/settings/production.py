@@ -4,7 +4,7 @@ import dj_database_url
 
 from .base import *
 DEBUG = True
-SECRET_KEY = '8w@+-dis^dpj-e35xb1twx*#gg%l^nrvv+d&ijlz72^&k_j%-r'
+
 
 ALLOWED_HOSTS = ['localhost', 'issdemo.herokuapp.com']
 
