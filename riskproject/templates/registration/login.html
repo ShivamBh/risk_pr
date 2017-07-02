@@ -5,23 +5,37 @@
 {% block content %}
 
 	<main class="container">
-		<h1>Log-In</h1>
-	{% if form.errors %}
-		<p>Your username and password didn't match. Please try again.</p>
-	{% else %}
-		<p>Fill out your credentials to log-in.</p>
-	{% endif %}
+		<div class="login-wrapper">
+			<div class="login-text">
+				<h1>Log-In</h1>
+				{% if form.errors %}
+					<p>Your username and password didn't match. Please try again.</p>
+				{% else %}
+					<p>Fill out your credentials to log-in.</p>
+				{% endif %}
 
-	<div class="login-form">
+				<div class="login-form">
+					<form action="." method="post">
+						{% csrf_token %}
+						{% for field in form %}
+							<div class="form-group">
+								<span class="field-label">{{ field.label_tag }}</span>
+								<br>
+								<span class="field-input">{{ field }}</span>
+							</div>
+						{% endfor %}
+						<input type="hidden" name="next" value="{{ next }}">
+						<input type="submit" value="Log-in" class="login-btn">
+					</form>
+				</div>
+			</div>
+
+
+		</div>
+
 		
 
-		<form action="." method="post">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<input type="hidden" name="next" value="{{ next }}">
-			<input type="submit" value="Log-in">
-		</form>
-	</div>
+	
 	</main>
 	
 	
