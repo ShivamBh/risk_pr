@@ -53,7 +53,6 @@ class Report(models.Model):
 	SUB_MODEL_CHOICES = (
 		('T', 'Travel'),
 		('C', 'Country'),
-		('TC', 'Travel & Country'),
 	)
 	location = models.ForeignKey(Country, on_delete=models.CASCADE)
 	created_at = models.DateTimeField(auto_now_add=True)

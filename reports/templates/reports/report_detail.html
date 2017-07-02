@@ -1,10 +1,101 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ report.title }}{% endblock %}
 
+{% block header %}
+	<nav class="side-nav">
+		<div class="nav-menu">
+			<div class="nav-items">
+				<a href="{% url "report_list" %}" class="nav-links">Reports</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "home" %}" class="nav-links">Countries</a>
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
 {% block content %}
 	
-	<h3>Title : {{ report.title }}</h3>
-	<p>updated at :  {{ report.updated_at }}</p>
-	<h4>Summary : {{ report.summary }}</h4>
+	<main class="container">
+
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>Dashboard</h1>
+			</div>
+			
+		</section>
+		
+		<section class="report-content-wrapper">
+
+			<div class="report-wrapper">
+				<div class="report-title">
+					<div class="title-text">
+						<h3>Title : {{ report.title }}</h3>
+						<div class="report-metadata">
+							<p id="report-date">{{ report.created_at }} , {{ report.location }}</p>
+							
+						</div>
+					</div>
+				</div>
+				<div class="report-summary">
+					<div class="summary-text">
+						<p>{{ report.summary }}</p>
+					</div>
+				</div>
+
+				{% if report.assessment %}
+				<div class="report-assess">
+					<div class="assess-text">
+						<p><span class="report-bold">Assessment : </span> <br class="report-divider"> {{ report.assessment }}</p>
+					</div>
+				</div>
+				{% endif %}
+
+				{% if report.impact_tc %}
+				<div class="report-impacttc">
+					<div class="impacttc-text">
+						<p><span class="report-bold">Impact to Client : </span> <br class="report-divider"> {{ report.impact_tc }}</p>
+					</div>
+				</div>
+				{% endif %}
+
+				{% if report.advice %}
+				<div class="report-advice">
+					<div class="advice-text">
+						<p><span class="report-bold">Advice : </span> <br class="report-divider"> {{ report.advice }}</p>
+					</div>
+				</div>
+				{% endif %}
+
+				{% if report.event_bg_title %}
+				<div class="report-event-bg">
+					<div class="event-bg-text">
+						<p>
+							<span class="report-bold">{{ report.event_bg_title }} : </span>
+							<br class="report-divider">
+							{{ report.event_bg_text }}
+						</p>
+					</div>
+				</div>
+				{% endif %}
+
+			</div>
+			
+
+		</section>
+
+		<section class="map-view">
+			<div class="maps-wrapper">
+				<div class="report-maps-header">
+					<h2>Map View :</h2>
+				</div>
+				<div class="report-map-area">
+					
+				</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}

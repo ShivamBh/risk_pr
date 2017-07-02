@@ -24,6 +24,22 @@ class ReportListView(LoginRequiredMixin, ListView):
 	context_object_name = 'report_list'
 	template_name = 'reports/report_list.html'
 
+	def get_queryset(self):
+		user = self.request.user
+		qs = Profile.objects.get(user=user)
+		loc = qs.sub_country.all()
+		sub_model = qs.sub_model
+		if (sub_model == 'T' or sub_model == 'C'):
+			rep_mod = Report.objects.filter(Q(report_type__exact=sub_model))
+		if (sub_model == 'TC'):
+			rep_mod = Report.objects.all()
+
+
+		rep_qs = [(rep_mod.filter(Q(location__name__icontains=loc_obj.name)).order_by('updated_at')) for loc_obj in loc]
+		reports = [item for sublist in rep_qs for item in sublist]
+
+		return reports
+
 class CountryListView(LoginRequiredMixin, ListView):
 	model = Country
 	context_object_name = 'country_list'

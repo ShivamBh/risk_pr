@@ -565,6 +565,145 @@ h1, h2, h3, h4, h5, h6 {
 
 /*   REPORT_DETAIL STYLES*/
 
+.report-content-wrapper {
+	margin-top: 40px;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	background-color: #F4F2F2;
+}	
+
+.report-wrapper {
+	padding: 10px;
+}
+
+.report-divider {
+	margin-top: 5px;
+}
+
+.report-title .title-text h3 {
+	font-family: 'Muli', 'sans-serif';
+	font-size: 1.9em;
+	color: #2F2B2B;
+}
+
+.report-metadata {
+	padding-left: 10px;
+	display: flex;
+	width: 80%;
+	justify-content: space-between;
+}
+
+#report-date {
+	padding: 0;
+	margin:0;
+	width: 60%;
+	font-family: 'Muli', 'sans-serif';
+	font-weight: bold;
+	font-size: 0.9em;
+	color: #2F2B2B;
+}
+
+.report-summary, .report-assess, .report-advice, .report-impacttc, .report-event-bg {
+	padding: 20px;
+}
+
+.report-assess .assess-text p .report-bold{
+	font-weight: lighter;
+	color: #2F2B2B;
+	font-size: 1.55em;
+	margin-bottom: 10px;
+}
+
+.report-advice .advice-text p .report-bold{
+	font-weight: lighter;
+	color: #2F2B2B;
+	font-size: 1.55em;
+	margin-bottom: 10px;
+}
+
+.report-impacttc .impacttc-text p .report-bold{
+	font-weight: lighter;
+	color: #2F2B2B;
+	font-size: 1.55em;
+	margin-bottom: 10px;
+}
+
+.report-event-bg .event-bg-text p .report-bold{
+	font-weight: lighter;
+	color: #2F2B2B;
+	font-size: 1.55em;
+	margin-bottom: 10px;
+}
+
+.report-summary .summary-text p {
+	padding: 0;
+	margin: 0;
+	font-family: 'Muli', 'sans-serif';
+	font-size: 1.1em;
+	text-align: justify;
+	font-weight: 400;
+	color: #4F4949;
+}
+
+.report-assess .assess-text p {
+	padding: 0;
+	margin: 0;
+	font-family: 'Muli', 'sans-serif';
+	font-size: 1.1em;
+	text-align: justify;
+	font-weight: 400;
+	color: #4F4949;
+}
+
+.report-impacttc .impacttc-text p {
+	padding: 0;
+	margin: 0;
+	font-family: 'Muli', 'sans-serif';
+	font-size: 1.1em;
+	text-align: justify;
+	font-weight: 400;
+	color: #4F4949;
+}
+
+.report-advice .advice-text p {
+	padding: 0;
+	margin: 0;
+	font-family: 'Muli', 'sans-serif';
+	font-size: 1.1em;
+	text-align: justify;
+	font-weight: 400;
+	color: #4F4949;
+}
+
+.report-event-bg .event-bg-text {
+	padding: 0;
+	margin: 0;
+	font-family: 'Muli', 'sans-serif';
+	font-size: 1.1em;
+	text-align: justify;
+	font-weight: 400;
+	color: #4F4949;
+}
+
+.map-view {
+	margin-top: 40px;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+}
+
+.maps-wrapper {
+	padding: 10px;
+}
+
+.report-maps-header {
+	padding: 10px;
+}
+
+.report-maps-header h2 {
+	font-weight: lighter;
+	font-size: 2em;
+	font-family: 'Muli', 'sans-serif';
+	color: #4f4949;
+}
+
 
 
 /* END REPORT DETAIL */
