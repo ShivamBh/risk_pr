@@ -545,20 +545,32 @@ h1, h2, h3, h4, h5, h6 {
 
 .maps-wrapper {
 	margin-top: 40px;
-	height: 40vh;
+	
 	width: 100%;
 	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
 }
 
-.map-header {
+.country-maps-header {
 	padding: 10px;
 }
 
-.map-header h2 {
+.country-maps-header h2 {
 	font-weight: lighter;
 	font-size: 2em;
 	font-family: 'Muli', 'sans-serif';
 	color: #4f4949;
+}
+
+.country-map-area {
+	padding: 10px;
+
+}
+
+#country-maps {
+	height: 40vh;
+	width: 50vw;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	margin-bottom: 40px;
 }
 
 /* END COUNTRY_DETAIL */
@@ -577,6 +589,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .report-divider {
 	margin-top: 5px;
+}
+
+.report-title .title-text {
+	padding: 10px;
 }
 
 .report-title .title-text h3 {
@@ -684,6 +700,10 @@ h1, h2, h3, h4, h5, h6 {
 	color: #4F4949;
 }
 
+#lat, #long, #impactradius {
+	display: none;
+}
+
 .map-view {
 	margin-top: 40px;
 	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
@@ -704,7 +724,17 @@ h1, h2, h3, h4, h5, h6 {
 	color: #4f4949;
 }
 
+.report-map-area {
+	padding: 10px;
 
+}
+
+#report-maps {
+	height: 40vh;
+	width: 50vw;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	margin-bottom: 40px;
+}
 
 /* END REPORT DETAIL */
 

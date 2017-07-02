@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'accounts',
     'reports',
     'cms',
+    'storages',
+    # 'pipeline',
 ]
 
 MIDDLEWARE = [
