@@ -12,6 +12,7 @@ from accounts.models import Profile
 
 # Create your views here
 @login_required
+@permission_required('reports.add_report', login_url='/login/')
 def cms_home_view(request):
 	reports = Report.objects.all()
 	countries = Country.objects.all()
