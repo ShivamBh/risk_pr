@@ -707,6 +707,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Muli', 'sans-serif';
 	font-size: 1.9em;
 	color: #2F2B2B;
+	font-weight: bold;
 }
 
 .report-metadata {
@@ -731,37 +732,46 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .report-assess .assess-text p .report-bold{
-	font-weight: lighter;
+	font-weight: bold;
 	color: #2F2B2B;
 	font-size: 1.55em;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+	font-family: "Muli", 'sans-serif';
+	display: block;
 }
 
 .report-advice .advice-text p .report-bold{
-	font-weight: lighter;
+	font-weight: bold;
 	color: #2F2B2B;
 	font-size: 1.55em;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+	font-family: "Muli", 'sans-serif';
+	display: block;
 }
 
 .report-impacttc .impacttc-text p .report-bold{
-	font-weight: lighter;
+	font-weight: bold;
 	color: #2F2B2B;
 	font-size: 1.55em;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+	font-family: "Muli", 'sans-serif';
+	display: block;
 }
 
 .report-event-bg .event-bg-text p .report-bold{
-	font-weight: lighter;
+	font-weight: bold;
 	color: #2F2B2B;
 	font-size: 1.55em;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+	font-family: "Muli", 'sans-serif';
+	display: block;
+
 }
 
 .report-summary .summary-text p {
 	padding: 0;
 	margin: 0;
-	font-family: 'Muli', 'sans-serif';
+	font-family: 'Arvo', 'sans-serif';
 	font-size: 1.1em;
 	text-align: justify;
 	font-weight: 400;
@@ -771,7 +781,7 @@ h1, h2, h3, h4, h5, h6 {
 .report-assess .assess-text p {
 	padding: 0;
 	margin: 0;
-	font-family: 'Muli', 'sans-serif';
+	font-family: 'Arvo', 'sans-serif';
 	font-size: 1.1em;
 	text-align: justify;
 	font-weight: 400;
@@ -781,7 +791,7 @@ h1, h2, h3, h4, h5, h6 {
 .report-impacttc .impacttc-text p {
 	padding: 0;
 	margin: 0;
-	font-family: 'Muli', 'sans-serif';
+	font-family: 'Arvo', 'sans-serif';
 	font-size: 1.1em;
 	text-align: justify;
 	font-weight: 400;
@@ -791,7 +801,7 @@ h1, h2, h3, h4, h5, h6 {
 .report-advice .advice-text p {
 	padding: 0;
 	margin: 0;
-	font-family: 'Muli', 'sans-serif';
+	font-family: 'Arvo', 'sans-serif';
 	font-size: 1.1em;
 	text-align: justify;
 	font-weight: 400;
@@ -801,7 +811,7 @@ h1, h2, h3, h4, h5, h6 {
 .report-event-bg .event-bg-text {
 	padding: 0;
 	margin: 0;
-	font-family: 'Muli', 'sans-serif';
+	font-family: 'Arvo', 'sans-serif';
 	font-size: 1.1em;
 	text-align: justify;
 	font-weight: 400;
