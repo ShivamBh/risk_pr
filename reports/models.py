@@ -17,12 +17,12 @@ class Country(models.Model):
 
 	name = models.CharField(max_length=100, blank=False, null=False)
 	flag = models.FileField(upload_to='flags', null=True)
-	rating = models.CharField(
+	political_rating = models.CharField(
 		max_length=2,
 		choices = RATING_CHOICES,
 		null=True,
 	)
-	sec_rating = models.CharField(
+	security_rating = models.CharField(
 		max_length=2,
 		choices = RATING_CHOICES,
 		null=True,

@@ -27,6 +27,14 @@
 {% block content %}
 
 	<main class="container">
+
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>CMS Dashboard</h1>
+			</div>
+			
+		</section>
+		
 		{% for report in reports %}
 		<a href="">{{ report.title }}</a><br>
 	{% endfor %}

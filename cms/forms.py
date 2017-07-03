@@ -58,7 +58,12 @@ class CountryForm(forms.ModelForm):
 		model = Country
 		fields = (
 			"name",
-			"rating",
+			"flag",
+			"political_rating",
+			"security_rating",
+			"terror_rating",
+			"travel_rating",
+			"sec_level",
 			"risk_bg",
 			)
 
