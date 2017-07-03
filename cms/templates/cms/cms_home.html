@@ -34,29 +34,63 @@
 			</div>
 			
 		</section>
-		
-		{% for report in reports %}
-		<a href="">{{ report.title }}</a><br>
-	{% endfor %}
-	<hr>
-	<hr>
-	{% for country in countries %}
-		<a href="">{{ country.name }}</a><br>
-	{% endfor %}
 
-	<hr>
+		<section class="cms-home">
+			
+			<div class="cms-rep-list">
+				
+				<div class="main-header">
+					<h1 class="main-header-text">Latest Reports : </h1>
+				</div>
+				
+				{% for report in reports %}
+				<div class="rep-item">
+					<h3>{{ report.title|truncatechars:50 }}</h3>
+					<div class="crud">
+						<a href="{% url "update_report" pk=report.id %}" class="crud-links">Edit</a>
+						<a href="{% url "delete_report" pk=report.id %}" class="crud-links">Delete</a>
+					</div>
+				</div>
+				{% endfor %}
+				
+			</div>
+			<div class="cms-co-list">
+				<div class="main-header">
+					<h1 class="main-header-text">Country Pages : </h1>
+				</div>
+				
+				{% for country in countries %}
+				<div class="rep-item">
+					<h3>{{ country.name }}</h3>
+					<div class="crud">
+						<a href="{% url "update_country" pk=country.id %}" class="crud-links">Edit</a>
+						<a href="{% url "delete_country" pk=country.id %}" class="crud-links">Delete</a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			{% if user.profile.is_moderator or user.is_superuser %}
+			<div class="cms-user-list">
+				<div class="main-header">
+					<h1 class="main-header-text">Registered Users : </h1>
+				</div>
+				
+				{% for user in users %}
+					{% if not user.profile.is_moderator or user.profile.is_publisher %}
+						<div class="rep-item">
+							<h3>{{ user.username }}</h3>
+							<div class="crud">
+								<a href="{% url "update_user" id=user.id %}" class="crud-links">Edit</a>
+				
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+			{% endif %}
 
-	{{ perm }}
-	<br>
-	<hr>
-	<div>
-		<h3>Users List:</h3>
-		<ul>
-			{% for user_obj in users %}
-				<li><a href="{% url "update_user" id=user_obj.id %}">{{ user_obj.username }}</a></li>
-			{% endfor %}
-		</ul>
-	</div>
+		</section>
+
 	</main>
 
 {% endblock %}

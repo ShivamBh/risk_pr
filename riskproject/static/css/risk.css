@@ -848,6 +848,61 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CMS STYLES */
 
+.cms-home {
+	margin-top: 40px;
+	padding: 10px;
+}
+
+.cms-rep-list {
+	padding: 10px;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	background-color: #f4f2f2;
+}
+
+.rep-item {
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid #4F4949;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+.rep-item h3 {
+	color: #4F4949;
+	font-family: 'Muli', 'sans-serif';
+}
+
+.crud {
+	width: 20%;
+	display: flex;
+	justify-content: center;
+}
+
+.crud-links {
+	font-family: 'Muli', 'sans-serif';
+	font-weight: bold;
+	padding: 10px;
+	color: #4F4949;
+}
+
+.cms-co-list {
+	padding: 10px;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	background-color: #f4f2f2;
+}
+
+.cms-user-list {
+	padding: 10px;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	background-color: #f4f2f2;
+}
+
+.crud-links:hover {
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+}
+
 .create-form {
 	padding: 10px;
 	margin-top: 40px;

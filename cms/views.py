@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.forms import UserCreationForm
 
-from .forms import ReportForm, CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
+from .forms import ReportForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
 from reports.models import Report, Country
 from accounts.models import Profile 
 
@@ -14,7 +14,7 @@ from accounts.models import Profile
 @login_required
 @permission_required('reports.add_report', login_url='/login/')
 def cms_home_view(request):
-	reports = Report.objects.all()
+	reports = Report.objects.all().order_by('-created_at')
 	countries = Country.objects.all()
 	perm = Group.objects.all()
 	user_list = User.objects.all()
@@ -116,7 +116,7 @@ class UpdateReportView(PermissionRequiredMixin, UpdateView):
 	model = Report
 	slug_field='pk'
 	template_name = 'cms/update_report.html'
-	form_class = ReportForm
+	form_class = ReportUpdateForm
 	success_url = '/cms/'
 
 class DeleteReportView(PermissionRequiredMixin, DeleteView):
