@@ -66,7 +66,7 @@ class ReportForm(forms.ModelForm):
 
 class ReportUpdateForm(forms.ModelForm):
 
-	major_revision = forms.BooleanField()
+	major_revision = forms.BooleanField(required=False)
 
 	class Meta:
 		model = Report

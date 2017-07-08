@@ -143,6 +143,15 @@ class UpdateReportView(PermissionRequiredMixin, UpdateView):
 	form_class = ReportUpdateForm
 	success_url = '/cms/'
 
+	# def form_valid(self, form):
+
+	# 	is_major = form.cleaned_data['major_revision']
+	# 	loc = form.cleaned_data['location']
+		
+	# 	queryset = Profile.objects.filter(sub_country__name__icontains=loc)
+	# 	if is_major:
+	# 		#send batch email
+
 class DeleteReportView(PermissionRequiredMixin, DeleteView):
 	permission_required = ('reports.delete_report')
 	model = Report
@@ -179,8 +188,6 @@ class FlashMessageCreateView(PermissionRequiredMixin, CreateView):
 	template_name = 'cms/create_flash.html'
 	form_class = FlashMessageForm
 	success_url = '/cms/'
-
-	
 
 	def form_valid(self, form):
 		def get_recipient_list(qs):
