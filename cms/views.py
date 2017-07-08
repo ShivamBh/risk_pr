@@ -1,14 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.forms import UserCreationForm
 
-from .forms import ReportForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
+from .forms import ReportForm, FlashMessageForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
 from reports.models import Report, Country
 from accounts.models import Profile 
+from .models import FlashMessage
+from .utils import send_twilio_message
 
 # Create your views here
 @login_required
@@ -43,19 +46,40 @@ def cms_home_view(request):
 @login_required
 @permission_required('auth.change_user', login_url='/login/')
 def update_user_view(request, id):
+	mod = Group.objects.get(name='moderators')
+	pub = Group.objects.get(name='publishers')
 	instance_obj = get_object_or_404(User, pk=id)
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=instance_obj)
-		profile_form = ProfileForm(request.POST, instance=instance_obj.profile)
+		profile_form = ProfileCreateForm(request.POST, instance=instance_obj.profile)
 
 		if all([user_form.is_valid(), profile_form.is_valid()]):
 			user = user_form.save()
 			profile = profile_form.save()
+			# user = user_form.save()
+			# user.refresh_from_db
+			# user.profile.phone_number = profile_form.cleaned_data.get('phone_number')
+			# user.profile.company = profile_form.cleaned_data.get('company')
+			# user.profile.sub_country = profile_form.cleaned_data.get('sub_country')
+			# user.profile.sub_model = profile_form.cleaned_data.get('sub_model')
+			user.profile.is_moderator = profile_form.cleaned_data.get('is_moderator')
+			user.profile.is_publisher = profile_form.cleaned_data.get('is_publisher')
+			if user.profile.is_moderator:
+				mod.user_set.add(user)
+				user.save()
+				return redirect('cms_home')
+			elif user.profile.is_publisher:
+				pub.user_set.add(user)
+				user.save()
+				return redirect('cms_home')
+			else:
+				user.save()
+				return redirect('cms_home')
 			#implement messages (messages framework)
-			return redirect('cms_home')
+			# return redirect('cms_home')
 	else:
 		user_form = UserForm(instance = instance_obj)
-		profile_form = ProfileForm(instance = instance_obj.profile)
+		profile_form = ProfileCreateForm(instance = instance_obj.profile)
 
 	return render(request, 'cms/update_user.html', {'user_form': user_form, 'profile_form': profile_form})
 
@@ -147,3 +171,42 @@ class DeleteCountryView(PermissionRequiredMixin, DeleteView):
 	slug_field = 'pk'
 	template_name = 'cms/delete_country.html'
 	success_url = '/cms/'
+
+
+class FlashMessageCreateView(PermissionRequiredMixin, CreateView):
+	permission_required = ('reports.add_country')
+	model = FlashMessage
+	template_name = 'cms/create_flash.html'
+	form_class = FlashMessageForm
+	success_url = '/cms/'
+
+	
+
+	def form_valid(self, form):
+		def get_recipient_list(qs):
+			arr = []
+			
+
+		body = form.cleaned_data['body']
+		loc = form.cleaned_data['location']
+		queryset = Profile.objects.filter(sub_country__name__icontains=loc)
+
+		#send batch sms
+		for item in queryset:
+			if item.phone_number == "":
+				continue
+			else:
+				send_twilio_message(item.phone_number, body)
+
+		# rec_arr = get_recipient_list(queryset)
+		# sent = 
+
+		send_sms = form.save()
+
+
+		return super(FlashMessageCreateView, self).form_valid(form)
+	
+
+
+
+		

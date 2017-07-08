@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Update User{% endblock %}
+{% block title  %}Create New Report{% endblock %}
 
 {% block header %}
 	<nav class="side-nav">
@@ -28,40 +28,30 @@
 {% endblock %}
 
 {% block content %}
-
+	
 	<main class="container">
-
 		<section class="header-wrapper">
 			<div class="section-header">
 				<h1>CMS Dashboard</h1>
 			</div>
 			
 		</section>
-
-
+		
 		<div class="create-form">
+			
 			<form action="." method="post">
 				{% csrf_token %}
-				{% for field in user_form %}
+				{% for field in form %}
 					<div class="form-group">
 						<span class="field-label">{{ field.label_tag }}</span>
 						<br>
 						<span class="field-input">{{ field }}</span>
 					</div>
 				{% endfor %}
-				{% for field in profile_form %}
-					<div class="form-group">
-						<span class="field-label">{{ field.label_tag }}</span>
-						<br>
-						<span class="field-input">{{ field }}</span>
-					</div>
-				{% endfor %}
-				
-				<input type="submit" value="Update User" class="submit-btn">
-			</form>
+				<input type="submit" value="Send Flash" class="submit-btn">
+			</form>	
+
 		</div>
-
 	</main>
-
 
 {% endblock %}

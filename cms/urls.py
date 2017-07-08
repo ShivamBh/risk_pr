@@ -1,8 +1,9 @@
 from django.conf.urls import url
-from .views import cms_home_view, create_user_view,  update_user_view,  CreateReportView, UpdateReportView, DeleteReportView, CreateCountryView, UpdateCountryView, DeleteCountryView
+from .views import FlashMessageCreateView, cms_home_view, create_user_view,  update_user_view,  CreateReportView, UpdateReportView, DeleteReportView, CreateCountryView, UpdateCountryView, DeleteCountryView
 
 urlpatterns = [
 	url(r'^$', cms_home_view, name='cms_home'),
+	url(r'^create-flash/$', FlashMessageCreateView.as_view(), name='create_flash'),
 	url(r'^create-user/$', create_user_view, name='create_user'),
 	url(r'^update-user/(?P<id>[\d]+)/$', update_user_view, name='update_user'),
 	url(r'^create-report/$', CreateReportView.as_view(), name='create_report'),

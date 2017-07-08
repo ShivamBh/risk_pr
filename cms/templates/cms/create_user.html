@@ -15,6 +15,9 @@
 			<div class="nav-items">
 				<a href="{% url "create_country" %}" class="nav-links">Add Country</a>
 			</div>
+			<div class="nav-items">
+				<a href="{% url "create_flash" %}" class="nav-links">Send Flash</a>
+			</div>
 			{% if user.profile.is_moderator or user.is_superuser %}
 			<div class="nav-items">
 				<a href="{% url "create_user" %}" class="nav-links">Add User</a>
