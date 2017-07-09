@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title  %}Country List{% endblock %}
+
+{% block header %}
+	<nav class="side-nav">
+		<div class="nav-menu">
+			<div class="nav-items">
+				<a href="{% url "cms_home" %}" class="nav-links">CMS Home</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "create_report" %}" class="nav-links"> Add Report</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "create_country" %}" class="nav-links">Add Country</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "create_flash" %}" class="nav-links">Send Flash</a>
+			</div>
+			{% if user.profile.is_moderator or user.is_superuser %}
+			<div class="nav-items">
+				<a href="{% url "create_user" %}" class="nav-links">Add User</a>
+			</div>
+			{% endif %}
+		</div>
+	</nav>
+
+{% endblock %}
+
+{% block content %}
+	
+	<main class="container">
+
+		<div>
+			<h1>{{ country.name }}</h1>
+			<h3>{{ country.risk_bg }}</h3>
+		</div>
+	</main>	
+
+{% endblock %}

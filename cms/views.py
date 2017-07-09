@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
@@ -127,6 +128,14 @@ def create_user_view(request):
 # 	#slug_url_kwarg = 'slug'
 
 
+class ReportListView(PermissionRequiredMixin, ListView):
+	permission_required = ('reports.add_report')
+	model = Report
+	template_name = 'cms/report_list.html'
+	context_object_name = 'report_list'
+
+
+
 class CreateReportView(PermissionRequiredMixin, CreateView):
 	permission_required = ('reports.add_report')
 	model = Report
@@ -158,6 +167,19 @@ class DeleteReportView(PermissionRequiredMixin, DeleteView):
 	slug_field = 'pk'
 	template_name = 'cms/delete_report.html'
 	success_url = '/cms/'
+
+class CountryListView(PermissionRequiredMixin, ListView):
+	permission_required = ('reports.add_report')
+	model = Country
+	template_name = 'cms/country_list.html'
+	context_object_name = 'country_list'
+
+class CountryDetailView(PermissionRequiredMixin, DetailView):
+	permission_required = ('reports.add_report')
+	model = Country
+	slug_field = 'pk'
+	context_object_name = 'country'
+	template_name = 'cms/country_detail.html'
 
 class CreateCountryView(PermissionRequiredMixin, CreateView):
 	permission_required = ('reports.add_country')
