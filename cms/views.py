@@ -13,6 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
+from riskproject.settings import DEFAULT_FROM_EMAIL
 
 from .forms import ReportForm, FlashMessageForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
 from reports.models import Report, Country
@@ -120,18 +121,18 @@ def create_user_view(request):
 			user.profile.is_publisher = profile_form.cleaned_data.get('is_publisher')
 			
 			#Signup email, with activation link
-			# user.is_active = False
-			# user.save()
-			# current_site = get_current_site(request)
-   #          subject = 'Activate your ISSRisk account'
-   #          message = render_to_string('cms/account_activation_email.html', {
-   #          	'user': user,
-   #          	'domain': current_site.domain,
-   #          	'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-   #          	'token': account_activation_token.make_token(user)
-   #          })
+			
+			user.save()
+			current_site = get_current_site(request)
+			subject = 'Set custom password - ISSRisk'
+			message = render_to_string('cms/account_activation_email.html', {
+				'user': user,
+				'domain': current_site.domain,
+				'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+				'token': account_activation_token.make_token(user),
 
-   #          user.email_user(subject, message)
+			})
+			send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
 
 			if user.profile.is_moderator:
 				mod.user_set.add(user)
