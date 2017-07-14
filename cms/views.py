@@ -1,18 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
 
 from .forms import ReportForm, FlashMessageForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
 from reports.models import Report, Country
 from accounts.models import Profile 
 from .models import FlashMessage
 from .utils import send_twilio_message
+from .tokens import account_activation_token
 
 # Create your views here
 @login_required
@@ -42,6 +49,12 @@ def cms_home_view(request):
 # 			else:
 # 				return 
 
+# @login_required
+# @permission_required('auth.change_user', login_url='/login/')
+# def user_list_view(request):
+# 	template = 'cms/user_list.html'
+# 	user_list = User.objects.all()
+# 	reg_users = Profile.objects.filter(Q(is_moderator=False) & Q(is_publisher=False))
 
 
 @login_required
@@ -100,8 +113,26 @@ def create_user_view(request):
 			user.profile.company = profile_form.cleaned_data.get('company')
 			user.profile.sub_country = profile_form.cleaned_data.get('sub_country')
 			user.profile.sub_model = profile_form.cleaned_data.get('sub_model')
+
+			# user_form.fields['is_moderator'].widget.attrs['disabled'] = True
+
 			user.profile.is_moderator = profile_form.cleaned_data.get('is_moderator')
 			user.profile.is_publisher = profile_form.cleaned_data.get('is_publisher')
+			
+			#Signup email, with activation link
+			# user.is_active = False
+			# user.save()
+			# current_site = get_current_site(request)
+   #          subject = 'Activate your ISSRisk account'
+   #          message = render_to_string('cms/account_activation_email.html', {
+   #          	'user': user,
+   #          	'domain': current_site.domain,
+   #          	'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+   #          	'token': account_activation_token.make_token(user)
+   #          })
+
+   #          user.email_user(subject, message)
+
 			if user.profile.is_moderator:
 				mod.user_set.add(user)
 				user.save()
@@ -113,6 +144,7 @@ def create_user_view(request):
 			else:
 				user.save()
 				return redirect('cms_home')
+
 	else:
 		user_form = UserCreateForm()
 		profile_form = ProfileCreateForm()
@@ -143,6 +175,11 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 	form_class = ReportForm
 	
 	success_url = '/cms/'
+
+	def form_valid(self, form):
+		title = form.cleaned_data['title']
+		send_mail('test', title, 'helpdesk@info.issrisk.com', ['shivam.bhattacharjee94@gmail.com'])
+		return super(CreateReportView, self).form_valid(form)
 
 class UpdateReportView(PermissionRequiredMixin, UpdateView):
 	permission_required = ('reports.change_report')
@@ -180,6 +217,13 @@ class CountryDetailView(PermissionRequiredMixin, DetailView):
 	slug_field = 'pk'
 	context_object_name = 'country'
 	template_name = 'cms/country_detail.html'
+
+	def get_context_data(self, **kwargs):
+		context = super(CountryDetailView, self).get_context_data(**kwargs)
+		# ct = Country.objects.get(pk=slug_field)
+		rel_reps = Report.objects.filter(location__name__icontains=self.object.name).order_by('-created_at')
+		context["rel_reps"] = rel_reps
+		return context
 
 class CreateCountryView(PermissionRequiredMixin, CreateView):
 	permission_required = ('reports.add_country')

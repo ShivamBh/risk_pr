@@ -30,7 +30,7 @@ class Profile(models.Model):
 		choices=SUB_MODEL_CHOICES,
 		default="T",
 	)
-	email_confirmed = models.BooleanField(default=True)
+	email_confirmed = models.BooleanField(default=False)
 	is_moderator = models.BooleanField(default=False)
 	is_publisher = models.BooleanField(default=False)
 

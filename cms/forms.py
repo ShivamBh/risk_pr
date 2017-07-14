@@ -20,6 +20,8 @@ class CMSLoginForm(forms.Form):
 	password = forms.CharField(widget=forms.PasswordInput)
 
 class UserCreateForm(UserCreationForm):
+	email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+
 	class Meta:
 		model = User
 		fields = (
@@ -33,11 +35,21 @@ class UserCreateForm(UserCreationForm):
 			"is_staff",
 			)
 
+	# def __init__( self, ProfileCreateForm,  *args, **kwargs):
+	# 	super(UserCreateForm, self).__init__(*args, **kwargs)
+	# 	self.ProfileCreateForm = ProfileCreateForm
+
+	# def clean(self):
+	# 	if not self.cleaned_data['is_staff']:
+	# 		self.ProfileCreateForm.fields['is_moderator'].widget.attrs['disabled'] = True
+	# 		self.ProfileCreateForm.fields['is_publisher'].widget.attrs['disabled'] = True
+
 class ProfileCreateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = (
 			"phone_number",
+			"email_confirmed",
 			"company",
 			"sub_country",
 			"sub_model",
