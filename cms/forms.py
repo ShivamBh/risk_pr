@@ -6,14 +6,14 @@ from reports.models import Report, Country
 from accounts.models import Profile
 from .models import FlashMessage
 
-class FlashMessageForm(forms.ModelForm):
+class FlashMessageForm(forms.Form):
 
-	class Meta:
-		model = FlashMessage
-		fields = (
-			"body",
-			"location",
-			)
+	report = forms.ModelChoiceField(queryset=Report.objects.all())
+	# class Meta:
+	# 	model = FlashMessage
+	# 	fields = (
+	# 		'report',
+	# 	)
 
 class CMSLoginForm(forms.Form):
 	username = forms.CharField(error_messages={'required': 'Please enter your username'})
@@ -58,6 +58,7 @@ class ProfileCreateForm(forms.ModelForm):
 			)
 
 class ReportForm(forms.ModelForm):
+	send_flash = forms.BooleanField(required=False)
 
 	class Meta:
 		model = Report

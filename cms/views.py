@@ -13,7 +13,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
+from django.urls import reverse
 from riskproject.settings import DEFAULT_FROM_EMAIL
+
+from pyshorteners import Shortener
 
 from .forms import ReportForm, FlashMessageForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
 from reports.models import Report, Country
@@ -179,6 +182,21 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 
 	def form_valid(self, form):
 		title = form.cleaned_data['title']
+		location = form.cleaned_data['location']
+		is_flash = form.cleaned_data['send_flash']
+		new_report = form.save()
+		if is_flash:
+			receivers = Profile.objects.filter(sub_country__name__icontains=location)
+			shortener = Shortener('Tinyurl', timeout=10)
+			long_url = self.request.build_absolute_uri(reverse('report_detail', args=[new_report.id]))
+			short_url = shortener.short(long_url)
+			body = "{location}:{title}. Access report at {url}".format(location=location, title=title, url=short_url)
+			for item in receivers:
+				if item.phone_number == '':
+					continue
+				else:
+
+					send_twilio_message(item.phone_number, body)
 		send_mail('test', title, 'helpdesk@info.issrisk.com', ['shivam.bhattacharjee94@gmail.com'])
 		return super(CreateReportView, self).form_valid(form)
 
@@ -261,10 +279,13 @@ class FlashMessageCreateView(PermissionRequiredMixin, CreateView):
 			arr = []
 			
 
-		body = form.cleaned_data['body']
-		loc = form.cleaned_data['location']
-		queryset = Profile.objects.filter(sub_country__name__icontains=loc)
-
+		report = form.cleaned_data['report']
+		rep_qs = Report.objects.get(title__icontains=report)
+		queryset = Profile.objects.filter(sub_country__name__icontains=rep_qs.location)
+		shortener = Shortener('Tinyurl', timeout=10)
+		long_url = self.request.build_absolute_uri(reverse('report_detail', args=[report.id]))
+		short_url = shortener.short(long_url)
+		body = "{location}:{title}. Access report at {url}".format(location=location, title=title, url=short_url)
 		#send batch sms
 		for item in queryset:
 			if item.phone_number == "":

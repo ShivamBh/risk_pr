@@ -1,6 +1,7 @@
 from django.db import models
-
+from reports.models import Report
 # Create your models here.
+
 class FlashMessage(models.Model):
 	to_number = models.CharField(max_length=30)
 	from_number = models.CharField(max_length=30)
