@@ -4,16 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from reports.models import Report, Country
 from accounts.models import Profile
-from .models import FlashMessage
 
-class FlashMessageForm(forms.Form):
-
-	report = forms.ModelChoiceField(queryset=Report.objects.all())
-	# class Meta:
-	# 	model = FlashMessage
-	# 	fields = (
-	# 		'report',
-	# 	)
 
 class CMSLoginForm(forms.Form):
 	username = forms.CharField(error_messages={'required': 'Please enter your username'})

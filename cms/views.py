@@ -18,10 +18,9 @@ from riskproject.settings import DEFAULT_FROM_EMAIL
 
 from pyshorteners import Shortener
 
-from .forms import ReportForm, FlashMessageForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
+from .forms import ReportForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
 from reports.models import Report, Country
 from accounts.models import Profile 
-from .models import FlashMessage
 from .utils import send_twilio_message
 from .tokens import account_activation_token
 
@@ -267,39 +266,7 @@ class DeleteCountryView(PermissionRequiredMixin, DeleteView):
 	success_url = '/cms/'
 
 
-class FlashMessageCreateView(PermissionRequiredMixin, CreateView):
-	permission_required = ('reports.add_country')
-	model = FlashMessage
-	template_name = 'cms/create_flash.html'
-	form_class = FlashMessageForm
-	success_url = '/cms/'
 
-	def form_valid(self, form):
-		def get_recipient_list(qs):
-			arr = []
-			
-
-		report = form.cleaned_data['report']
-		rep_qs = Report.objects.get(title__icontains=report)
-		queryset = Profile.objects.filter(sub_country__name__icontains=rep_qs.location)
-		shortener = Shortener('Tinyurl', timeout=10)
-		long_url = self.request.build_absolute_uri(reverse('report_detail', args=[report.id]))
-		short_url = shortener.short(long_url)
-		body = "{location}:{title}. Access report at {url}".format(location=location, title=title, url=short_url)
-		#send batch sms
-		for item in queryset:
-			if item.phone_number == "":
-				continue
-			else:
-				send_twilio_message(item.phone_number, body)
-
-		# rec_arr = get_recipient_list(queryset)
-		# sent = 
-
-		send_sms = form.save()
-
-
-		return super(FlashMessageCreateView, self).form_valid(form)
 	
 
 
