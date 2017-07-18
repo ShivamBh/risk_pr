@@ -13,6 +13,8 @@ TWILIO_PHONE_NUMBER = '+14159149102'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
+
+
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'ShivamBh'
 EMAIL_HOST_PASSWORD = 'sendgrid99*&'
@@ -21,7 +23,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'info@issrisk.com'
 SERVER_EMAIL = 'info@issrisk.com'
 
-ALLOWED_HOSTS = ['localhost', 'intel.issrisk.com', 'cms.issrisk.com']
+ALLOWED_HOSTS = ['intel.riskproject.local', 'cms.riskproject.local' , 'localhost', 'intel.issrisk.com', 'cms.issrisk.com']
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env) 

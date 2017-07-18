@@ -15,7 +15,8 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template import Context
 from django.template.loader import render_to_string, get_template
-from django.urls import reverse
+# from django.urls import reverse
+from django_hosts.resolvers import reverse
 from riskproject.settings import DEFAULT_FROM_EMAIL
 
 from pyshorteners import Shortener
@@ -27,6 +28,11 @@ from .utils import send_twilio_message
 from .tokens import account_activation_token
 
 # Create your views here
+
+def cms_login(request):
+	return HttpResponse('login page cms')
+
+
 @login_required
 @permission_required('reports.add_report', login_url='/login/')
 def cms_home_view(request):
@@ -129,14 +135,26 @@ def create_user_view(request):
 			user.save()
 			current_site = get_current_site(request)
 			subject = 'Set custom password - ISSRisk'
-			message = render_to_string('cms/account_activation_email.html', {
-				'user': user,
-				'domain': current_site.domain,
-				'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-				'token': account_activation_token.make_token(user),
 
-			})
-			send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
+			if not user.is_staff:
+
+				message = render_to_string('cms/account_activation_email.html', {
+					'user': user,
+					'domain': 'intel.issrisk.com',
+					'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+					'token': account_activation_token.make_token(user),
+
+				})
+				send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
+			else:
+				message = render_to_string('cms/account_activation_email.html', {
+					'user': user,
+					'domain': 'cms.issrisk.com',
+					'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+					'token': account_activation_token.make_token(user),
+
+				})
+				send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
 
 			if user.profile.is_moderator:
 				mod.user_set.add(user)

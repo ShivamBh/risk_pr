@@ -35,14 +35,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_hosts',
     'accounts',
     'reports',
     'cms',
     'storages',
-    # 'pipeline',
+    
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,10 +54,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 
 ]
 
 ROOT_URLCONF = 'riskproject.urls'
+ROOT_HOSTCONF = 'riskproject.hosts'
+DEFAULT_HOST = 'intel'
 
 TEMPLATES = [
     {
@@ -80,7 +85,7 @@ WSGI_APPLICATION = 'riskproject.wsgi.application'
 
 
 
-LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
 # Database
