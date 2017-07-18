@@ -21,7 +21,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'info@issrisk.com'
 SERVER_EMAIL = 'info@issrisk.com'
 
-ALLOWED_HOSTS = ['localhost', 'issdemo.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'intel.issrisk.com', 'cms.issrisk.com']
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env) 
