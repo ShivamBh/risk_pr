@@ -74,11 +74,13 @@
 							<div class="report-title">
 								<h3>Title : <span class="rep-title-text">{{ report.title|truncatechars:40 }}</span></h3>
 							</div>
-							<div class="report-date">
-								<p>{{ report.updated_at }}</p>
-							</div>
+							
 							<div class="report-detail">
-								<a href="{% url 'report_detail_cms' pk=report.id %}">Details</a>
+								<a href="{% url 'report_detail_cms' pk=report.id %}" class="country_link">Details</a>
+								<a href="{% url 'update_report' pk=report.id %}" class="country_link">Edit</a>
+								<a href="{% url 'delete_report' pk=report.id %}" class="country_link">Delete</a>
+
+
 							</div>
 
 						</div>

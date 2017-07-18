@@ -54,9 +54,22 @@
 	
 	<main class="container">
 
-		<div>
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>CMS Dashboard</h1>
+			</div>
+			
+		</section>
+
+		<div class="country_list">
 			{% for country in country_list %}
+			<div class="country-wrapper">
 				<h1>{{ country }}</h1>
+				<a href="{% url 'country_detail_cms' pk=country.id %}" class="country_link">View</a>
+				<a href="{% url 'update_country' pk=country.id %}" class="country_link">Edit</a>
+				<a href="{% url 'delete_country' pk=country.id %}" class="country_link">Delete</a>
+			</div>
+				
 			{% endfor %}
 		</div>
 	</main>	

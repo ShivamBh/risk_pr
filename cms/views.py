@@ -155,18 +155,16 @@ def create_user_view(request):
 
 				message = render_to_string('cms/account_activation_email.html', {
 					'user': user,
-					'domain': 'intel.issrisk.com',
-					'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-					'token': account_activation_token.make_token(user),
+					'domain': current_site.domain,
+					
 
 				})
 				send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
 			else:
 				message = render_to_string('cms/account_activation_email.html', {
 					'user': user,
-					'domain': 'cms.issrisk.com',
-					'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-					'token': account_activation_token.make_token(user),
+					'domain': current_site.domain,
+					
 
 				})
 				send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
