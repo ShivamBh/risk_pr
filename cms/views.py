@@ -67,6 +67,21 @@ def cms_home_view(request):
 # 	user_list = User.objects.all()
 # 	reg_users = Profile.objects.filter(Q(is_moderator=False) & Q(is_publisher=False))
 
+@login_required
+@permission_required('auth.change_user', login_url='/login/')
+def user_list_view(request):
+	template = 'cms/user_list.html'
+	user_list = User.objects.all()
+	active_users = User.objects.filter(is_active=True).exclude(is_staff=True)
+	staff_users = User.objects.filter(is_staff=True)
+	inactive_users = User.objects.filter(is_active=False)
+
+	context = {
+		'active_users': active_users,
+		'staff_users': staff_users,
+		'inactive_users': inactive_users,
+	}
+	return render(request, template, context)
 
 @login_required
 @permission_required('auth.change_user', login_url='/login/')
@@ -189,7 +204,12 @@ class ReportListView(PermissionRequiredMixin, ListView):
 	template_name = 'cms/report_list.html'
 	context_object_name = 'report_list'
 
-
+class ReportDetailView(PermissionRequiredMixin, DetailView):
+	permission_required = ('reports.add_report')
+	model = Report
+	slug_field = 'pk'
+	context_object_name = 'report'
+	template_name = 'cms/report_detail.html'
 
 class CreateReportView(PermissionRequiredMixin, CreateView):
 	permission_required = ('reports.add_report')

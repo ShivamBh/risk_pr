@@ -1,22 +1,48 @@
 {% extends "base.html" %}
 
-{% block title  %}Country List{% endblock %}
+{% block title  %}{{ country.name }}{% endblock %}
 
 {% block header %}
 	<nav class="side-nav">
-		<div class="nav-menu">
-			<div class="nav-items">
-				<a href="{% url "cms_home" %}" class="nav-links">CMS Home</a>
+		<div class="cms-nav-menu">
+			
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3><a href="{% url 'cms_home' %}">Home</a></h3>
+				</div>
+				
 			</div>
-			<div class="nav-items">
-				<a href="{% url "create_report" %}" class="nav-links"> Add Report</a>
+
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Reports</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'report_list_cms' %}" class="cms-links">View Reports</a>
+					<a href="{% url 'create_report' %}" class="cms-links">Create Report</a>
+					
+				</div>
 			</div>
-			<div class="nav-items">
-				<a href="{% url "create_country" %}" class="nav-links">Add Country</a>
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Country</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'country_list_cms' %}" class="cms-links">View Countries</a>
+					<a href="{% url 'create_country' %}" class="cms-links">Create Country</a>
+					
+				</div>
 			</div>
-			{% if user.profile.is_moderator or user.is_superuser %}
-			<div class="nav-items">
-				<a href="{% url "create_user" %}" class="nav-links">Add User</a>
+			{% if user.is_authenticated and user.profile.is_moderator %}
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Users</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'user_list' %}" class="cms-links">View Users</a>
+					<a href="{% url 'create_user' %}" class="cms-links">Create User</a>
+					
+				</div>
 			</div>
 			{% endif %}
 		</div>
@@ -27,23 +53,167 @@
 {% block content %}
 	
 	<main class="container">
+		
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>CMS Dashboard</h1>
+			</div>
+			
+		</section>
 
-		<div>
-			<h1>{{ country.name }}</h1>
-			<h3>{{ country.risk_bg }}</h3>
-		</div>
-		<br>
-		<hr>
-		<div>
-			{% for report in rel_reps %}
+		<section class="content-wrapper">
 
-				<div>
-					<h6>{{ report }}</h6>
-					<p>{{ report.created_at }}</p>
+			<div class="main-content">
+				<div class="main-header">
+					<h2 class="main-header-text"><span class="country-name-header">
+						{{ country.name }}
+					</span></h2>
+
 				</div>
-				<hr>
-			{% endfor %}
-		</div>
+
+				<div class="country-detail-wrapper">
+
+					<div class="ratings">
+						<div class="country-rating">
+							<div class="rating-wrapper">
+								<div class="rating-item">
+									<div class="rating-name">
+										<h3>Political</h3>
+									</div>
+									<div class="rating-color" id="pol-rat">
+										<h6>{{ country.political_rating }}</h6>
+									</div>
+								</div>
+								<div class="rating-item">
+									<div class="rating-name">
+										<h3>Terror</h3>
+									</div>
+									<div class="rating-color">
+										<h6>{{ country.terror_rating }}</h6>
+									</div>
+								</div>
+								<div class="rating-item">
+									<div class="rating-name">
+										<h3>Security</h3>
+									</div>
+									<div class="rating-color">
+										<h6>{{ country.security_rating }}</h6>
+									</div>
+								</div>
+								<div class="rating-item">
+									<div class="rating-name">
+										<h3>Travel</h3>
+									</div>
+									<div class="rating-color">
+										<h6>{{ country.travel_rating }}</h6>
+									</div>
+								</div>
+							</div>
+							<div class="legend-wrapper">
+
+								<div class="rating-legend-item">
+									<div class="item-color-low color"></div>
+									<div class="item-text">
+										<p>Low</p>
+									</div>
+								</div>
+								<div class="rating-legend-item">
+									<div class="item-color-medium color"></div>
+									<div class="item-text">
+										<p>Medium</p>
+									</div>
+								</div>
+								<div class="rating-legend-item">
+									<div class="item-color-high color"></div>
+									<div class="item-text">
+										<p>High</p>
+									</div>
+								</div>
+								<div class="rating-legend-item">
+									<div class="item-color-extreme color"></div>
+									<div class="item-text">
+										<p>Extreme</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="security-level">
+							<div class="sec-level-header">
+								<h3>Security Preparedness Level</h3>
+
+							</div>
+							<div class="sec-level-rating">
+								<div class="sec-level-rating-text">
+									<h3>{{ country.sec_level }}</h3>
+								</div>
+								<div class="sec-level-rating-color"></div>
+							</div>
+							<div class="sec-level-legend">
+								<div class="level-table">
+									<div class="level-row">
+										<h5>Green : <span class="level-light-text">
+											Monitor
+										</span></h5>
+									</div>
+									<div class="level-row">
+										<h5>Yellow : <span class="level-light-text">
+											Review security posture
+										</span></h5>
+									</div>
+									<div class="level-row">
+										<h5>Amber : <span class="level-light-text">
+											Prepare emergency response option
+										</span></h5>
+									</div>
+									<div class="level-row">
+										<h5>Red : <span class="level-light-text">
+											Adopt emergency options
+										</span></h5>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="country-bg">
+						<div class="country-bg-header">
+							<h2>Country Background :</h2>
+						</div>
+						<div class="country-bg-text">
+							<p>{{ country.risk_bg }}</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</section>
+		<div class="secondary-content">
+
+				<div class="main-header">
+					<h1 class="main-header-text">Latest Reports : </h1>
+				</div>
+
+				<div class="report-list">
+					{% for report in rel_reps %}
+						<div class="report-item">
+							
+							<div class="report-title">
+								<h3>Title : <span class="rep-title-text">{{ report.title|truncatechars:60 }}</span></h3>
+							</div>
+							<div class="report-date">
+								<p>{{ report.updated_at }}</p>
+							</div>
+							<div class="report-detail">
+								<a href="{% url 'report_detail_cms' pk=report.id %}">Details</a>
+							</div>
+
+						</div>
+					{% endfor %}
+				</div>
+			</div>
 	</main>	
 
 {% endblock %}

@@ -2,21 +2,48 @@
 
 {% block title %}User List{% endblock %}
 
+
 {% block header %}
 	<nav class="side-nav">
-		<div class="nav-menu">
-			<div class="nav-items">
-				<a href="{% url "cms_home" %}" class="nav-links">CMS Home</a>
+		<div class="cms-nav-menu">
+			
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3><a href="{% url 'cms_home' %}">Home</a></h3>
+				</div>
+				
 			</div>
-			<div class="nav-items">
-				<a href="{% url "create_report" %}" class="nav-links"> Add Report</a>
+
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Reports</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'report_list_cms' %}" class="cms-links">View Reports</a>
+					<a href="{% url 'create_report' %}" class="cms-links">Create Report</a>
+					
+				</div>
 			</div>
-			<div class="nav-items">
-				<a href="{% url "create_country" %}" class="nav-links">Add Country</a>
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Country</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'country_list_cms' %}" class="cms-links">View Countries</a>
+					<a href="{% url 'create_country' %}" class="cms-links">Create Country</a>
+					
+				</div>
 			</div>
-			{% if user.profile.is_moderator or user.is_superuser %}
-			<div class="nav-items">
-				<a href="{% url "create_user" %}" class="nav-links">Add User</a>
+			{% if user.is_authenticated and user.profile.is_moderator %}
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Users</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'user_list' %}" class="cms-links">View Users</a>
+					<a href="{% url 'create_user' %}" class="cms-links">Create User</a>
+					
+				</div>
 			</div>
 			{% endif %}
 		</div>
@@ -27,11 +54,64 @@
 {% block content %}
 	
 	<main class="container">
-		{% for user in user_list %}
-			
-			
 
-		{% endfor %}
+
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>CMS Dashboard</h1>
+			</div>
+			
+		</section>
+		<section class="user-container">
+		
+		
+
+		<div class="active-users">
+			<div class="user-header">
+				<h1>Active Users</h1>
+			</div>
+			{% for user in active_users %}
+			<div class="user-list">
+				
+					<h3>{{ user.username }}</h3>
+					
+					<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+				
+			</div>
+			{% endfor %}
+		</div>
+
+		<div class="staff-users">
+			<div class="user-header">
+				<h1>Staff Users</h1>
+			</div>
+			{% for user in staff_users %}
+			<div class="user-list">
+				
+					<h3>{{ user.username }}</h3>
+					
+					<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+				
+			</div>
+			{% endfor %}
+		</div>
+
+		<div class="inactive-users">
+			<div class="user-header">
+				<h1>Inactive Users</h1>
+			</div>
+			{% for user in inactive_users %}
+			<div class="user-list">
+				
+					<h3>{{ user.username }}</h3>
+					
+					<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+				
+			</div>
+			{% endfor %}
+		</div>
+		</section>
+		
 	</main>
 
 {% endblock %}

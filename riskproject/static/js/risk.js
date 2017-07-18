@@ -23,4 +23,12 @@ ratings_color.each(function() {
 	console.log($(this).find("h6").text());
 });
 
+var sec_level = $(".sec-level-rating-text h3");
+var sec_color = $("sec-level-rating-color");
+
+	if (sec_level.text() === "Green") {
+		$("sec-level-rating-color").css("background-color", "C73542");
+	}
+
+console.log($("sec-level-rating-color"));
  });

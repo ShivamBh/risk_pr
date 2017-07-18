@@ -87,6 +87,7 @@ class ReportUpdateForm(forms.ModelForm):
 			"longitude",
 			"impact_radius",
 			"report_type",
+			"archive",
 					)
 
 class CountryForm(forms.ModelForm):

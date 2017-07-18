@@ -4,19 +4,45 @@
 
 {% block header %}
 	<nav class="side-nav">
-		<div class="nav-menu">
-			<div class="nav-items">
-				<a href="{% url "cms_home" %}" class="nav-links">CMS Home</a>
+		<div class="cms-nav-menu">
+			
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3><a href="{% url 'cms_home' %}">Home</a></h3>
+				</div>
+				
 			</div>
-			<div class="nav-items">
-				<a href="{% url "create_report" %}" class="nav-links"> Add Report</a>
+
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Reports</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'report_list_cms' %}" class="cms-links">View Reports</a>
+					<a href="{% url 'create_report' %}" class="cms-links">Create Report</a>
+					
+				</div>
 			</div>
-			<div class="nav-items">
-				<a href="{% url "create_country" %}" class="nav-links">Add Country</a>
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Country</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'country_list_cms' %}" class="cms-links">View Countries</a>
+					<a href="{% url 'create_country' %}" class="cms-links">Create Country</a>
+					
+				</div>
 			</div>
-			{% if user.profile.is_moderator or user.is_superuser %}
-			<div class="nav-items">
-				<a href="{% url "create_user" %}" class="nav-links">Add User</a>
+			{% if user.is_authenticated and user.profile.is_moderator %}
+			<div class="cms-nav-item">
+				<div class="cms-nav-item-header">
+					<h3>Users</h3>
+				</div>
+				<div class="cms-nav-items">
+					<a href="{% url 'user_list' %}" class="cms-links">View Users</a>
+					<a href="{% url 'create_user' %}" class="cms-links">Create User</a>
+					
+				</div>
 			</div>
 			{% endif %}
 		</div>
@@ -43,10 +69,11 @@
 					<h1 class="main-header-text">Latest Reports : </h1>
 				</div>
 				
-				{% for report in reports %}
+				{% for report in reports|slice:":5" %}
 				<div class="rep-item">
 					<h3>{{ report.title|truncatechars:50 }}</h3>
 					<div class="crud">
+						<a href="" class="crud-links">View</a>
 						<a href="{% url "update_report" pk=report.id %}" class="crud-links">Edit</a>
 						<a href="{% url "delete_report" pk=report.id %}" class="crud-links">Delete</a>
 					</div>
@@ -63,13 +90,14 @@
 				<div class="rep-item">
 					<h3>{{ country.name }}</h3>
 					<div class="crud">
+						<a href="{% url "country_detail_cms" pk=country.id %}" class="crud-links">View</a>
 						<a href="{% url "update_country" pk=country.id %}" class="crud-links">Edit</a>
 						<a href="{% url "delete_country" pk=country.id %}" class="crud-links">Delete</a>
 					</div>
 				</div>
 				{% endfor %}
 			</div>
-			{% if user.profile.is_moderator or user.is_superuser %}
+			<!-- {% if user.profile.is_moderator or user.is_superuser %}
 			<div class="cms-user-list">
 				<div class="main-header">
 					<h1 class="main-header-text">Registered Users : </h1>
@@ -87,7 +115,7 @@
 					{% endif %}
 				{% endfor %}
 			</div>
-			{% endif %}
+			{% endif %} -->
 
 		</section>
 

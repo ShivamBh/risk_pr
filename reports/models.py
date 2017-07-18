@@ -73,7 +73,7 @@ class Report(models.Model):
 		choices=SUB_MODEL_CHOICES, 
 		default="T",
 	)
-	archived = models.BooleanField(default=False)
+	archive = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.title
