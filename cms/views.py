@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.core import mail
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,7 +13,8 @@ from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from django.template.loader import render_to_string
+from django.template import Context
+from django.template.loader import render_to_string, get_template
 from django.urls import reverse
 from riskproject.settings import DEFAULT_FROM_EMAIL
 
@@ -189,14 +191,15 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 			shortener = Shortener('Tinyurl', timeout=10)
 			long_url = self.request.build_absolute_uri(reverse('report_detail', args=[new_report.id]))
 			short_url = shortener.short(long_url)
-			body = "{location}:{title}. Access report at {url}".format(location=location, title=title, url=short_url)
+			body = "{ISSRISK |location}:{title}. Access report at {url}".format(location=location, title=title, url=short_url)
 			for item in receivers:
 				if item.phone_number == '':
 					continue
 				else:
 
 					send_twilio_message(item.phone_number, body)
-		send_mail('test', title, 'helpdesk@info.issrisk.com', ['shivam.bhattacharjee94@gmail.com'])
+		# send mail to subscribers on publish with html
+		# send_mail('test', title, 'helpdesk@info.issrisk.com', ['shivam.bhattacharjee94@gmail.com'])
 		return super(CreateReportView, self).form_valid(form)
 
 class UpdateReportView(PermissionRequiredMixin, UpdateView):
@@ -207,14 +210,42 @@ class UpdateReportView(PermissionRequiredMixin, UpdateView):
 	form_class = ReportUpdateForm
 	success_url = '/cms/'
 
-	# def form_valid(self, form):
+	def form_valid(self, form):
 
-	# 	is_major = form.cleaned_data['major_revision']
-	# 	loc = form.cleaned_data['location']
+		rep = Report.objects.get(id=self.kwargs['pk'])
+		rep_url = self.request.build_absolute_uri(reverse('report_detail', args=[self.kwargs['pk']]))
+		is_major = form.cleaned_data['major_revision']
+		loc = form.cleaned_data['location']
 		
-	# 	queryset = Profile.objects.filter(sub_country__name__icontains=loc)
-	# 	if is_major:
-	# 		#send batch email
+		queryset = Profile.objects.filter(sub_country__name__icontains=loc)
+		from_email = DEFAULT_FROM_EMAIL
+		email_list = [item.user.email for item in queryset]
+		subject = "Major revision for Report"
+		ctx = {
+			'rep': rep,
+			'rep_url' : rep_url,
+		}
+		message = get_template('cms/report_update_email.html').render(ctx)
+		def get_major_email(email_list, subject ,message):
+			email_arr = []
+			for email in email_list:
+				mail_obj = mail.EmailMessage(
+					subject,
+					message,
+					from_email,
+					[email],
+				)
+				mail_obj.content_subtype = 'html'
+				email_arr.append(mail_obj)
+
+			return email_arr
+
+		if is_major:
+			connection = mail.get_connection()
+			messages = get_major_email(email_list, subject, message)
+			connection.send_messages(messages)
+
+		return super(UpdateReportView, self).form_valid(form)
 
 class DeleteReportView(PermissionRequiredMixin, DeleteView):
 	permission_required = ('reports.delete_report')
