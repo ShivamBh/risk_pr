@@ -215,7 +215,7 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 	template_name = 'cms/create_report.html'
 	form_class = ReportForm
 	
-	success_url = '/cms/'
+	success_url = '/'
 
 	def form_valid(self, form):
 		title = form.cleaned_data['title']
@@ -244,7 +244,7 @@ class UpdateReportView(PermissionRequiredMixin, UpdateView):
 	slug_field='pk'
 	template_name = 'cms/update_report.html'
 	form_class = ReportUpdateForm
-	success_url = '/cms/'
+	success_url = '/'
 
 	def form_valid(self, form):
 
@@ -288,7 +288,7 @@ class DeleteReportView(PermissionRequiredMixin, DeleteView):
 	model = Report
 	slug_field = 'pk'
 	template_name = 'cms/delete_report.html'
-	success_url = '/cms/'
+	success_url = '/'
 
 class CountryListView(PermissionRequiredMixin, ListView):
 	permission_required = ('reports.add_report')
@@ -315,7 +315,7 @@ class CreateCountryView(PermissionRequiredMixin, CreateView):
 	model = Country
 	template_name = 'cms/create_country.html'
 	form_class = CountryForm
-	success_url = '/cms/'
+	success_url = '/'
 
 class UpdateCountryView(PermissionRequiredMixin, UpdateView):
 	permission_required = ('reports.change_country')
@@ -323,14 +323,14 @@ class UpdateCountryView(PermissionRequiredMixin, UpdateView):
 	slug_field = 'pk'
 	template_name = 'cms/update_country.html'
 	form_class = CountryForm
-	success_url = '/cms/'
+	success_url = '/'
 
 class DeleteCountryView(PermissionRequiredMixin, DeleteView):
 	permission_required = ('reports.delete_country')
 	model = Country
 	slug_field = 'pk'
 	template_name = 'cms/delete_country.html'
-	success_url = '/cms/'
+	success_url = '/'
 
 
 
