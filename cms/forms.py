@@ -11,7 +11,7 @@ class CMSLoginForm(forms.Form):
 	password = forms.CharField(widget=forms.PasswordInput)
 
 class UserCreateForm(UserCreationForm):
-	email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+	email = forms.EmailField(max_length=254, help_text='Required. Insert a valid email address.')
 
 	class Meta:
 		model = User
@@ -25,6 +25,13 @@ class UserCreateForm(UserCreationForm):
 			"is_active",
 			"is_staff",
 			)
+	def clean_email(self):
+		
+		email = self.cleaned_data.get('email')
+		username = self.cleaned_data.get('username')
+		if email and User.objects.filter(email=email).exclude(username=username).exists():
+			raise forms.ValidationError('Email address already exists')
+		return email
 
 	# def __init__( self, ProfileCreateForm,  *args, **kwargs):
 	# 	super(UserCreateForm, self).__init__(*args, **kwargs)
@@ -112,8 +119,16 @@ class UserForm(forms.ModelForm):
 			"last_name",
 			"username",
 			"email",
-			"is_active"
+			"is_active",
+			"is_staff",
 			)
+
+	def clean_email(self):
+		email = self.cleaned_data.get('email')
+		username = self.cleaned_data.get('username')
+		if email and User.objects.filter(email=email).exclude(username=username).exists():
+			raise forms.ValidationError('Email address already exists')
+		return email
 
 class ProfileForm(forms.ModelForm):
 	class Meta:

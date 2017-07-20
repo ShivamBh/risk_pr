@@ -65,7 +65,9 @@
 		<div class="create-form">
 			<form action="." method="post">
 				{% csrf_token %}
+				
 				{% for field in user_form %}
+					{{ field.errors }}
 					<div class="form-group">
 						<span class="field-label">{{ field.label_tag }}</span>
 						<br>
