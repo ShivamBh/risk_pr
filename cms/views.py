@@ -12,7 +12,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 # from django.urls import reverse
@@ -91,7 +92,7 @@ def update_user_view(request, id):
 	instance_obj = get_object_or_404(User, pk=id)
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=instance_obj)
-		profile_form = ProfileCreateForm(request.POST, instance=instance_obj.profile)
+		profile_form = ProfileForm(request.POST, instance=instance_obj.profile)
 
 		if all([user_form.is_valid(), profile_form.is_valid()]):
 			user = user_form.save()
@@ -119,7 +120,7 @@ def update_user_view(request, id):
 			# return redirect('cms_home')
 	else:
 		user_form = UserForm(instance = instance_obj)
-		profile_form = ProfileCreateForm(instance = instance_obj.profile)
+		profile_form = ProfileForm(instance = instance_obj.profile)
 
 	return render(request, 'cms/update_user.html', {'user_form': user_form, 'profile_form': profile_form})
 
@@ -133,13 +134,19 @@ def create_user_view(request):
 		profile_form = ProfileCreateForm(request.POST)
 
 		if all([user_form.is_valid(), profile_form.is_valid()]):
+			
 			user = user_form.save()
+			# profile = profile_form.save(commit=False)
 			user.refresh_from_db
 			user.profile.phone_number = profile_form.cleaned_data.get('phone_number')
 			user.profile.company = profile_form.cleaned_data.get('company')
 			user.profile.sub_country = profile_form.cleaned_data.get('sub_country')
 			user.profile.sub_model = profile_form.cleaned_data.get('sub_model')
-
+			
+			new_password = User.objects.make_random_password()
+			user.set_password(new_password)
+			# profile.user = user
+			# profile.save()
 			# user_form.fields['is_moderator'].widget.attrs['disabled'] = True
 
 			user.profile.is_moderator = profile_form.cleaned_data.get('is_moderator')
@@ -149,43 +156,71 @@ def create_user_view(request):
 			
 			user.save()
 			current_site = get_current_site(request)
-			subject = 'Set custom password - ISSRisk'
+			subject = 'Account Activation - ISSRISK'
+			message = render_to_string('cms/account_activation_email.html' , {
+				'user': user,
+				'domain': current_site.domain,
+				'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+				'token': account_activation_token.make_token(user),
+				'password': new_password,
+			})
+			user.email_user(subject, message)
 
-			if not user.is_staff:
+			# if not user.is_staff:
 
-				message = render_to_string('cms/account_activation_email.html', {
-					'user': user,
-					'domain': current_site.domain,
+			# 	message = render_to_string('cms/account_activation_email.html', {
+			# 		'user': user,
+			# 		'domain': current_site.domain,
 					
 
-				})
-				send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
-			else:
-				message = render_to_string('cms/account_activation_email.html', {
-					'user': user,
-					'domain': current_site.domain,
+			# 	})
+			# 	send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
+			# else:
+			# 	message = render_to_string('cms/account_activation_email.html', {
+			# 		'user': user,
+			# 		'domain': current_site.domain,
 					
 
-				})
-				send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
+			# 	})
+			# 	send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
 
 			if user.profile.is_moderator:
 				mod.user_set.add(user)
 				user.save()
-				return redirect('cms_home')
+				return redirect('account_activation_sent')
 			elif user.profile.is_publisher:
 				pub.user_set.add(user)
 				user.save()
-				return redirect('cms_home')
+				return redirect('account_activation_sent')
 			else:
 				user.save()
-				return redirect('cms_home')
+				return redirect('account_activation_sent')
 
 	else:
 		user_form = UserCreateForm()
 		profile_form = ProfileCreateForm()
 
 	return render(request, 'cms/create_user.html', {'user_form':user_form, 'profile_form':profile_form})
+
+
+def account_activation_sent(request):
+	return render(request, 'cms/account_activation_sent.html')
+
+
+def activate(request, uidb64, token):
+	try:
+		uid = force_text(urlsafe_base64_decode(uidb64))
+		user = User.objects.get(pk=uid)
+	except (TypeError, ValueError, OverFlowError, User.DoesNotExist):
+		user = None
+
+	if user is not None and account_activation_token.check_token(user, token):
+		user.is_active = True
+		user.profile.email_confirmed = True
+		user.save()
+		return redirect('cms_home')
+	else:
+		return redirect(request, 'account_activation_invalid.html')
 
 
 # class UpdateUserView(UpdateView):

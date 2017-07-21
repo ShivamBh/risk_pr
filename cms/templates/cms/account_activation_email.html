@@ -1,8 +1,11 @@
 {% autoescape off %}
+	Hi {{ user.username }},
 
-		Hi {{ user.username }},
-		Please click on the link below to set a custom password:
+	Your credentials:
+	Username: {{ user.username }}
+	Password: {{ password }}
 
-		http://{{ domain }}{% url 'password_reset'%}
+	Please click on the link below to confirm your registration:
 
+	http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 {% endautoescape %}

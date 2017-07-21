@@ -10,7 +10,7 @@ class CMSLoginForm(forms.Form):
 	username = forms.CharField(error_messages={'required': 'Please enter your username'})
 	password = forms.CharField(widget=forms.PasswordInput)
 
-class UserCreateForm(UserCreationForm):
+class UserCreateForm(forms.ModelForm):
 	email = forms.EmailField(max_length=254, help_text='Required. Insert a valid email address.')
 
 	class Meta:
@@ -20,13 +20,10 @@ class UserCreateForm(UserCreationForm):
 			"last_name",
 			"email",
 			"username",
-			"password1",
-			"password2",
-			"is_active",
 			"is_staff",
 			)
 	def clean_email(self):
-		
+
 		email = self.cleaned_data.get('email')
 		username = self.cleaned_data.get('username')
 		if email and User.objects.filter(email=email).exclude(username=username).exists():
@@ -47,7 +44,6 @@ class ProfileCreateForm(forms.ModelForm):
 		model = Profile
 		fields = (
 			"phone_number",
-			"email_confirmed",
 			"company",
 			"sub_country",
 			"sub_model",
@@ -138,4 +134,5 @@ class ProfileForm(forms.ModelForm):
 			"company",
 			"sub_country",
 			"sub_model",
+			"email_confirmed",
 			)

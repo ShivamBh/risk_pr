@@ -73,7 +73,7 @@
 				<div class="rep-item">
 					<h3>{{ report.title|truncatechars:50 }}</h3>
 					<div class="crud">
-						<a href="" class="crud-links">View</a>
+						<a href="{% url "report_detail_cms" pk=report.id %}" class="crud-links">View</a>
 						<a href="{% url "update_report" pk=report.id %}" class="crud-links">Edit</a>
 						<a href="{% url "delete_report" pk=report.id %}" class="crud-links">Delete</a>
 					</div>
