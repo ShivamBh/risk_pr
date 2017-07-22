@@ -135,4 +135,6 @@ class ProfileForm(forms.ModelForm):
 			"sub_country",
 			"sub_model",
 			"email_confirmed",
+			"is_moderator",
+			"is_publisher",
 			)

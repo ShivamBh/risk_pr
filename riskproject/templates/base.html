@@ -36,20 +36,25 @@
 					</div>
 				</div>
 
+                {% if user.is_authenticated %}
+
+
+
+                {% endif %}
+
 				<!-- <div class="divider"></div> -->
 
 				{% block header %}
 				{% endblock %}
-
-				{% if user.is_authenticated %}
-
-					<div class="logout">
-						<!-- <h3 class="welcome">Welcome, </h3>
-						<p class="username">{{ user.username }}</p> -->
-						<a href="/logout/" class="logout-link">Logout</a>
-					</div>
-
-				{% endif %}
+                
+                <div class="logout">
+                        <!-- <h3 class="welcome">Welcome, </h3>
+                        <p class="username">{{ user.username }}</p> -->
+                        <!-- <a href="{% url 'user_detail' id=request.user.pk %}" class="logout-link">My Profile</a> -->
+                        <a href="/logout/" class="profile-link">Logout</a>
+                        <a href="/change-password/" class="profile-link">Change Password</a>
+                        
+                    </div>
 
 			</header>
 

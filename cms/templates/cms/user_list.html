@@ -68,47 +68,72 @@
 
 		<div class="active-users">
 			<div class="user-header">
-				<h1>Active Users</h1>
+				<h1>Clients</h1>
 			</div>
-			{% for user in active_users %}
+			
 			<div class="user-list">
-				
-					<h3>{{ user.username }}</h3>
-					
-					<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
-				
+				{% for user in active_users %}
+					<div class="user-list-item">
+						<h3>Name : {{ user.first_name }} {{ user.last_name }}</h3>
+						<h3>Email :{{ user.email }} </h3>
+						<h3>Subscription Model: <span>{{ user.profile.sub_model }}</span></h3>
+						
+						<div class="user-links">
+							<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+							<a href="{% url 'user_detail' id=user.pk %}" class="user-edit-link">More</a>
+						</div>
+						</div>
+				{% endfor %}
 			</div>
-			{% endfor %}
+			
 		</div>
 
 		<div class="staff-users">
 			<div class="user-header">
 				<h1>Staff Users</h1>
 			</div>
-			{% for user in staff_users %}
+			
 			<div class="user-list">
-				
-					<h3>{{ user.username }}</h3>
+				{% for user in staff_users %}
+				<div class="user-list-item">
+					<h3>Name : {{ user.first_name }} {{ user.last_name }}</h3>
+					<h3>Email :{{ user.email }} </h3>
+					{% if user.profile.is_moderator %}
+					<h3>Type: Moderator</h3>
+					{% endif %}
+					{% if user.profile.is_publisher %}
+					<h3>Type: Publisher</h3>
+					{% endif %}
 					
-					<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
-				
+					<div class="user-links">
+						<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+						<a href="{% url 'user_detail' id=user.pk %}" class="user-edit-link">More</a>
+					</div>
+					
+				</div>
+				{% endfor %}
 			</div>
-			{% endfor %}
+			
 		</div>
 
 		<div class="inactive-users">
 			<div class="user-header">
 				<h1>Inactive Users</h1>
 			</div>
-			{% for user in inactive_users %}
 			<div class="user-list">
-				
-					<h3>{{ user.username }}</h3>
-					
-					<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
-				
+				{% for user in inactive_users %}
+					<div class="user-list-item">
+						<h3>Name : {{ user.first_name }} {{ user.last_name }}</h3>
+						<h3>Email :{{ user.email }} </h3>
+						<h3>Subscription Model: <span>{{ user.profile.sub_model }}</span></h3>
+						
+						<div class="user-links">
+							<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+							<a href="{% url 'user_detail' id=user.pk %}" class="user-edit-link">More</a>
+						</div>
+						</div>
+				{% endfor %}
 			</div>
-			{% endfor %}
 		</div>
 		</section>
 		

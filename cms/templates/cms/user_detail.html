@@ -64,16 +64,41 @@
 			
 		</section>
 		
-		<section class="user-profile-wrapper">
+		<section class="user-profile">
 			<div class="profile-header">
 				<h1>User Details: </h1>
-				<a href="" class="profile-edit-link">Edit Profile</a>
+				<a href="{% url 'update_user' id=user_obj.id %}" class="user-edit-link">Edit Profile</a>
 			</div>
-
 			<div class="profile-details">
-				<div class="profile-account-details">
-					<h1>Account Details</h1>
-				</div>
+				{% if user_obj.is_staff %}
+					<h3 class="detail">Name : {{ user_obj.first_name }} {{ user_obj.last_name }}</h3>
+					<h3 class="detail">Type : Staff</h3>
+					<h3 class="detail">Username : {{ user_obj.username }}</h3>
+					<h3 class="detail">Email : {{ user_obj.email }}</h3>
+					<h3 class="detail">Phone Number : {{ profile_obj.phone_number }}</h3>
+					{% if profile_obj.is_moderator %}
+					<h3 class="detail">Permission Level : Moderator</h3>
+					{% endif %}
+					{% if profile_obj.is_publisher %}
+					<h3 class="detail">Permission Level : Publisher</h3>
+					{% endif %}
+				{% else %}
+					<h3 class="detail">Name : {{ user_obj.first_name }} {{ user_obj.last_name }}</h3>
+					<h3 class="detail">Type : Staff</h3>
+					<h3 class="detail">Username : {{ user_obj.username }}</h3>
+					<h3 class="detail">Email : {{ user_obj.email }}</h3>
+					<h3 class="detail">Phone Number : {{ profile_obj.phone_number }}</h3>
+					<h3 class="detail">Company : {{ profile_obj.company }}</h3>
+					<h3 class="detail detail-sub-country">
+						Subscribed Countries : 
+						{% for item in profile_obj.sub_country.all %}
+							<li class="sub-country">{{ item.name }}</li>
+						{% endfor %}
+					</h3>
+					<h3 class="detail">Subscription Model : {{ profile_obj.sub_model }}</h3>
+					
+				{% endif %}
+
 			</div>
 		</section>
 

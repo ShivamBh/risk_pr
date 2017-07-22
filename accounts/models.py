@@ -31,8 +31,8 @@ class Profile(models.Model):
 		default="T",
 	)
 	email_confirmed = models.BooleanField(default=False)
-	is_moderator = models.BooleanField(default=False)
-	is_publisher = models.BooleanField(default=False)
+	is_moderator = models.NullBooleanField(default=False, null=True)
+	is_publisher = models.NullBooleanField(default=False, null=True)
 
 	def __str__(self):
 		return self.user.username

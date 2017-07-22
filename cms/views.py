@@ -191,7 +191,7 @@ def create_user_view(request):
 @permission_required('auth.add_user', login_url='/login/')
 def user_detail_view(request, id):
 	template = 'cms/user_detail.html'
-	user_obj = get_object_or_404(user, pk=id)
+	user_obj = get_object_or_404(User, pk=id)
 	profile_obj = get_object_or_404(Profile, pk=id)
 	return render(request, template,  {'user_obj': user_obj, 'profile_obj': profile_obj})
 
