@@ -275,7 +275,7 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 		if is_flash:
 			receivers = User.objects.filter(profile__sub_country__name__icontains=location)
 			shortener = Shortener('Tinyurl', timeout=30)
-			long_url = ('http://intel.issrisk.com/reports/{id}/detail/').format(id=new_report.id)
+			long_url = ('http://intel.issrisk.com/report/{id}/detail/').format(id=new_report.id)
 			short_url = shortener.short(long_url)
 			body = "ISSRISK | {location}:{title}. Access report at {url}".format(location=location, title=title, url=short_url)
 			for item in receivers:
