@@ -271,18 +271,19 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 		location = form.cleaned_data['location']
 		is_flash = form.cleaned_data['send_flash']
 		new_report = form.save()
+		print(('http://intel.issrisk.com/report/{id}/detail/').format(id=new_report.id))
 		if is_flash:
-			receivers = Profile.objects.filter(sub_country__name__icontains=location)
-			shortener = Shortener('Tinyurl', timeout=10)
-			long_url = self.request.build_absolute_uri(reverse('report_detail', args=[new_report.id]))
+			receivers = User.objects.filter(profile__sub_country__name__icontains=location)
+			shortener = Shortener('Tinyurl', timeout=30)
+			long_url = ('http://intel.issrisk.com/reports/{id}/detail/').format(id=new_report.id)
 			short_url = shortener.short(long_url)
-			body = "{ISSRISK |location}:{title}. Access report at {url}".format(location=location, title=title, url=short_url)
+			body = "ISSRISK | {location}:{title}. Access report at {url}".format(location=location, title=title, url=short_url)
 			for item in receivers:
-				if item.phone_number == '':
+				if item.profile.phone_number == '':
 					continue
 				else:
 
-					send_twilio_message(item.phone_number, body)
+					send_twilio_message(item.profile.phone_number, body)
 		# send mail to subscribers on publish with html
 		# send_mail('test', title, 'helpdesk@info.issrisk.com', ['shivam.bhattacharjee94@gmail.com'])
 		return super(CreateReportView, self).form_valid(form)
