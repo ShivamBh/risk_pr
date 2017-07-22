@@ -28,7 +28,7 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^cms/', include('cms.urls')),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^', include('reports.urls')),
+    url(r'^', include('reports.urls'), name='reports'),
     # url('^', include('django.contrib.auth.urls')),
     # url(r'^password-reset/$', auth_views.password_reset, name='password_reset'),
     # url(r'^password-reset/done/$', auth_views.password_reset_done,  name='password_reset_done'),

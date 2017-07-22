@@ -56,3 +56,23 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 	slug_field = 'pk'
 	context_object_name = 'country'
 	template_name = 'reports/country_detail.html'
+
+
+# def account_activation_sent(request):
+# 	return render(request, 'reports/account_activation_sent.html')
+
+
+# def activate(request, uidb64, token):
+# 	try:
+# 		uid = force_text(urlsafe_base64_decode(uidb64))
+# 		user = User.objects.get(pk=uid)
+# 	except (TypeError, ValueError, OverFlowError, User.DoesNotExist):
+# 		user = None
+
+# 	if user is not None and account_activation_token.check_token(user, token):
+# 		user.is_active = True
+# 		user.profile.email_confirmed = True
+# 		user.save()
+# 		return redirect('home')
+# 	else:
+# 		return redirect(request, 'reports/account_activation_invalid.html')

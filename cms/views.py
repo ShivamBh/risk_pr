@@ -5,12 +5,13 @@ from django.views.generic import ListView, DetailView
 from django.core import mail
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission, Group
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.utils.encoding import force_bytes
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -30,8 +31,8 @@ from .tokens import account_activation_token
 
 # Create your views here
 
-def cms_login(request):
-	return HttpResponse('login page cms')
+# def cms_login(request):
+# 	return HttpResponse('login page cms')
 
 
 @login_required
@@ -157,6 +158,7 @@ def create_user_view(request):
 			user.save()
 			current_site = get_current_site(request)
 			subject = 'Account Activation - ISSRISK'
+
 			message = render_to_string('cms/account_activation_email.html' , {
 				'user': user,
 				'domain': current_site.domain,
@@ -164,43 +166,34 @@ def create_user_view(request):
 				'token': account_activation_token.make_token(user),
 				'password': new_password,
 			})
+
 			user.email_user(subject, message)
-
-			# if not user.is_staff:
-
-			# 	message = render_to_string('cms/account_activation_email.html', {
-			# 		'user': user,
-			# 		'domain': current_site.domain,
-					
-
-			# 	})
-			# 	send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
-			# else:
-			# 	message = render_to_string('cms/account_activation_email.html', {
-			# 		'user': user,
-			# 		'domain': current_site.domain,
-					
-
-			# 	})
-			# 	send_mail(subject, message, DEFAULT_FROM_EMAIL, [user.email], fail_silently=False)
 
 			if user.profile.is_moderator:
 				mod.user_set.add(user)
 				user.save()
-				return redirect('account_activation_sent')
+				return redirect('account_activation_sent_staff')
 			elif user.profile.is_publisher:
 				pub.user_set.add(user)
 				user.save()
-				return redirect('account_activation_sent')
+				return redirect('account_activation_sent_staff')
 			else:
 				user.save()
-				return redirect('account_activation_sent')
+				return redirect('account_activation_sent_staff')
 
 	else:
 		user_form = UserCreateForm()
 		profile_form = ProfileCreateForm()
 
 	return render(request, 'cms/create_user.html', {'user_form':user_form, 'profile_form':profile_form})
+
+@login_required
+@permission_required('auth.add_user', login_url='/login/')
+def user_detail_view(request, id):
+	template = 'cms/user_detail.html'
+	user_obj = get_object_or_404(user, pk=id)
+	profile_obj = get_object_or_404(Profile, pk=id)
+	return render(request, template,  {'user_obj': user_obj, 'profile_obj': profile_obj})
 
 
 def account_activation_sent(request):
@@ -218,9 +211,30 @@ def activate(request, uidb64, token):
 		user.is_active = True
 		user.profile.email_confirmed = True
 		user.save()
-		return redirect('cms_home')
+		if user.is_staff:
+
+			return redirect('cms_home')
+		else:
+			return render(request, 'cms/client_activation.html')
 	else:
 		return redirect(request, 'account_activation_invalid.html')
+
+@login_required
+@permission_required('reports.add_report', login_url='/login/')
+def change_password(request):
+	if request.method == 'POST':
+		form = PasswordChangeForm(request.user, request.POST)
+		if form.is_valid():
+			user = form.save()
+			update_session_auth_hash(request, user)
+			messages.success(request, 'Your password was successfully changed.')
+			return redirect('cms_home')
+		else:
+			messages.error(request, 'Please correct the error below.')
+	else:
+		form = PasswordChangeForm(request.user)
+
+	return render(request, 'cms/change_password.html', {'form': form})
 
 
 # class UpdateUserView(UpdateView):
