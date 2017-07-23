@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from .views import change_password, user_list_view, user_detail_view, activate ,account_activation_sent, ReportListView, ReportDetailView, CountryDetailView, CountryListView, cms_home_view, create_user_view,  update_user_view,  CreateReportView, UpdateReportView, DeleteReportView, CreateCountryView, UpdateCountryView, DeleteCountryView
+from .views import change_password, user_list_view, user_detail_view, activate ,account_activation_sent, DeleteUserView, ReportListView, ReportDetailView, CountryDetailView, CountryListView, cms_home_view, create_user_view,  update_user_view,  CreateReportView, UpdateReportView, DeleteReportView, CreateCountryView, UpdateCountryView, DeleteCountryView
 
 urlpatterns = [
 	url(r'^$', cms_home_view, name='cms_home'),
@@ -20,6 +20,7 @@ urlpatterns = [
 	url(r'^create-user/$', create_user_view, name='create_user'),
 	url(r'^update-user/(?P<id>[\d]+)/$', update_user_view, name='update_user'),
 	url(r'^user-detail/(?P<id>[\d]+)/$', user_detail_view, name='user_detail'),
+	url(r'^delete-user/(?P<pk>[\d]+)/$', DeleteUserView.as_view(), name='delete_user'),
 	url(r'^reports/$', ReportListView.as_view(), name='report_list_cms'),
 	url(r'^report-detail/(?P<pk>[\d]+)/$', ReportDetailView.as_view(), name='report_detail_cms'),
 	url(r'^create-report/$', CreateReportView.as_view(), name='create_report'),

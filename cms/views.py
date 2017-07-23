@@ -237,6 +237,14 @@ def change_password(request):
 	return render(request, 'cms/change_password.html', {'form': form})
 
 
+class DeleteUserView(PermissionRequiredMixin, DeleteView):
+	permission_required = ('auth.add_user')
+	model = User
+	slug_field = 'pk'
+	template_name = 'cms/delete_user.html'
+	success_url = '/'
+
+
 # class UpdateUserView(UpdateView):
 # 	model = Profile
 # 	fields = ['phone_number', 'company', 'sub_country', 'sub_model']

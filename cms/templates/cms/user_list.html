@@ -80,6 +80,7 @@
 						
 						<div class="user-links">
 							<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+							<a href="{% url 'delete_user' pk=user.pk %}" class="user-edit-link">Delete</a>
 							<a href="{% url 'user_detail' id=user.pk %}" class="user-edit-link">More</a>
 						</div>
 						</div>
@@ -107,6 +108,7 @@
 					
 					<div class="user-links">
 						<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+						<a href="{% url 'delete_user' pk=user.pk %}" class="user-edit-link">Delete</a>
 						<a href="{% url 'user_detail' id=user.pk %}" class="user-edit-link">More</a>
 					</div>
 					
@@ -129,6 +131,7 @@
 						
 						<div class="user-links">
 							<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+							<a href="{% url 'delete_user' pk=user.pk %}" class="user-edit-link">Delete</a>
 							<a href="{% url 'user_detail' id=user.pk %}" class="user-edit-link">More</a>
 						</div>
 						</div>

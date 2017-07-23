@@ -57,9 +57,7 @@
 		<section class="header-wrapper">
 			<div class="section-header">
 				<h1>CMS Dashboard</h1>
-				<div class="profile">
-					<a href="{% url 'change_password_cms' %}">Profile</a>
-				</div>
+				
 			</div>
 			
 		</section>
@@ -67,7 +65,10 @@
 		<section class="user-profile">
 			<div class="profile-header">
 				<h1>User Details: </h1>
-				<a href="{% url 'update_user' id=user_obj.id %}" class="user-edit-link">Edit Profile</a>
+				<div class="user-links">
+					<a href="{% url 'update_user' id=user_obj.id %}" class="user-edit-link">Edit Profile</a>
+					<a href="{% url 'delete_user' pk=user_obj.id %}" class="user-edit-link">Delete User</a>
+				</div>
 			</div>
 			<div class="profile-details">
 				{% if user_obj.is_staff %}
@@ -96,7 +97,7 @@
 						{% endfor %}
 					</h3>
 					<h3 class="detail">Subscription Model : {{ profile_obj.sub_model }}</h3>
-					
+
 				{% endif %}
 
 			</div>
