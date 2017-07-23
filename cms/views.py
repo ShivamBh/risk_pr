@@ -137,7 +137,7 @@ def create_user_view(request):
 	# 	profile_object = Profile(user=request.user)
 	mod = Group.objects.get(name='moderators')
 	pub = Group.objects.get(name='publishers')
-	#pdb.set_trace()
+	
 	if request.method == 'POST':
 		user_form = UserCreateForm(request.POST)
 		profile_form = ProfileCreateForm(data=request.POST)
@@ -156,7 +156,7 @@ def create_user_view(request):
 			# profile.user = user
 			# profile.save()
 			# user_form.fields['is_moderator'].widget.attrs['disabled'] = True
-			pdb.set_trace()
+			
 			user.profile.is_moderator = profile_form.cleaned_data.get('is_moderator')
 			user.profile.is_publisher = profile_form.cleaned_data.get('is_publisher')
 			
