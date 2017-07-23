@@ -128,26 +128,25 @@ def update_user_view(request, id):
 @login_required
 @permission_required('auth.add_user', login_url='/login/')
 def create_user_view(request):
-	try:
-		profile_object = request.user.profile
-	except Profile.DoesNotExist:
-		profile_object = Profile(user=request.user)
+	# try:
+	# 	profile_object = request.user.profile
+	# except Profile.DoesNotExist:
+	# 	profile_object = Profile(user=request.user)
 	mod = Group.objects.get(name='moderators')
 	pub = Group.objects.get(name='publishers')
 	if request.method == 'POST':
 		user_form = UserCreateForm(request.POST)
-		profile_form = ProfileCreateForm(data=request.POST, instance=profile_object)
-
+		profile_form = ProfileCreateForm(data=request.POST)
+		#print("first point")
 		if all([user_form.is_valid(), profile_form.is_valid()]):
-			
+			#print("after if is_valid")
 			user = user_form.save()
-			profile = profile_form.save()
 			user.refresh_from_db
 			user.profile.phone_number = profile_form.cleaned_data.get('phone_number')
 			user.profile.company = profile_form.cleaned_data.get('company')
 			user.profile.sub_country = profile_form.cleaned_data.get('sub_country')
 			user.profile.sub_model = profile_form.cleaned_data.get('sub_model')
-			
+			#print("after profile clean")
 			new_password = User.objects.make_random_password()
 			user.set_password(new_password)
 			# profile.user = user
@@ -158,9 +157,10 @@ def create_user_view(request):
 			user.profile.is_publisher = profile_form.cleaned_data.get('is_publisher')
 			
 			#Signup email, with activation link
-			
+			#print("before save")
 			user.save()
-			profile.save()
+			user.profile.save()
+			#print("after save")
 			current_site = get_current_site(request)
 			subject = 'Account Activation - ISSRISK'
 
@@ -173,17 +173,24 @@ def create_user_view(request):
 			})
 
 			user.email_user(subject, message)
-
+			# print(user)
+			# print(user.profile)
 			if user.profile.is_moderator:
+				#print("after email1")
 				mod.user_set.add(user)
 				user.save()
+				user.profile.save()
 				return redirect('account_activation_sent_staff')
 			elif user.profile.is_publisher:
+				#print("after email2")
 				pub.user_set.add(user)
 				user.save()
+				user.profile.save()
 				return redirect('account_activation_sent_staff')
 			else:
+				#print("after email3")
 				user.save()
+				user.profile.save()
 				return redirect('account_activation_sent_staff')
 
 	else:
