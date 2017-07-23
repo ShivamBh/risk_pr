@@ -20,6 +20,8 @@ from django.template.loader import render_to_string, get_template
 # from django.urls import reverse
 from django_hosts.resolvers import reverse
 from riskproject.settings import DEFAULT_FROM_EMAIL
+import logging
+import pdb
 
 from pyshorteners import Shortener
 
@@ -128,12 +130,14 @@ def update_user_view(request, id):
 @login_required
 @permission_required('auth.add_user', login_url='/login/')
 def create_user_view(request):
+	logger = logging.getLogger(__name__)
 	# try:
 	# 	profile_object = request.user.profile
 	# except Profile.DoesNotExist:
 	# 	profile_object = Profile(user=request.user)
 	mod = Group.objects.get(name='moderators')
 	pub = Group.objects.get(name='publishers')
+	#pdb.set_trace()
 	if request.method == 'POST':
 		user_form = UserCreateForm(request.POST)
 		profile_form = ProfileCreateForm(data=request.POST)
@@ -146,13 +150,13 @@ def create_user_view(request):
 			user.profile.company = profile_form.cleaned_data.get('company')
 			user.profile.sub_country = profile_form.cleaned_data.get('sub_country')
 			user.profile.sub_model = profile_form.cleaned_data.get('sub_model')
-			#print("after profile clean")
+			##print("after profile clean")
 			new_password = User.objects.make_random_password()
 			user.set_password(new_password)
 			# profile.user = user
 			# profile.save()
 			# user_form.fields['is_moderator'].widget.attrs['disabled'] = True
-
+			pdb.set_trace()
 			user.profile.is_moderator = profile_form.cleaned_data.get('is_moderator')
 			user.profile.is_publisher = profile_form.cleaned_data.get('is_publisher')
 			
