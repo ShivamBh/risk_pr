@@ -20,8 +20,7 @@ class Profile(models.Model):
 	)
 
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-	phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=20)
+	phone_number = models.CharField(blank=False, max_length=20)
 	#contact_no = models.CharField(max_length=20, blank=False, default="12345")
 	company = models.CharField(max_length=120, blank=False, default="Company")
 	sub_country = models.ManyToManyField(Country)
