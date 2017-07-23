@@ -128,16 +128,20 @@ def update_user_view(request, id):
 @login_required
 @permission_required('auth.add_user', login_url='/login/')
 def create_user_view(request):
+	try:
+		profile_object = request.user.profile
+	except Profile.DoesNotExist:
+		profile_object = Profile(user=request.user)
 	mod = Group.objects.get(name='moderators')
 	pub = Group.objects.get(name='publishers')
 	if request.method == 'POST':
 		user_form = UserCreateForm(request.POST)
-		profile_form = ProfileCreateForm(request.POST)
+		profile_form = ProfileCreateForm(data=request.POST, instance=profile_object)
 
 		if all([user_form.is_valid(), profile_form.is_valid()]):
 			
 			user = user_form.save()
-			# profile = profile_form.save(commit=False)
+			profile = profile_form.save()
 			user.refresh_from_db
 			user.profile.phone_number = profile_form.cleaned_data.get('phone_number')
 			user.profile.company = profile_form.cleaned_data.get('company')
@@ -156,6 +160,7 @@ def create_user_view(request):
 			#Signup email, with activation link
 			
 			user.save()
+			profile.save()
 			current_site = get_current_site(request)
 			subject = 'Account Activation - ISSRISK'
 
