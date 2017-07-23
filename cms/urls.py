@@ -1,5 +1,8 @@
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings 
+from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .views import change_password, user_list_view, user_detail_view, activate ,account_activation_sent, DeleteUserView, ReportListView, ReportDetailView, CountryDetailView, CountryListView, cms_home_view, create_user_view,  update_user_view,  CreateReportView, UpdateReportView, DeleteReportView, CreateCountryView, UpdateCountryView, DeleteCountryView
 
@@ -33,3 +36,6 @@ urlpatterns = [
 	url(r'^country-detail/(?P<pk>[\d]+)/$', CountryDetailView.as_view(), name='country_detail_cms'),
 
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
