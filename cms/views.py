@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.core import mail
-from django.core.mail import send_mail
+from django.core.mail import send_mail, send_mass_mail
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
@@ -295,7 +295,7 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 		location = form.cleaned_data['location']
 		is_flash = form.cleaned_data['send_flash']
 		new_report = form.save()
-		print(('http://intel.issrisk.com/report/{id}/detail/').format(id=new_report.id))
+		#print(('http://intel.issrisk.com/report/{id}/detail/').format(id=new_report.id))
 		if is_flash:
 			receivers = User.objects.filter(profile__sub_country__name__icontains=location)
 			shortener = Shortener('Tinyurl', timeout=30)
@@ -308,8 +308,39 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 				else:
 
 					send_twilio_message(item.profile.phone_number, body)
+
 		# send mail to subscribers on publish with html
-		# send_mail('test', title, 'helpdesk@info.issrisk.com', ['shivam.bhattacharjee94@gmail.com'])
+		receivers = User.objects.filter(profile__sub_country__name__icontains=location).exclude(is_active=False)
+		subject = "ISSRISK - New Report"
+		rep_url = ('http://intel.issrisk.com/report/{id}/detail/').format(id=new_report.id)
+		email_ctx = {
+			'report': new_report,
+			'url': rep_url,
+		}
+		message = get_template('cms/new_report.html').render(email_ctx)
+		from_email = DEFAULT_FROM_EMAIL
+		email_list = [item.email for item in receivers]
+
+		def get_publish_email_list(email_list, subject, message):
+			email_arr = []
+			for email in email_list:
+				mail_obj = mail.EmailMessage(
+					subject,
+					message,
+					from_email,
+					[email],
+				)
+				mail_obj.content_subtype = 'html'
+				email_arr.append(mail_obj)
+
+			return email_arr
+
+		#send mail
+		connection = mail.get_connection()
+		email_messages = get_publish_email_list(email_list, subject, message)
+		connection.send_messages(email_messages)
+
+
 		return super(CreateReportView, self).form_valid(form)
 
 class UpdateReportView(PermissionRequiredMixin, UpdateView):
@@ -323,13 +354,13 @@ class UpdateReportView(PermissionRequiredMixin, UpdateView):
 	def form_valid(self, form):
 
 		rep = Report.objects.get(id=self.kwargs['pk'])
-		rep_url = self.request.build_absolute_uri(reverse('report_detail', args=[self.kwargs['pk']]))
+		rep_url = ('http://intel.issrisk.com/report/{id}/detail/').format(id=self.kwargs["pk"])
 		is_major = form.cleaned_data['major_revision']
 		loc = form.cleaned_data['location']
 		
-		queryset = Profile.objects.filter(sub_country__name__icontains=loc)
+		queryset = User.objects.filter(profile__sub_country__name__icontains=loc)
 		from_email = DEFAULT_FROM_EMAIL
-		email_list = [item.user.email for item in queryset]
+		email_list = [item.email for item in queryset]
 		subject = "Major revision for Report"
 		ctx = {
 			'rep': rep,
@@ -352,8 +383,8 @@ class UpdateReportView(PermissionRequiredMixin, UpdateView):
 
 		if is_major:
 			connection = mail.get_connection()
-			messages = get_major_email(email_list, subject, message)
-			connection.send_messages(messages)
+			email_messages = get_major_email(email_list, subject, message)
+			connection.send_messages(email_messages)
 
 		return super(UpdateReportView, self).form_valid(form)
 
