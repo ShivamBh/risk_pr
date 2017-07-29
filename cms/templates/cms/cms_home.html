@@ -57,21 +57,16 @@
 		<section class="header-wrapper">
 			<div class="section-header">
 				<h1>CMS Dashboard</h1>
-				<div class="profile">
-					<a href="{% url 'change_password_cms' %}">Profile</a>
-				</div>
 			</div>
 			
 		</section>
 		
 		{% if messages %}
-		<section class="message-wrapper">
-			<ul class="messages">
-				{% for message in messages %}
-					<li>{{ message }}</li>
-				{% endfor %}
-			</ul>
-		</section>
+		<ul class="messages">
+		    {% for message in messages %}
+		    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
 		{% endif %}
 
 		<section class="cms-home">

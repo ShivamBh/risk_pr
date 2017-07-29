@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.encoding import force_bytes
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -253,13 +254,13 @@ def change_password(request):
 	return render(request, 'cms/change_password.html', {'form': form})
 
 
-class DeleteUserView(PermissionRequiredMixin, DeleteView):
+class DeleteUserView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
 	permission_required = ('auth.add_user')
 	model = User
 	slug_field = 'pk'
 	template_name = 'cms/delete_user.html'
 	success_url = '/'
-
+	success_message = "User was successfully deleted."
 
 # class UpdateUserView(UpdateView):
 # 	model = Profile
@@ -282,13 +283,14 @@ class ReportDetailView(PermissionRequiredMixin, DetailView):
 	context_object_name = 'report'
 	template_name = 'cms/report_detail.html'
 
-class CreateReportView(PermissionRequiredMixin, CreateView):
+class CreateReportView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
 	permission_required = ('reports.add_report')
 	model = Report
 	template_name = 'cms/create_report.html'
 	form_class = ReportForm
 	
 	success_url = '/'
+	success_message = "Report was successfully created."
 
 	def form_valid(self, form):
 		title = form.cleaned_data['title']
@@ -343,13 +345,14 @@ class CreateReportView(PermissionRequiredMixin, CreateView):
 
 		return super(CreateReportView, self).form_valid(form)
 
-class UpdateReportView(PermissionRequiredMixin, UpdateView):
+class UpdateReportView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
 	permission_required = ('reports.change_report')
 	model = Report
 	slug_field='pk'
 	template_name = 'cms/update_report.html'
 	form_class = ReportUpdateForm
 	success_url = '/'
+	success_message = "Report was successfully updated."
 
 	def form_valid(self, form):
 
@@ -388,12 +391,13 @@ class UpdateReportView(PermissionRequiredMixin, UpdateView):
 
 		return super(UpdateReportView, self).form_valid(form)
 
-class DeleteReportView(PermissionRequiredMixin, DeleteView):
+class DeleteReportView(SuccessMessageMixin, PermissionRequiredMixin, DeleteView):
 	permission_required = ('reports.delete_report')
 	model = Report
 	slug_field = 'pk'
 	template_name = 'cms/delete_report.html'
 	success_url = '/'
+	success_message = "Report was successfully deleted."
 
 class CountryListView(PermissionRequiredMixin, ListView):
 	permission_required = ('reports.add_report')
@@ -415,28 +419,30 @@ class CountryDetailView(PermissionRequiredMixin, DetailView):
 		context["rel_reps"] = rel_reps
 		return context
 
-class CreateCountryView(PermissionRequiredMixin, CreateView):
+class CreateCountryView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
 	permission_required = ('reports.add_country')
 	model = Country
 	template_name = 'cms/create_country.html'
 	form_class = CountryForm
 	success_url = '/'
+	success_message = "Country was successfully created."
 
-class UpdateCountryView(PermissionRequiredMixin, UpdateView):
+class UpdateCountryView(PermissionRequiredMixin,SuccessMessageMixin, UpdateView):
 	permission_required = ('reports.change_country')
 	model = Country
 	slug_field = 'pk'
 	template_name = 'cms/update_country.html'
 	form_class = CountryForm
 	success_url = '/'
+	success_message = "Country was successfully updated."
 
-class DeleteCountryView(PermissionRequiredMixin, DeleteView):
+class DeleteCountryView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
 	permission_required = ('reports.delete_country')
 	model = Country
 	slug_field = 'pk'
 	template_name = 'cms/delete_country.html'
 	success_url = '/'
-
+	success_message = "Country was successfully deleted."
 
 
 	

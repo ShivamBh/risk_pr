@@ -58,6 +58,8 @@ MIDDLEWARE = [
 
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 ROOT_URLCONF = 'riskproject.urls'
 ROOT_HOSTCONF = 'riskproject.hosts'
 DEFAULT_HOST = 'intel'
