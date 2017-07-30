@@ -30,5 +30,5 @@ var sec_color = $("sec-level-rating-color");
 		$("sec-level-rating-color").css("background-color", "C73542");
 	}
 
-console.log($("sec-level-rating-color"));
+//console.log($("sec-level-rating-color"));
  });

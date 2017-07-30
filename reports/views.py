@@ -77,6 +77,11 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 	context_object_name = 'country'
 	template_name = 'reports/country_detail.html'
 
+	def get_context_data(self, **kwargs):
+		context = super(CountryDetailView, self).get_context_data(**kwargs)
+		rel_reps = Report.objects.filter(location__name__icontains=self.object.name)
+		context["rel_reps"] = rel_reps
+		return context
 
 # def account_activation_sent(request):
 # 	return render(request, 'reports/account_activation_sent.html')

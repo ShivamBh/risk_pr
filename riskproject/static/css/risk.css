@@ -694,6 +694,11 @@ h1, h2, h3, h4, h5, h6 {
 	width: 50vw;
 	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
 	margin-bottom: 40px;
+	overflow: visible;
+}
+
+.rel-reps {
+	display: none;
 }
 
 /* END COUNTRY_DETAIL */
