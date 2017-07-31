@@ -3,12 +3,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings 
 from django.conf.urls.static import static
 from django.conf.urls import url, include
-from .views import change_password, ReportListView, CountryListView, ReportDetailView, CountryDetailView, index
+from .views import change_password, SearchListView , ReportListView, CountryListView, ReportDetailView, CountryDetailView, index
 
 urlpatterns = [
 	url(r'^$', index, name='home'),
 	url(r'^change-password/$', change_password, name='change_password_intel'),
 	url(r'^reports/$', ReportListView.as_view(), name='report_list'),
+	url(r'^search/$', SearchListView.as_view(), name='report_search'),
 	url(r'^country/$', CountryListView.as_view(), name='country_list'),
 	url(r'^country/(?P<pk>[0-9]+)/detail/$', CountryDetailView.as_view(), name='country_detail'),
 	url(r'^report/(?P<pk>[0-9]+)/detail/$', ReportDetailView.as_view(), name='report_detail'),

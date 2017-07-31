@@ -168,14 +168,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-wrapper {
-	
+	background-color: #F4F2F2;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .section-header {
 	height: 15vh;
 	display: flex;
-	background-color: #F4F2F2;
-	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	
 }
 
 .section-header h1 {
@@ -196,6 +199,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Start DASHBOARD and general item styles(later reused) */
+
+.search {
+	padding: 10px;
+	margin-right: 10px;
+}
+.search-button {
+	height: 40px;
+	width: 40px;
+	border: none;
+	font-family: 'Roboto', 'sans-serif';
+}
+
+.search-field {
+	width: 240px;
+	height: 40px;
+	border: none;
+}
+
+.search-button:hover,
+.search-field:focus {
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+}
 
 .main-content {
 	width: 100%;

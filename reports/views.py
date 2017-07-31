@@ -9,6 +9,9 @@ from django.views.generic import ListView, DetailView
 from accounts.models import Profile
 from .models import Report, Country
 
+from functools import reduce
+import operator
+
 # Create your views here.
 @login_required
 def change_password(request):
@@ -44,21 +47,21 @@ class ReportListView(LoginRequiredMixin, ListView):
 	context_object_name = 'report_list'
 	template_name = 'reports/report_list.html'
 
-	def get_queryset(self):
-		user = self.request.user
-		qs = Profile.objects.get(user=user)
-		loc = qs.sub_country.all()
-		sub_model = qs.sub_model
-		if (sub_model == 'T' or sub_model == 'C'):
-			rep_mod = Report.objects.filter(Q(report_type__exact=sub_model))
-		if (sub_model == 'TC'):
-			rep_mod = Report.objects.all()
+	# def get_queryset(self):
+	# 	user = self.request.user
+	# 	qs = Profile.objects.get(user=user)
+	# 	loc = qs.sub_country.all()
+	# 	sub_model = qs.sub_model
+	# 	if (sub_model == 'T' or sub_model == 'C'):
+	# 		rep_mod = Report.objects.filter(Q(report_type__exact=sub_model))
+	# 	if (sub_model == 'TC'):
+	# 		rep_mod = Report.objects.all()
 
 
-		rep_qs = [(rep_mod.filter(Q(location__name__icontains=loc_obj.name)).order_by('updated_at')) for loc_obj in loc]
-		reports = [item for sublist in rep_qs for item in sublist]
+	# 	rep_qs = [(rep_mod.filter(Q(location__name__icontains=loc_obj.name)).order_by('updated_at')) for loc_obj in loc]
+	# 	reports = [item for sublist in rep_qs for item in sublist]
 
-		return reports
+	# 	return reports
 
 class CountryListView(LoginRequiredMixin, ListView):
 	model = Country
@@ -82,6 +85,28 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 		rel_reps = Report.objects.filter(location__name__icontains=self.object.name)
 		context["rel_reps"] = rel_reps
 		return context
+
+class SearchListView(ReportListView):
+
+	paginate_by = 10
+
+	def get_queryset(self):
+		result = super(ReportListView, self).get_queryset()
+
+		query = self.request.GET.get('q')
+		if query:
+			query_list = query.split()
+			result = result.filter(
+				reduce(operator.and_, (Q(title__icontains=q) for q in query_list)) |
+				reduce(operator.and_, (Q(summary__icontains=q) for q in query_list))
+			)
+
+		return result
+
+
+
+
+
 
 # def account_activation_sent(request):
 # 	return render(request, 'reports/account_activation_sent.html')

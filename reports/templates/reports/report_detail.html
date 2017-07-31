@@ -27,6 +27,14 @@
 			<div class="section-header">
 				<h1>Dashboard</h1>
 			</div>
+			<div class="search">
+				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
+					<button class="search-button" type="submit">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+					<input type="text" class="search-field" id="searchbox" name="q" placeholder="Search">
+				</form>
+			</div>
 			
 		</section>
 		
