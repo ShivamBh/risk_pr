@@ -70,6 +70,12 @@
 			<form action="." method="post"  enctype="multipart/form-data">
 				{% csrf_token %}
 				{% for field in form %}
+					{% for error in field.errors %}
+						<div class="error">
+							<strong>{{ error|escape }}</strong>
+						</div>
+					{% endfor %}
+					
 					<div class="form-group">
 						<span class="field-label">{{ field.label_tag }}</span>
 						<br>

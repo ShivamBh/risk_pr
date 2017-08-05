@@ -1270,5 +1270,19 @@ h1, h2, h3, h4, h5, h6 {
 	color: #fff;
 }
 
+.error {
+	margin: 10px 0 10px 0;
+}
+
+.error strong {
+	padding: 5px;
+	font-family: 'Roboto', 'sans-serif';
+	color: #EE4949;
+	font-weight: bold;
+	font-size: 1.2em;
+	/*box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);*/
+
+}
+
 
 /* END CMS STYLES */

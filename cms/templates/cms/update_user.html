@@ -67,10 +67,16 @@
 			<div class="cancel-btn">
 				<a href="/" class="cancel">Go Back</a>
 			</div>
-			
+
 			<form action="." method="post">
 				{% csrf_token %}
 				{% for field in user_form %}
+					{% for error in field.errors %}
+						<div class="error">
+							<strong>{{ error|escape }}</strong>
+						</div>
+					{% endfor %}
+
 					<div class="form-group">
 						<span class="field-label">{{ field.label_tag }}</span>
 						<br>
@@ -78,6 +84,12 @@
 					</div>
 				{% endfor %}
 				{% for field in profile_form %}
+					{% for error in field.errors %}
+						<div class="error">
+							<strong>{{ error|escape }}</strong>
+						</div>
+					{% endfor %}
+					
 					<div class="form-group">
 						<span class="field-label">{{ field.label_tag }}</span>
 						<br>
