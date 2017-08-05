@@ -414,8 +414,7 @@ class CountryDetailView(PermissionRequiredMixin, DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(CountryDetailView, self).get_context_data(**kwargs)
-		# ct = shinigami
-		Country.objects.get(pk=slug_field)
+		# ct = Country.objects.get(pk=slug_field)
 		rel_reps = Report.objects.filter(location__name__icontains=self.object.name).order_by('-created_at')
 		context["rel_reps"] = rel_reps
 		return context
