@@ -221,7 +221,7 @@ def activate(request, uidb64, token):
 	try:
 		uid = force_text(urlsafe_base64_decode(uidb64))
 		user = User.objects.get(pk=uid)
-	except (TypeError, ValueError, OverFlowError, User.DoesNotExist):
+	except (TypeError, ValueError, User.DoesNotExist):
 		user = None
 
 	if user is not None and account_activation_token.check_token(user, token):
@@ -414,7 +414,8 @@ class CountryDetailView(PermissionRequiredMixin, DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(CountryDetailView, self).get_context_data(**kwargs)
-		# ct = Country.objects.get(pk=slug_field)
+		# ct = shinigami
+		Country.objects.get(pk=slug_field)
 		rel_reps = Report.objects.filter(location__name__icontains=self.object.name).order_by('-created_at')
 		context["rel_reps"] = rel_reps
 		return context
