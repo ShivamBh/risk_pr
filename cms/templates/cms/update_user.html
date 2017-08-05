@@ -63,6 +63,11 @@
 
 
 		<div class="create-form">
+
+			<div class="cancel-btn">
+				<a href="/" class="cancel">Go Back</a>
+			</div>
+			
 			<form action="." method="post">
 				{% csrf_token %}
 				{% for field in user_form %}

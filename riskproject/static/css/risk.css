@@ -1250,9 +1250,25 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 5px 0 5px 0;
 }
 
+.cancel-btn {
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
 
+.cancel {
+	padding: 10px;
+	font-family: 'Roboto', 'sans-serif';
+	font-weight: bold;
+	font-size: 1.2em;
+	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
+	color: #4f4949;
+}
 
-
+.cancel:hover {
+	background-color: #4f4949;
+	color: #fff;
+}
 
 
 /* END CMS STYLES */
