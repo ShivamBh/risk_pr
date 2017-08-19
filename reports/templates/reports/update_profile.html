@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Update Details - {{ user.username }}{% endblock %}
+
+{% block header %}
+	<nav class="side-nav">
+		<div class="nav-menu">
+			<div class="nav-items">
+				<a href="{% url "report_list" %}" class="nav-links">Reports</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "home" %}" class="nav-links">Countries</a>
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+{% block content %}
+	
+	<main class="container">
+
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>Update Profile</h1>
+			</div>
+			<div class="search">
+				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
+					<button class="search-button" type="submit">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+					<input type="text" class="search-field" id="searchbox" name="q" placeholder="Search">
+				</form>
+			</div>
+			
+		</section>
+
+		<div class="create-form">
+			
+			<form action="." method="post">
+				{% csrf_token %}
+				
+				{% for field in form %}
+					{% for error in field.errors %}
+						<div class="error">
+							<strong>{{ error|escape }}</strong>
+						</div>
+					{% endfor %}
+					<div class="form-group">
+						<span class="field-label">{{ field.label_tag }}</span>
+						<br>
+						<span class="field-input">{{ field }}</span>
+					</div>
+				{% endfor %}
+				
+				
+				<input type="submit" value="Create New User" class="submit-btn">
+			</form>	
+
+		</div>
+		
+		
+		
+	</main>
+
+{% endblock %}
+
+{% block user_profile %}
+
+	<a href="/profile/" class="profile-link">My Profile</a>
+
+{% endblock %}
+

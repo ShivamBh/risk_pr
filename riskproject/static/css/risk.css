@@ -18,7 +18,7 @@ html, body {
 
 a, a:active, a:hover, a:visited, a:link {
 	text-decoration: none;
-	color: #D6D5D5 ;
+	/*color: #D6D5D5 ;*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -330,6 +330,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .report-detail-link {
 	width: 75%;
+	color: #111;
 }
 
 
@@ -499,6 +500,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .country-detail-wrapper {
 	margin-top: 40px;
+}
+
+.profile-content {
+	position: relative;
+}
+
+.profile-edit {
+	margin-top: 20px;
+
+}
+
+.profile-edit .profile-edit-link {
+	color: #4f4949;
+	font-size: 1em;
+	font-family: 'Roboto', 'sans-serif';
+	font-weight: 700;
 }
 
 .profile {
