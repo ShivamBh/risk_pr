@@ -25,7 +25,7 @@
 		
 		<section class="header-wrapper">
 			<div class="section-header">
-				<h1>Dashboard</h1>
+				<h1>{{ country.name }}</h1>
 			</div>
 			<div class="search">
 				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
@@ -41,12 +41,12 @@
 		<section class="content-wrapper">
 
 			<div class="main-content">
-				<div class="main-header">
+				<!-- <div class="main-header">
 					<h2 class="main-header-text"><span class="country-name-header">
 						{{ country.name }}
 					</span></h2>
 
-				</div>
+				</div> -->
 
 				<div class="country-detail-wrapper">
 
