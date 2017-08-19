@@ -18,7 +18,7 @@ html, body {
 
 a, a:active, a:hover, a:visited, a:link {
 	text-decoration: none;
-	
+	color: #D6D5D5 ;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -500,6 +500,29 @@ h1, h2, h3, h4, h5, h6 {
 .country-detail-wrapper {
 	margin-top: 40px;
 }
+
+.profile {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.profile-entry {
+	margin: 10px 0 10px 0;
+	
+}
+
+.profile-entry .profile-country-link {
+	padding: 3px;
+	color: #4f4949;
+}
+
+.profile-entry .profile-country-link:hover {
+	padding: 3px;
+	color: #26567c;
+}
+
+
 
 .ratings {
 	display: flex;

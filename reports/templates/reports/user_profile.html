@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile - {{ user.username }}{% endblock %}
+
+{% block header %}
+	<nav class="side-nav">
+		<div class="nav-menu">
+			<div class="nav-items">
+				<a href="{% url "report_list" %}" class="nav-links">Reports</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "home" %}" class="nav-links">Countries</a>
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+{% block content %}
+	
+	<main class="container">
+
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>My Account</h1>
+			</div>
+			<div class="search">
+				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
+					<button class="search-button" type="submit">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+					<input type="text" class="search-field" id="searchbox" name="q" placeholder="Search">
+				</form>
+			</div>
+			
+		</section>
+
+		<section class="content-wrapper">
+			<div class="main-content">
+				<div class="profile">
+					<div class="profile-entry">
+					<h3>Name: {{ user.first_name }} {{ user.last_name }}</h3>
+					</div>
+					<div class="profile-entry">
+						<h3>Username: {{ user.username }}</h3>
+					</div>
+					<div class="profile-entry">
+						<h3>Email: {{ user.email }}</h3>
+					</div>
+					<div class="profile-entry">
+						<h3>Company/Organization: {{ user.profile.company }}</h3>
+					</div>
+					<div class="profile-entry">
+						<h3>Phone Number: {{ user.profile.phone_number }}</h3>
+					</div>
+					<div class="profile-entry">
+						
+							<h3 class="profile-country">Subscribed Countries: 
+							{% for country in user.profile.sub_country.all %}
+								<a href="{% url 'country_detail' pk=country.id %}" class="profile-country-link">{{ country.name }}</a>
+							{% endfor %}
+							</h3>
+							
+					</div>
+					<div class="profile-entry">
+						<h3>Subscription Type: {{ sub }}
+						</h3>
+					</div>
+
+					<div class="profile-entry">
+						<h3>Validity : VALIDITY
+						</h3>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		
+		
+	</main>
+
+{% endblock %}
+
+{% block user_profile %}
+
+	<a href="/profile/" class="profile-link">My Profile</a>
+
+{% endblock %}
+

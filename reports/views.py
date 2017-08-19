@@ -14,6 +14,27 @@ import operator
 
 # Create your views here.
 @login_required
+def user_profile_view(request):
+	template = 'reports/user_profile.html'
+	user = request.user
+	profile = request.user.profile
+	sub_type = profile.sub_model
+	if (sub_type == "T"):
+		sub = "Travel"
+	elif (sub_type == "C"):
+		sub = "Country"
+	else:
+		sub = "Travel and Country"
+
+	return render(request, template, {'user': user, 'sub': sub})
+
+
+@login_required
+def user_profile_edit(request):
+	pass
+
+
+@login_required
 def change_password(request):
 	if request.method == 'POST':
 		form = PasswordChangeForm(request.user, request.POST)
@@ -56,7 +77,9 @@ class ReportListView(LoginRequiredMixin, ListView):
 	# 		rep_mod = Report.objects.filter(Q(report_type__exact=sub_model))
 	# 	if (sub_model == 'TC'):
 	# 		rep_mod = Report.objects.all()
-
+	def get_context_data(self, *args, **kwargs):
+		context = super(ReportListView, self).get_context_data(*args, **kwargs)
+		filtered
 
 	# 	rep_qs = [(rep_mod.filter(Q(location__name__icontains=loc_obj.name)).order_by('updated_at')) for loc_obj in loc]
 	# 	reports = [item for sublist in rep_qs for item in sublist]
