@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block header %}
+	<nav class="side-nav">
+		<div class="nav-menu">
+			<div class="nav-items">
+				<a href="{% url "report_list" %}" class="nav-links">Reports</a>
+			</div>
+			<div class="nav-items">
+				<a href="{% url "home" %}" class="nav-links">Countries</a>
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+{% block content %}
+
+
+	<main class="container">
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>Search</h1>
+			</div>
+			<div class="search">
+				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
+					<button class="search-button" type="submit">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+					<input type="text" class="search-field" id="searchbox" name="q" placeholder="Search">
+				</form>
+			</div>
+			
+		</section>
+
+		<div class="secondary-content">
+
+				<div class="main-header">
+					<h1 class="main-header-text">Results: </h1>
+				</div>
+
+				<div class="report-list">
+					<div class="search-form">
+						<form action="." method="get">
+							
+							{{ filter.form.as_p }}
+							<button type="submit">Search</button>
+						</form>
+					</div>
+
+					<div class="search-results">
+						<ul class="results-list">
+							{% for report in filter.qs %}
+								<li class="result-item">
+									{{ report.title }}, {{ report.location }}, {{ report.report_type }}
+
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+	</main>
+
+
+	
+{% endblock %}
+
+{% block user_profile %}
+
+	<a href="/profile/" class="profile-link">My Profile</a>
+
+{% endblock %}

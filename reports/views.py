@@ -5,8 +5,11 @@ from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from accounts.models import Profile
+
+from .filters import UserFilter
 from .models import Report, Country
 from .forms import ProfileUpdateForm
 from functools import reduce
@@ -127,23 +130,10 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 		context["rel_reps"] = rel_reps
 		return context
 
-class SearchListView(ReportListView):
-
-	paginate_by = 10
-
-	def get_queryset(self):
-		result = super(ReportListView, self).get_queryset()
-
-		query = self.request.GET.get('q')
-		if query:
-			query_list = query.split()
-			result = result.filter(
-				reduce(operator.and_, (Q(title__icontains=q) for q in query_list)) |
-				reduce(operator.and_, (Q(summary__icontains=q) for q in query_list))
-			)
-
-		return result
-
+def search(request):
+	user_list = User.objects.all()
+	user_filter = UserFilter(request.GET, queryset=user_list)
+	return render(request, 'reports/search.html', {'filter': user_filter})
 
 
 
