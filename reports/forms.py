@@ -14,3 +14,7 @@ class ProfileUpdateForm(forms.ModelForm):
 			"sub_model",
 			
 			)
+
+class SearchForm(forms.Form):
+	from_date = forms.DateField()
+	to_date = forms.DateField()

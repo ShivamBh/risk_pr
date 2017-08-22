@@ -11,9 +11,10 @@ from accounts.models import Profile
 
 # from .filters import UserFilter
 from .models import Report, Country
-from .forms import ProfileUpdateForm
+from .forms import ProfileUpdateForm, SearchForm
 from functools import reduce
 import operator
+import datetime
 
 # Create your views here.
 @login_required
@@ -132,24 +133,40 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 
 def search(request):
 
+
 	query = request.GET.get("q")
+	loc = request.GET.get("l")
+	rep_type = request.GET.get("t")
+	from_date = request.GET.get("fd")
+	to_date = request.GET.get("td")
+	from_date_data = datetime.datetime.strptime(from_date, "%Y-%m-%d").date()
+	to_date_data = datetime.datetime.strptime(to_date, "%Y-%m-%d").date()
 	report_list = Report.objects.all()
+	if loc is not None:
+		report_list = report_list.filter(location__name__icontains=loc)
+	if rep_type is not None:
+		if rep_type == "T":
+			report_list = report_list.filter(report_type__exact="T")
+		elif rep_type == "C":
+			report_list = report_list.filter(report_type__exact="C")
+		else:
+			report_list = report_list
+
+	if from_date is not None:
+		report_list = report_list.filter(created_at__gte=from_date_data)
+
+	if to_date is not None:
+		report_list = report_list.filter(created_at__lte=to_date_data)
+
 	if query:
+
 		query_list = query.split()
-		result = Report.objects.filter(
+		result = report_list.filter(
 			reduce(operator.and_, (Q(title__icontains=q) for q in query_list)) |
 			reduce(operator.and_, (Q(summary__icontains=q) for q in query_list))
-		)
+		).exclude(archive=True).order_by('-created_at')
 
 	return render(request, 'reports/search.html', {'search_results': result})
-
-
-		
-
-
-#
-
-
 
 
 

@@ -20,10 +20,41 @@
 
 
 	<main class="container">
+
+		<section class="header-wrapper">
+			<div class="section-header">
+				<h1>Dashboard</h1>
+			</div>
+			<div class="search">
+				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
+					<button class="search-button" type="submit">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+					<input type="text" class="search-field" id="searchbox" name="q" placeholder="Search">
+					<div class="search-dropdown">
+
+						<p>Advanced Search</p>
+						<div class="dropdown-content">
+							<input type="text" class="search-field" id="searchbox2" name="l" placeholder="Country">
+							<select name="t" id="search-type">
+								<option value="T">Travel</option>
+								<option value="C">Country</option>
+								<option value="TC">Both</option>
+							</select>
+							<p>From: <input type="text" id="datepicker_from" name="fd" placeholder="From Date"></p>
+							<p>To: <input type="text" id="datepicker_to" name="td" placeholder="To Date"></p>
+					<div class="search-dropdown">
+						</div>
+					</div>
+				</form>
+			</div>
+			
+		</section>
 		
 			{% for result in search_results %}
 				<h3>{{ result.title }}</h3>
 				<a href="{% url 'report_detail' pk=result.id %}">More</a>
+				<p>Created at: {{ result.created_at }}</p>
 				<br>
 			{% endfor %}
 			

@@ -30,5 +30,10 @@ var sec_color = $("sec-level-rating-color");
 		$("sec-level-rating-color").css("background-color", "C73542");
 	}
 
+	$( function() {
+		$( "#datepicker_from" ).datepicker({dateFormat: "yy-mm-dd"});
+    $( "#datepicker_to" ).datepicker({dateFormat: "yy-mm-dd"});
+  } );
+
 //console.log($("sec-level-rating-color"));
  });
