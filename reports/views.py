@@ -139,8 +139,20 @@ def search(request):
 	rep_type = request.GET.get("t")
 	from_date = request.GET.get("fd")
 	to_date = request.GET.get("td")
-	from_date_data = datetime.datetime.strptime(from_date, "%Y-%m-%d").date()
-	to_date_data = datetime.datetime.strptime(to_date, "%Y-%m-%d").date()
+	
+	print(from_date, to_date)
+	if not from_date == "":
+		from_date_data = datetime.datetime.strptime(from_date, "%Y-%m-%d")
+	else:
+		from_date_data = None
+
+	if not from_date == "":
+		to_date_data = datetime.datetime.strptime(to_date, "%Y-%m-%d")
+	else:
+		to_date_data = None
+	
+	
+	print(from_date_data, to_date_data)
 	report_list = Report.objects.all()
 	if loc is not None:
 		report_list = report_list.filter(location__name__icontains=loc)
@@ -152,10 +164,10 @@ def search(request):
 		else:
 			report_list = report_list
 
-	if from_date is not None:
+	if from_date_data is not None:
 		report_list = report_list.filter(created_at__gte=from_date_data)
 
-	if to_date is not None:
+	if to_date_data is not None:
 		report_list = report_list.filter(created_at__lte=to_date_data)
 
 	if query:
@@ -165,6 +177,10 @@ def search(request):
 			reduce(operator.and_, (Q(title__icontains=q) for q in query_list)) |
 			reduce(operator.and_, (Q(summary__icontains=q) for q in query_list))
 		).exclude(archive=True).order_by('-created_at')
+
+	else:
+		empty_msg = "Please Input a text to search. Empty Searches are not allowed."
+		return render(request, 'reports/search.html', {'empty_msg': empty_msg})
 
 	return render(request, 'reports/search.html', {'search_results': result})
 

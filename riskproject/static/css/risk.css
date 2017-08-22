@@ -21,7 +21,7 @@ a, a:active, a:hover, a:visited, a:link {
 	/*color: #D6D5D5 ;*/
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p{
 	padding: 0;
 	margin: 0;
 	font-family: 'Roboto', 'sans-serif';
@@ -168,6 +168,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-wrapper {
+	height: 80px;
 	background-color: #F4F2F2;
 	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
 	display: flex;
@@ -176,9 +177,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-header {
-	height: 15vh;
+	
 	display: flex;
-	width: 60%;
+	width: 40%;
 	align-self: center;
 }
 
@@ -187,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 	align-self: center;
 	width: 50%;
 	font-weight: bold;
-	font-size: 2.7em;
+	font-size: 1.7em;
 	color: #4F4949;
 }
 
@@ -199,12 +200,17 @@ h1, h2, h3, h4, h5, h6 {
 	justify-content: space-between;
 }
 
-/* Start DASHBOARD and general item styles(later reused) */
-
 .search {
-	width: 30%;
+	width: 60%;
 	padding: 10px;
 	margin-right: 10px;
+
+}
+
+.search-form {
+	width: 100%;
+	display: flex;
+	align-items: center;
 }
 .search-button {
 	height: 40px;
@@ -219,16 +225,20 @@ h1, h2, h3, h4, h5, h6 {
 	border: none;
 }
 
+
 .search-button:hover,
 .search-field:focus {
 	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
 }
 
 .search-dropdown {
-	padding: 5px;
+	padding: 10px;
 	position: relative;
     display: block;
-
+	font-family: 'Roboto', 'sans-serif';
+	background-color: #437CA9;
+	color: #C8C6C6;
+	border-radius: 5px;
 }
 
 .dropdown-content {
@@ -241,8 +251,27 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1;
 }
 
+.dropdown-content input,
+.dropdown-content select {
+	font-family: 'Roboto', 'sans-serif';
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #111;
+}
+
+.dropdown-content p {
+	font-family: 'Roboto', 'sans-serif';
+	padding: 5px;
+	
+	
+}
+
 .search-dropdown:hover .dropdown-content{
 	display: block
+}
+
+.form-break {
+	margin-bottom: 5px;
 }
 
 
