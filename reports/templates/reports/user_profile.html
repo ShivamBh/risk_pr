@@ -22,14 +22,30 @@
 
 		<section class="header-wrapper">
 			<div class="section-header">
-				<h1>My Account</h1>
+				<h1>Dashboard</h1>
 			</div>
 			<div class="search">
-				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
+				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8" class="search-form">
 					<button class="search-button" type="submit">
 						<i class="fa fa-search" aria-hidden="true"></i>
 					</button>
 					<input type="text" class="search-field" id="searchbox" name="q" placeholder="Search">
+					<div class="search-dropdown">
+
+						<p>Advanced Search</p>
+						<div class="dropdown-content">
+							<p>Country</p>
+							<input type="text" class="search-field" id="searchbox2" name="l" placeholder="Country">
+							<p>Type of Report</p>
+							<select name="t" id="search-type">
+								<option value="T">Travel</option>
+								<option value="C">Country</option>
+								<option value="TC">Both</option>
+							</select>
+							<p>From Date<br class="form-break"> <input type="text" id="datepicker_from" name="fd" placeholder="From Date"></p>
+							<p>To Date<br class="form-break"><input type="text" id="datepicker_to" name="td" placeholder="To Date"></p>
+					
+					</div>
 				</form>
 			</div>
 			
