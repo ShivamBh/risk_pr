@@ -86,22 +86,21 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 		context["rel_reps"] = rel_reps
 		return context
 
-class SearchListView(ReportListView):
+def search(request):
+	query = request.GET.get("q")
+	report_list = Report.objects.all()
+	if query:
+		query_list = query.split()
+		result = Report.objects.filter(
+			reduce(operator.and_, (Q(title__icontains=q) for q in query_list)) |
+			reduce(operator.and_, (Q(summary__icontains=q) for q in query_list))
+		)
 
-	paginate_by = 10
+	return render(request, 'reports/search.html', {'search_results': result})
 
-	def get_queryset(self):
-		result = super(ReportListView, self).get_queryset()
 
-		query = self.request.GET.get('q')
-		if query:
-			query_list = query.split()
-			result = result.filter(
-				reduce(operator.and_, (Q(title__icontains=q) for q in query_list)) |
-				reduce(operator.and_, (Q(summary__icontains=q) for q in query_list))
-			)
+		
 
-		return result
 
 
 
