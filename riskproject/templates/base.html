@@ -25,9 +25,7 @@
         <link rel="stylesheet" href="{% static 'css/risk.css' %}"> 
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        
 
         <!-- Add your site or application content here -->
 		<div class="site-wrapper">
@@ -53,7 +51,8 @@
                 <div class="logout">
                         
                         <a href="/logout/" class="profile-link">Logout</a>
-                        <a href="/change-password/" class="profile-link">Change Password</a>
+                        {% block user_profile %}
+                        {% endblock %}
                         
                     </div>
 

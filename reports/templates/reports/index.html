@@ -77,15 +77,17 @@
 					{% for report in rep_qs %}
 						<div class="report-item">
 							
-							<div class="report-title">
-								<h3>Title : <span class="rep-title-text">{{ report.title|truncatechars:40 }}</span></h3>
-							</div>
+							<a href="{% url 'report_detail' pk=report.id %}" class="report-detail-link">
+								<div class="report-title">
+									<h3><span class="rep-title-text">{{ report.title }} [{{report.report_type}}]</span></h3>
+								</div>
+							</a>
 							<div class="report-date">
 								<p>{{ report.updated_at }}</p>
 							</div>
-							<div class="report-detail">
+							<!-- <div class="report-detail">
 								<a href="{% url 'report_detail' pk=report.id %}">Details</a>
-							</div>
+							</div> -->
 
 						</div>
 					{% endfor %}
@@ -96,4 +98,10 @@
 	</main>
 
 	
+{% endblock %}
+
+{{% block user_profile %}
+
+	<a href="/profile/" class="profile-link">My Profile</a>
+
 {% endblock %}

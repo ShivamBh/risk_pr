@@ -5,14 +5,56 @@ from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from accounts.models import Profile
-from .models import Report, Country
 
+# from .filters import UserFilter
+from .models import Report, Country
+from .forms import ProfileUpdateForm
 from functools import reduce
 import operator
 
 # Create your views here.
+@login_required
+def user_profile_view(request):
+	template = 'reports/user_profile.html'
+	user = request.user
+	profile = request.user.profile
+	sub_type = profile.sub_model
+	if (sub_type == "T"):
+		sub = "Travel"
+	elif (sub_type == "C"):
+		sub = "Country"
+	else:
+		sub = "Travel and Country"
+
+	return render(request, template, {'user': user, 'sub': sub})
+
+
+@login_required
+def user_profile_edit(request):
+	if request.method == 'POST':
+		form = ProfileUpdateForm(request.POST)
+		if form.is_valid():
+			# user = form.save()
+			user = request.user
+			user.profile.phone_number = form.cleaned_data["phone_number"]
+			user.profile.sub_country = form.cleaned_data["sub_country"]
+			user.profile.sub_model = form.cleaned_data["sub_model"]
+			user.profile.company = form.cleaned_data["company"]
+			user.profile.save()
+			messages.success(request, 'Your password was successfully changed.')
+			return redirect('home')
+		else:
+			messages.error(request, 'Please correct the error below.')
+	else:
+		form = ProfileUpdateForm()
+
+	return render(request, 'reports/change_password.html', {'form': form})
+
+
+
 @login_required
 def change_password(request):
 	if request.method == 'POST':
@@ -56,7 +98,9 @@ class ReportListView(LoginRequiredMixin, ListView):
 	# 		rep_mod = Report.objects.filter(Q(report_type__exact=sub_model))
 	# 	if (sub_model == 'TC'):
 	# 		rep_mod = Report.objects.all()
-
+	# def get_context_data(self, *args, **kwargs):
+	# 	context = super(ReportListView, self).get_context_data(*args, **kwargs)
+	# 	filtered
 
 	# 	rep_qs = [(rep_mod.filter(Q(location__name__icontains=loc_obj.name)).order_by('updated_at')) for loc_obj in loc]
 	# 	reports = [item for sublist in rep_qs for item in sublist]
@@ -87,6 +131,7 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 		return context
 
 def search(request):
+
 	query = request.GET.get("q")
 	report_list = Report.objects.all()
 	if query:
@@ -101,6 +146,8 @@ def search(request):
 
 		
 
+
+#
 
 
 

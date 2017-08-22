@@ -18,7 +18,7 @@ html, body {
 
 a, a:active, a:hover, a:visited, a:link {
 	text-decoration: none;
-	
+	/*color: #D6D5D5 ;*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -178,7 +178,8 @@ h1, h2, h3, h4, h5, h6 {
 .section-header {
 	height: 15vh;
 	display: flex;
-	
+	width: 60%;
+	align-self: center;
 }
 
 .section-header h1 {
@@ -201,6 +202,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Start DASHBOARD and general item styles(later reused) */
 
 .search {
+	width: 30%;
 	padding: 10px;
 	margin-right: 10px;
 }
@@ -318,6 +320,7 @@ h1, h2, h3, h4, h5, h6 {
 .report-item {
 	padding: 10px;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	box-shadow: 6px 6px 23px -5px rgba(133,124,133,1);
 	border: 1px solid #4F4949;
@@ -325,8 +328,14 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 10px;
 }
 
+.report-detail-link {
+	width: 75%;
+	color: #111;
+}
+
+
 .report-title {
-	width: 60%;
+	/*width: 60%;*/
 }
 
 .report-title h3 {
@@ -492,6 +501,45 @@ h1, h2, h3, h4, h5, h6 {
 .country-detail-wrapper {
 	margin-top: 40px;
 }
+
+.profile-content {
+	position: relative;
+}
+
+.profile-edit {
+	margin-top: 20px;
+
+}
+
+.profile-edit .profile-edit-link {
+	color: #4f4949;
+	font-size: 1em;
+	font-family: 'Roboto', 'sans-serif';
+	font-weight: 700;
+}
+
+.profile {
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.profile-entry {
+	margin: 10px 0 10px 0;
+	
+}
+
+.profile-entry .profile-country-link {
+	padding: 3px;
+	color: #4f4949;
+}
+
+.profile-entry .profile-country-link:hover {
+	padding: 3px;
+	color: #26567c;
+}
+
+
 
 .ratings {
 	display: flex;

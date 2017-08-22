@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Report List{% endblock %}
+{% block title %}Update Details - {{ user.username }}{% endblock %}
 
 {% block header %}
 	<nav class="side-nav">
@@ -17,12 +17,12 @@
 {% endblock %}
 
 {% block content %}
-
-
+	
 	<main class="container">
+
 		<section class="header-wrapper">
 			<div class="section-header">
-				<h1>Reports</h1>
+				<h1>Update Profile</h1>
 			</div>
 			<div class="search">
 				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
@@ -35,36 +35,34 @@
 			
 		</section>
 
-		<div class="secondary-content">
-
-				<div class="main-header">
-					<h1 class="main-header-text">Latest Reports : </h1>
-				</div>
-
-				<div class="report-list">
-					{% for report in report_list %}
-						<div class="report-item">
-							
-							<a href="{% url 'report_detail' pk=report.id %}" class="report-detail-link">
-								<div class="report-title">
-									<h3><span class="rep-title-text">{{ report.title }} [{{report.report_type}}]</span></h3>
-								</div>
-							</a>
-							<div class="report-date">
-								<p>{{ report.updated_at }}</p>
-							</div>
-							<!-- <div class="report-detail">
-								<a href="{% url 'report_detail' pk=report.id %}">Details</a>
-							</div> -->
-
+		<div class="create-form">
+			
+			<form action="." method="post">
+				{% csrf_token %}
+				
+				{% for field in form %}
+					{% for error in field.errors %}
+						<div class="error">
+							<strong>{{ error|escape }}</strong>
 						</div>
 					{% endfor %}
-				</div>
-			</div>
+					<div class="form-group">
+						<span class="field-label">{{ field.label_tag }}</span>
+						<br>
+						<span class="field-input">{{ field }}</span>
+					</div>
+				{% endfor %}
+				
+				
+				<input type="submit" value="Create New User" class="submit-btn">
+			</form>	
+
+		</div>
+		
+		
+		
 	</main>
 
-
-	
 {% endblock %}
 
 {% block user_profile %}
@@ -72,3 +70,4 @@
 	<a href="/profile/" class="profile-link">My Profile</a>
 
 {% endblock %}
+

@@ -25,7 +25,7 @@
 
 		<section class="header-wrapper">
 			<div class="section-header">
-				<h1>Dashboard</h1>
+				<h1>Report Details</h1>
 			</div>
 			<div class="search">
 				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8">
@@ -146,6 +146,12 @@
          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMySJy-jCub2jfs6z-cX5c6k55Ks3yRC4&callback=initMap"
   type="text/javascript"></script>
   
+{% endblock %}
+
+{% block user_profile %}
+
+	<a href="/profile/" class="profile-link">My Profile</a>
+
 {% endblock %}
 
 	
