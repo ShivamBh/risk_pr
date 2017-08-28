@@ -5,7 +5,6 @@ from django.contrib.auth.forms import UserCreationForm
 from reports.models import Report, Country
 from accounts.models import Profile
 
-from ckeditor.widgets import CKEditorWidget
 
 
 class CMSLoginForm(forms.Form):
@@ -72,7 +71,7 @@ class ReportForm(forms.ModelForm):
 			"impact_radius",
 			"report_type",
 					)
-		widgets = {'summary': CKEditorWidget(),}
+		
 
 class ReportUpdateForm(forms.ModelForm):
 
