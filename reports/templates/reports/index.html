@@ -50,6 +50,18 @@
 					</div>
 				</form>
 			</div>
+
+			<!-- <div class="settings">
+				<div class="profile-settings">
+					<div class="profile-icon"></div>
+					<a href="" class="profile-link">Profile</a>
+				</div>
+				<div class="logout-settings">
+					<div class="logout-icon"></div>
+					<a href="" class="logout-link">Logout</a>
+				</div>
+			</div> -->
+
 			
 		</section>
 
@@ -90,19 +102,32 @@
 				<div class="report-list">
 					{% for report in rep_qs %}
 						<div class="report-item">
-							
-							<a href="{% url 'report_detail' pk=report.id %}" class="report-detail-link">
-								<div class="report-title">
-									<h3><span class="rep-title-text">{{ report.title }} [{{report.report_type}}]</span></h3>
+							<div class="report-main">
+								<div class="report-item-name">
+									<h3>{{ report.title }}</h3>
 								</div>
+								
+								<a href="{% url 'report_detail' pk=report.id %}" class="view-full">
+								View Full Report
 							</a>
-							<div class="report-date">
-								<p>{{ report.updated_at }}</p>
 							</div>
-							<!-- <div class="report-detail">
-								<a href="{% url 'report_detail' pk=report.id %}">Details</a>
-							</div> -->
-
+							
+							<div class="report-meta">
+								<div class="report-item-type">
+									{% if report.report_type == "T" %}
+										<p>Travel</p>
+									{% else %}
+										<p>Country</p>
+									{% endif %}
+								</div>
+								<div class="report-item-loc">
+									<p>{{ report.location.name }}</p>
+								</div>	
+								<div class="report-item-date">
+									<p>{{ report.created_at }}</p>
+								</div>
+							</div>
+							
 						</div>
 					{% endfor %}
 				</div>
@@ -114,8 +139,10 @@
 	
 {% endblock %}
 
-{{% block user_profile %}
+{% block user_profile %}
 
-	<a href="/profile/" class="profile-link">My Profile</a>
+	<a href="/profile/" class="profile-link">
+	<i class="fa fa-user-circle fa-2x icons" aria-hidden="true"></i>
+	My Profile</a>
 
 {% endblock %}

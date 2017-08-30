@@ -50,12 +50,25 @@
 				{% endblock %}
                 
                 <div class="logout">
+
+                    <div class="logout-item">
                         
-                        <a href="/logout/" class="profile-link">Logout</a>
-                        {% block user_profile %}
-                        {% endblock %}
-                        
+                        <a href="/logout/" class="profile-link">
+                            <i class="fa fa-sign-out fa-2x icons" aria-hidden="true"></i>
+                            Logout
+                        </a>
                     </div>
+                    <div class="profile-item">
+                        <div class="profile-icon"></div>
+                        {% block user_profile %}
+
+                        {% endblock %}
+                    </div>
+                        
+                        
+                        
+                        
+                </div>
 
 			</header>
 
