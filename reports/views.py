@@ -131,8 +131,8 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 		context["rel_reps"] = rel_reps
 		return context
 
-def search(request):
 
+def search(request):
 
 	query = request.GET.get("q")
 	loc = request.GET.get("l")
