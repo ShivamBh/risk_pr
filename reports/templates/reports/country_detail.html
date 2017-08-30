@@ -25,7 +25,7 @@
 		
 		<section class="header-wrapper">
 			<div class="section-header">
-				<h1>Dashboard</h1>
+				<h1>{{ country.name }}</h1>
 			</div>
 			<div class="search">
 				<form action="{% url 'report_search' %}" id="search-form" method="get" accept-charset="utf-8" class="search-form">
@@ -282,6 +282,8 @@ google.maps.event.addDomListener(window, 'resize', function() {
 
 {% block user_profile %}
 
-	<a href="/profile/" class="profile-link">My Profile</a>
+	<a href="/profile/" class="profile-link">
+	<i class="fa fa-user-circle fa-2x icons" aria-hidden="true"></i>
+	My Profile</a>
 
 {% endblock %}

@@ -55,13 +55,50 @@
 			{% if empty_msg %}
 				{{ empty_msg }}
 			{% endif %}
+
+			{% if search_results.count == 0 %}
+				No result found for current query.
+			{% endif %}
+
+			<div class="report-list">
+					{% for report in search_results %}
+						<div class="report-item">
+							<div class="report-main">
+								<div class="report-item-name">
+									<h3>{{ report.title }}</h3>
+								</div>
+
+								<a href="{% url 'report_detail' pk=report.id %}" class="view-full">
+								View Full Report
+							</a>
+							</div>
+							
+							<div class="report-meta">
+								<div class="report-item-type">
+									{% if report.report_type == "T" %}
+										<p>Travel</p>
+									{% else %}
+										<p>Country</p>
+									{% endif %}
+								</div>
+								<div class="report-item-loc">
+									<p>{{ report.location.name }}</p>
+								</div>	
+								<div class="report-item-date">
+									<p>{{ report.created_at }}</p>
+								</div>
+							</div>
+							
+						</div>
+					{% endfor %}
+				</div>
 		
-			{% for result in search_results %}
+			<!-- {% for result in search_results %}
 				<h3>{{ result.title }}</h3>
 				<a href="{% url 'report_detail' pk=result.id %}">More</a>
 				<p>Created at: {{ result.created_at }}</p>
 				<br>
-			{% endfor %}
+			{% endfor %} -->
 			
 		
 
@@ -74,6 +111,8 @@
 
 {% block user_profile %}
 
-	<a href="/profile/" class="profile-link">My Profile</a>
+	<a href="/profile/" class="profile-link">
+	<i class="fa fa-user-circle fa-2x icons" aria-hidden="true"></i>
+	My Profile</a>
 
 {% endblock %}
