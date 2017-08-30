@@ -347,15 +347,23 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .country-item {
-	border: 1px solid #4f4949;
-	/*box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.25);*/
+	/*border: 1px solid #4f4949;*/
+	box-shadow: 2px 3px 0px 0px rgba(0,0,0,0.25);
 	height: 200px;
-	width: 300px;
+	width: 250px;
 	margin: 10px 20px 10px 0;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
+}
+
+.country-info { 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid #4f4949;
+	padding-bottom: 10px;
 }
 
 .country-flag {
@@ -385,17 +393,27 @@ h1, h2, h3, h4, h5, h6, p{
 
 .country-detail {
 
-	height: 20%;
+	
 }
 
-.country-detail a {
+.country-detail-link {
 	
-	padding: 6px;
+	margin-top: 20px;
+	text-align: center;
+	padding: 10px;
+	width: 160px;
+	height: 40px;
+	display: block;
+	background-color: #d8cead;
+	border-radius: 6px;
+	color: #4f4949;
 	font-family: 'Roboto', 'sans-serif';
-	font-weight: bold;
-	color: #656565;
-	border: 1px solid #4F4949;
-	font-size: 0.7em;
+}
+
+.country-detail-link:hover {
+	background-color: #BFB080;
+	color: #4A4545;
+	transition: all 0.2s ease-in-out;
 }
 
 .report-list {
@@ -429,8 +447,8 @@ h1, h2, h3, h4, h5, h6, p{
 	/*background-color: #B6CBE4;*/
 }
 
-.report-item-name p {
-	line-height: 1.4;
+.report-item-name h3 {
+	line-height: 1.25;
 }
 
 .report-meta {

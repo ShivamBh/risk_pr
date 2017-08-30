@@ -76,16 +76,19 @@
 				<div class="country-list">
 					{% for loc_obj in loc %}
 						<div class="country-item">
-							<div class="country-flag">
-								<img src="{{ loc_obj.flag.url }}" alt="Flag">
-							</div>
+							<div class="country-info">
+								<div class="country-flag">
+									<img src="{{ loc_obj.flag.url }}" alt="Flag">
+								</div>
 
-							<div class="country-name">
-								<h4>Country: <span class="c-name-bold">{{loc_obj.name}}</span></h4>
+								<div class="country-name">
+									<h4>Country: <span class="c-name-bold">{{loc_obj.name}}</span></h4>
+								</div>
 							</div>
+							
 
 							<div class="country-detail">
-								<a href="{% url "country_detail" pk=loc_obj.id %}" class="country-detail-link">View more</a>
+								<a href="{% url "country_detail" pk=loc_obj.id %}" class="country-detail-link">Detail View</a>
 							</div>
 						</div>
 					{% endfor %}
@@ -106,7 +109,7 @@
 								<div class="report-item-name">
 									<h3>{{ report.title }}</h3>
 								</div>
-								
+
 								<a href="{% url 'report_detail' pk=report.id %}" class="view-full">
 								View Full Report
 							</a>
