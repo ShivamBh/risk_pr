@@ -53,10 +53,8 @@
 
                     <div class="logout-item">
                         
-                        <a href="/logout/" class="profile-link">
-                            <i class="fa fa-sign-out fa-2x icons" aria-hidden="true"></i>
-                            Logout
-                        </a>
+                        {% block logout_link %}
+                        {% endblock %}
                     </div>
                     <div class="profile-item">
                         <div class="profile-icon"></div>
@@ -85,7 +83,7 @@
         
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="{% static 'js/risk.js' %}"></script>
-
+        
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <!-- <script>
             window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;

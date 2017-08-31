@@ -48,7 +48,17 @@
 							<p>To Date<br class="form-break"><input type="text" id="datepicker_to" name="td" placeholder="To Date"></p>
 					
 					</div>
+					</div>
 				</form>
+			</div>
+			<div class="user-settings">
+				<a href="/logout/" class="profile-link">
+				    <i class="fa fa-sign-out fa-2x icons" aria-hidden="true"></i>
+				    
+				</a>
+				<a href="/profile/" class="profile-link">
+					<i class="fa fa-user-circle fa-2x icons" aria-hidden="true"></i>
+				</a>
 			</div>
 
 			
@@ -129,12 +139,4 @@
 	</main>
 
 	
-{% endblock %}
-
-{% block user_profile %}
-
-	<a href="/profile/" class="profile-link">
-	<i class="fa fa-user-circle fa-2x icons" aria-hidden="true"></i>
-	My Profile</a>
-
 {% endblock %}

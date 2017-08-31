@@ -49,12 +49,28 @@
 							<p>To Date<br class="form-break"><input type="text" id="datepicker_to" name="td" placeholder="To Date"></p>
 					
 					</div>
+					</div>
 				</form>
 			</div>
+			<div class="user-settings">
+				<a href="/logout/" class="profile-link">
+				    <i class="fa fa-sign-out fa-2x icons" aria-hidden="true"></i>
+				    
+				</a>
+				<a href="/profile/" class="profile-link">
+					<i class="fa fa-user-circle fa-2x icons" aria-hidden="true"></i>
+				</a>
+			</div>
+
 			
 		</section>
+
+		<section class="tab-view">
+			<button class="tab-links active" onclick="openTab(event, 'detail')">Full Report</button>
+			<button class="tab-links" onclick="openTab(event, 'mapview')">Map View</button>
+		</section>
 		
-		<section class="report-content-wrapper">
+		<section class="report-content-wrapper tab-content active-tab" id="detail">
 
 			<div class="report-wrapper">
 				<div class="report-title">
@@ -109,11 +125,10 @@
 				{% endif %}
 
 			</div>
-			
 
 		</section>
 
-		<section class="map-view">
+		<section class="map-view tab-content" id="mapview">
 			<div class="maps-wrapper">
 				<div class="report-maps-header">
 					<h2>Map View :</h2>
@@ -131,6 +146,8 @@
 
 
 	<script>
+
+
 		function initMap() {
 			var lat = Number(document.getElementById("lat").innerHTML);
 			var lng = Number(document.getElementById("long").innerHTML);

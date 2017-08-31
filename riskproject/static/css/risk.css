@@ -306,6 +306,14 @@ h1, h2, h3, h4, h5, h6, p{
 	margin-bottom: 5px;
 }
 
+.user-settings  .profile-link .icons {
+	color: #0f2e46;
+}
+
+.user-settings  .profile-link {
+	margin: 0 15px 0 15px;
+}
+
 
 
 
@@ -324,6 +332,53 @@ h1, h2, h3, h4, h5, h6, p{
 	background-color: #F4F2F2;
 	/*box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);*/
 }
+
+.tab-view {
+	overflow: hidden;
+	border: 1px solid #494949;
+	background-color: #f4f2f2;
+}
+
+.tab-links {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 15px 20px;
+	transition: 0.3s;
+}
+
+.tab-links:hover {
+	background-color: #D38484;
+}
+
+.tab-links.active {
+	background-color: #ccc;
+
+}
+
+
+
+.tab-content {
+	display: none;
+	animation: fadeEffect 1s;
+}
+
+.active-tab {
+	display: block;
+}
+
+@keyframes fadeEffect {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+
 
 .main-header {
 	padding: 10px;

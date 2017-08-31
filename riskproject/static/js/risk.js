@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+
+
+
+
+	
+
 // Rating and color
 var ratings_text = $(".ratings-hidden");
 var ratings_color = $(".rating-color");
@@ -37,3 +43,24 @@ var sec_color = $("sec-level-rating-color");
 
 //console.log($("sec-level-rating-color"));
  });
+
+function openTab(e, tabName) {
+
+		e.stopPropagation();
+		var prevTab;
+		var targetTab = $(e.target);
+		var tabs = $(".tab-links");
+		var targetDiv = $("#"+tabName);
+
+		for(var i = 0; i < tabs.length; i++) {
+			if($(tabs[i]).hasClass("active")) {
+				prevTab = tabs[i];
+			}
+		}
+
+		$(prevTab).removeClass("active");
+		targetTab
+
+
+
+	}
