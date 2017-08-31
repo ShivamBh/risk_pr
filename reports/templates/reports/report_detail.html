@@ -64,71 +64,10 @@
 
 			
 		</section>
-
-		<section class="tab-view">
-			<button class="tab-links active" onclick="openTab(event, 'detail')">Full Report</button>
-			<button class="tab-links" onclick="openTab(event, 'mapview')">Map View</button>
-		</section>
 		
-		<section class="report-content-wrapper tab-content active-tab" id="detail">
+		
 
-			<div class="report-wrapper">
-				<div class="report-title">
-					<div class="title-text">
-						<h3>Title : {{ report.title }}</h3>
-						<div class="report-metadata">
-							<p id="report-date">{{ report.created_at }} , {{ report.location }}</p>
-							
-						</div>
-					</div>
-				</div>
-				<div class="report-summary">
-					<div class="summary-text">
-						<p id="rep_desc">{{ report.summary }}</p>
-					</div>
-				</div>
-
-				{% if report.assessment %}
-				<div class="report-assess">
-					<div class="assess-text">
-						<p><span class="report-bold">Assessment : </span> {{ report.assessment }}</p>
-					</div>
-				</div>
-				{% endif %}
-
-				{% if report.impact_tc %}
-				<div class="report-impacttc">
-					<div class="impacttc-text">
-						<p><span class="report-bold">Impact to Client : </span> {{ report.impact_tc }}</p>
-					</div>
-				</div>
-				{% endif %}
-
-				{% if report.advice %}
-				<div class="report-advice">
-					<div class="advice-text">
-						<p><span class="report-bold">Advice : </span> {{ report.advice }}</p>
-					</div>
-				</div>
-				{% endif %}
-
-				{% if report.event_bg_title %}
-				<div class="report-event-bg">
-					<div class="event-bg-text">
-						<p>
-							<span class="report-bold">{{ report.event_bg_title }} : </span>
-							<br class="report-divider">
-							{{ report.event_bg_text }}
-						</p>
-					</div>
-				</div>
-				{% endif %}
-
-			</div>
-
-		</section>
-
-		<section class="map-view tab-content" id="mapview">
+		<!-- <section class="map-view" id="mapview">
 			<div class="maps-wrapper">
 				<div class="report-maps-header">
 					<h2>Map View :</h2>
@@ -140,46 +79,155 @@
 			<span id="lat">{{ report.latitude }}</span>
 			<span id=long>{{ report.longitude }}</span>
 			<span id="impactradius">{{ report.impact_radius }}</span>
-		</section>
+		</section> -->
+
+		<div class="c-tabs no-js" id="tabs">
+			<div class="c-tabs-nav">
+				<a href="#" class="c-tabs-nav__link is-active">Full Report</a>
+				<a href="#" class="c-tabs-nav__link" id="mapviewBtn">Map View</a>
+			</div>
+
+			<div class="c-tab is-active">
+				<div class="c-tab__content">
+					<section class="report-content-wrapper" id="detail">
+
+						<div class="report-wrapper">
+							<div class="report-title">
+								<div class="title-text">
+									<h3>{{ report.title }}</h3>
+									<div class="report-metadata">
+										<p id="report-date">{{ report.created_at }} , {{ report.location }}</p>
+										
+									</div>
+								</div>
+							</div>
+							<div class="report-summary">
+								<div class="summary-text">
+									<p id="rep_desc">{{ report.summary }}</p>
+								</div>
+							</div>
+
+							{% if report.assessment %}
+							<div class="report-assess">
+								<div class="assess-text">
+									<p><span class="report-bold">Assessment : </span> {{ report.assessment }}</p>
+								</div>
+							</div>
+							{% endif %}
+
+							{% if report.impact_tc %}
+							<div class="report-impacttc">
+								<div class="impacttc-text">
+									<p><span class="report-bold">Impact to Client : </span> {{ report.impact_tc }}</p>
+								</div>
+							</div>
+							{% endif %}
+
+							{% if report.advice %}
+							<div class="report-advice">
+								<div class="advice-text">
+									<p><span class="report-bold">Advice : </span> {{ report.advice }}</p>
+								</div>
+							</div>
+							{% endif %}
+
+							{% if report.event_bg_title %}
+							<div class="report-event-bg">
+								<div class="event-bg-text">
+									<p>
+										<span class="report-bold">{{ report.event_bg_title }} : </span>
+										<br class="report-divider">
+										{{ report.event_bg_text }}
+									</p>
+								</div>
+							</div>
+							{% endif %}
+
+						</div>
+
+					</section>
+				</div>
+			</div>
+			<div class="c-tab">
+				<div class="c-tab__content">
+					<section class="map-view" id="mapview">
+						<div class="maps-wrapper">
+							<!-- <div class="report-maps-header">
+								<h2>Map View :</h2>
+							</div> -->
+							<div class="report-map-area">
+								<div id="report-maps"></div>
+							</div>
+						</div>
+						<span id="lat">{{ report.latitude }}</span>
+						<span id=long>{{ report.longitude }}</span>
+						<span id="impactradius">{{ report.impact_radius }}</span>
+					</section>
+				</div>
+			</div>
+		</div>
+
+
 	</main>
 
+	
 
+	
 
-	<script>
-
-
-		function initMap() {
-			var lat = Number(document.getElementById("lat").innerHTML);
-			var lng = Number(document.getElementById("long").innerHTML);
-			var radius = Number(document.getElementById("impactradius").innerHTML) * 1000;
-			var loc = {lat: lat, lng: lng};
-			var mapProp = {
-				center: new google.maps.LatLng(lat, lng),
-				zoom: 12,
-				mapTypeId: google.maps.MapTypeId.HYBRID
-			};
-			var map = new google.maps.Map(document.getElementById("report-maps"), mapProp);
-			var marker = new google.maps.Marker({position:loc});
-			 marker.setMap(map);
-			var impactZone = new google.maps.Circle({
-				center: loc,
-				radius: radius,
-				strokeColor:"#c4200d",
-			    strokeOpacity:0.8,
-			    strokeWeight:2,
-			    fillColor:"#2535e8",
-			    fillOpacity:0.4
-			});
-			impactZone.setMap(map);
-			// console.log(radius);
-		}
-	</script>
 
 	<!-- MAPS API -->
-         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMySJy-jCub2jfs6z-cX5c6k55Ks3yRC4&callback=initMap"
-  type="text/javascript"></script>
+          <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMySJy-jCub2jfs6z-cX5c6k55Ks3yRC4&callback=initMap"
+  type="text/javascript"></script> -->
   
 {% endblock %}
+
+{% block load_js %}
+		<script>
+
+				$(document).ready(function() {
+					$('#mapviewBtn').click(function() {
+						$("#report-maps").delay('700').fadeIn();
+						setTimeout(loadScript, 1000);
+					});
+				});
+
+				function initMap() {
+					var lat = Number(document.getElementById("lat").innerHTML);
+					var lng = Number(document.getElementById("long").innerHTML);
+					var radius = Number(document.getElementById("impactradius").innerHTML) * 1000;
+					var loc = {lat: lat, lng: lng};
+					var mapProp = {
+						center: new google.maps.LatLng(lat, lng),
+						zoom: 12,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+					var map = new google.maps.Map(document.getElementById("report-maps"), mapProp);
+					var marker = new google.maps.Marker({position:loc});
+					 marker.setMap(map);
+					var impactZone = new google.maps.Circle({
+						center: loc,
+						radius: radius,
+						strokeColor:"#c4200d",
+					    strokeOpacity:0.8,
+					    strokeWeight:2,
+					    fillColor:"#2535e8",
+					    fillOpacity:0.4
+					});
+					impactZone.setMap(map);
+					google.maps.event.trigger(map, 'resize');
+					map.setZoom( map.getZoom() );
+					// console.log(radius);
+				}
+
+				function loadScript() {
+					var script = document.createElement("script");
+					script.type = "text/javascript";
+					script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBMySJy-jCub2jfs6z-cX5c6k55Ks3yRC4&callback=initMap"
+					document.body.appendChild(script);
+				}
+		</script>
+
+	{% endblock %}
 
 {% block user_profile %}
 

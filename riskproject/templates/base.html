@@ -23,6 +23,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,500,700" rel="stylesheet">
 
         <!-- GLOBAL STYLESHEET -->
+       
         <link rel="stylesheet" href="{% static 'css/risk.css' %}"> 
     </head>
     <body>
@@ -72,23 +73,26 @@
 
         	{% block content %}{% endblock %}
 		</div>
-		
-
+	
         <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.4.min.js"><\/script>')</script>
-
-        
-
+    
         <!-- GLOBAL JAVASCRIPT -->
         
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="{% static 'js/risk.js' %}"></script>
-        
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <!-- <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        <script type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
+        <script>
+            var mytabs = tabs({
+                el: '#tabs',
+                tabNavigationLinks: '.c-tabs-nav__link',
+                tabContentContainers: '.c-tab'
+            });
+            mytabs.init();
         </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script> -->
+            
+            {% block load_js %}
+            {% endblock %}
+
     </body>
 </html>
