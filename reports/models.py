@@ -1,5 +1,5 @@
 from django.db import models
-
+from tinymce.models import HTMLField
 # Create your models here.
 class Country(models.Model):
 	RATING_CHOICES = (
@@ -43,7 +43,7 @@ class Country(models.Model):
 		null=True,
 	)
 
-	risk_bg = models.TextField()
+	risk_bg = HTMLField()
 
 	def __str__(self):
 		return self.name
@@ -58,12 +58,13 @@ class Report(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	title = models.CharField(max_length=500, blank=False, null=False)
-	summary = models.TextField(blank=False, null=False)
-	assessment = models.TextField(blank=True)
+	# summary = models.TextField(blank=False, null=False)
+	summary = HTMLField()
+	assessment = HTMLField()
 	impact_tc = models.CharField(max_length=500, blank=True)
-	advice = models.TextField(blank=True)
+	advice = HTMLField()
 	event_bg_title = models.CharField(max_length=300,blank=True)
-	event_bg_text = models.TextField(blank=True)
+	event_bg_text = HTMLField()
 	
 	latitude = models.DecimalField(max_digits=10, decimal_places=4)
 	longitude = models.DecimalField(max_digits=10, decimal_places=4)

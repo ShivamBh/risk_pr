@@ -7,6 +7,11 @@
         <title>{% block title %}{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- tinymce integration - change to block -->
+        <script src="{% static 'js/tinymce/tinymce.min.js' %}" type="text/javascript" charset="utf-8"></script>
+
+        <script src="{% static 'js/tinymce/custom.js' %}" type="text/javascript" charset="utf-8"></script>
         
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="apple-touch-icon" href="{% static 'issfavicon_32' %}">
@@ -14,6 +19,8 @@
         <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+
         
         <!-- ICONS -->
         <script src="https://use.fontawesome.com/cffa2bf372.js"></script>

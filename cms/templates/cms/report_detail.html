@@ -54,10 +54,21 @@
 
 	<main class="container">
 
+		
 		<section class="header-wrapper">
-			<div class="section-header">
-				<h1>CMS Dashboard</h1>
+			<div class="section-header cms-header">
+				<h1>Admin Dashboard</h1>
 			</div>
+			
+			<!-- user settings -->
+			<div class="user-settings">
+				<a href="/logout/" class="profile-link">
+				    <i class="fa fa-sign-out fa-2x icons" aria-hidden="true"></i>
+				    
+				</a>
+				
+			</div>
+
 			
 		</section>
 		
@@ -75,14 +86,14 @@
 				</div>
 				<div class="report-summary">
 					<div class="summary-text">
-						<p id="rep_desc">{{ report.summary }}</p>
+						<p id="rep_desc">{{ report.summary|safe }}</p>
 					</div>
 				</div>
 
 				{% if report.assessment %}
 				<div class="report-assess">
 					<div class="assess-text">
-						<p><span class="report-bold">Assessment : </span> {{ report.assessment }}</p>
+						<p><span class="report-bold">Assessment : </span> {{ report.assessment|safe }}</p>
 					</div>
 				</div>
 				{% endif %}
@@ -98,7 +109,7 @@
 				{% if report.advice %}
 				<div class="report-advice">
 					<div class="advice-text">
-						<p><span class="report-bold">Advice : </span> {{ report.advice }}</p>
+						<p><span class="report-bold">Advice : </span> {{ report.advice|safe }}</p>
 					</div>
 				</div>
 				{% endif %}
@@ -109,7 +120,7 @@
 						<p>
 							<span class="report-bold">{{ report.event_bg_title }} : </span>
 							<br class="report-divider">
-							{{ report.event_bg_text }}
+							{{ report.event_bg_text|safe }}
 						</p>
 					</div>
 				</div>
