@@ -55,9 +55,19 @@
 	<main class="container">
 
 		<section class="header-wrapper">
-			<div class="section-header">
-				<h1>CMS Dashboard</h1>
+			<div class="section-header cms-header">
+				<h1>Admin Dashboard</h1>
 			</div>
+			
+			<!-- user settings -->
+			<div class="user-settings">
+				<a href="/logout/" class="profile-link">
+				    <i class="fa fa-sign-out fa-2x icons" aria-hidden="true"></i>
+				    
+				</a>
+				
+			</div>
+
 			
 		</section>
 		
@@ -71,7 +81,7 @@
 
 		<section class="cms-home">
 			
-			<div class="cms-rep-list">
+			<!-- <div class="cms-rep-list">
 				
 				<div class="main-header">
 					<h1 class="main-header-text">Latest Reports : </h1>
@@ -88,7 +98,14 @@
 				</div>
 				{% endfor %}
 				
-			</div>
+			</div> -->
+				<div class="stats">
+					<h3>{{ active_reports }} active reports</h3>
+					<h3>{{ archived_reports }} archived reports</h3>
+					<h3>{{ total_countries }} sub countries</h3>
+					<h3>{{ active_clients }} active clients</h3>
+					<h3>{{ total_staff }} staff users</h3>
+				</div>
 			<div class="cms-co-list">
 				<div class="main-header">
 					<h1 class="main-header-text">Country Pages : </h1>
@@ -126,6 +143,8 @@
 			{% endif %} -->
 
 		</section>
+
+
 
 	</main>
 

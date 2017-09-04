@@ -213,6 +213,10 @@ h1, h2, h3, h4, h5, h6, p{
 	align-self: center;
 }
 
+.cms-header {
+	width: 45%;
+}
+
 .section-header h1 {
 	padding: 10px;
 	align-self: center;
@@ -1156,9 +1160,9 @@ h1, h2, h3, h4, h5, h6, p{
 .cms-home {
 	margin-top: 40px;
 	padding: 10px;
-	display: flex;
+	/*display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
+	justify-content: space-between;*/
 }
 
 .cms-nav-item {

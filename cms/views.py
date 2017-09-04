@@ -43,10 +43,26 @@ from .tokens import account_activation_token
 def cms_home_view(request):
 	reports = Report.objects.all().order_by('-created_at')
 	countries = Country.objects.all()
+	active_reports = Report.objects.filter(archive=False).count()
+	archived_reports = Report.objects.filter(archive=True).count()
+	total_countries = Country.objects.all().count()
+	active_clients = User.objects.filter(is_active=True).count()
+	total_staff = User.objects.filter(is_staff=True).count()
 	perm = Group.objects.all()
 	user_list = User.objects.all()
 	template = 'cms/cms_home.html'
-	return render(request, template, {'reports': reports, 'countries':countries, 'users': user_list, 'perm': perm})
+	return render(request, template, 
+				{'reports': reports, 
+				'countries':countries, 
+				'users': user_list, 
+				'perm': perm,
+				'active_reports': active_reports,
+				'archived_reports': archived_reports,
+				'total_countries': total_countries,
+				'active_clients': active_clients,
+				'total_staff': total_staff
+
+			})
 
 # def cms_login(request):
 # 	if request.method == 'POST':
