@@ -43,7 +43,7 @@ class Country(models.Model):
 		null=True,
 	)
 
-	risk_bg = models.TextField()
+	risk_bg = HTMLField()
 
 	def __str__(self):
 		return self.name
