@@ -1,4 +1,7 @@
+amqp==2.2.1
+billiard==3.5.0.3
 boto==2.47.0
+celery==4.1.0
 certifi==2017.4.17
 chardet==3.0.4
 dj-database-url==0.4.2
@@ -10,6 +13,7 @@ django-storages==1.6.3
 django-tinymce==2.6.0
 gunicorn==19.7.1
 idna==2.5
+kombu==4.1.0
 olefile==0.44
 pdb==0.1
 Pillow==4.1.1
@@ -28,4 +32,5 @@ short-url==1.2.2
 six==1.10.0
 twilio==6.4.2
 urllib3==1.21.1
+vine==1.1.4
 whitenoise==3.3.0
