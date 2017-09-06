@@ -100,11 +100,27 @@
 				
 			</div> -->
 				<div class="stats">
-					<h3>{{ active_reports }} active reports</h3>
-					<h3>{{ archived_reports }} archived reports</h3>
-					<h3>{{ total_countries }} sub countries</h3>
-					<h3>{{ active_clients }} active clients</h3>
-					<h3>{{ total_staff }} staff users</h3>
+					<a href="#" class="stats-item">
+						<p class="stat-no">{{ active_reports }}</p>
+						<p class="stat-name">Active Reports</p>
+					</a>
+					<a href="#" class="stats-item">
+						<p class="stat-no">{{ archived_reports }}</p>
+						<p class="stat-name">Archived Reports</p>
+					</a>
+					<a href="#" class="stats-item">
+						<p class="stat-no">{{ total_countries }}</p>
+						<p class="stat-name">Countries</p>
+					</a>
+					<a href="#" class="stats-item">
+						<p class="stat-no">{{ active_clients }}</p>
+						<p class="stat-name">Active Subscribers</p>
+					</a>
+					<a href="#" class="stats-item">
+						<p class="stat-no">X</p>
+						<p class="stat-name">Trial Subscribers</p>
+					</a>
+					
 				</div>
 			<div class="cms-co-list">
 				<div class="main-header">
@@ -115,9 +131,9 @@
 				<div class="rep-item">
 					<h3>{{ country.name }}</h3>
 					<div class="crud">
-						<a href="{% url "country_detail_cms" pk=country.id %}" class="crud-links">View</a>
-						<a href="{% url "update_country" pk=country.id %}" class="crud-links">Edit</a>
-						<a href="{% url "delete_country" pk=country.id %}" class="crud-links">Delete</a>
+						<a href="{% url "country_detail_cms" pk=country.id %}" class="view-full view-full-cms">View</a>
+						<a href="{% url "update_country" pk=country.id %}" class="view-full view-full-cms">Edit</a>
+						<a href="{% url "delete_country" pk=country.id %}" class="view-full view-full-cms">Delete</a>
 					</div>
 				</div>
 				{% endfor %}
