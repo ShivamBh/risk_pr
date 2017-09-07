@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'reports',
     'cms',
     'storages',
-    'ckeditor',
+    'tinymce',
     
 ]
 

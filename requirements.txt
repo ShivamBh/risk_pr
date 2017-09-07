@@ -11,6 +11,7 @@ django-filter==1.0.4
 django-hosts==2.0
 django-js-asset==0.1.1
 django-storages==1.6.3
+django-tinymce==2.6.0
 gunicorn==19.7.1
 idna==2.5
 kombu==4.1.0

@@ -1,48 +1,24 @@
-function main() {
+$(document).ready(function() {
 
-	//tabs
-	
-	
-	
-	
+	var ratingSpan = $(".rating-span");
+	//console.log(ratingSpan);
 
-// Rating and color
-	var ratings_text = $(".ratings-hidden");
-	var ratings_color = $(".rating-color");
-
-
-	ratings_color.each(function() {
-
-		if ($(this).find("h6").text() == "L") {
-			$(this).css("background-color", "#62D277");
+	ratingSpan.each(function() {
+		// console.log($(this).siblings().attr('src'));
+		// console.log($(this).siblings().attr('src'));
+		if($(this).text() === "Ex") {
+			$(this).siblings().attr("src", "/static/img/red_thermo.svg");
 		}
-		else if ($(this).find("h6").text() == "M") {
-			$(this).css("background-color", "#E5D643");
+		if($(this).text() === "H") {
+			$(this).siblings().attr("src", "/static/img/orange_thermo.svg");
 		}
-		else if ($(this).find("h6").text() == "H") {
-			$(this).css("background-color", "#E68C58");
+		if($(this).text() === "M") {
+			$(this).siblings().attr("src", "/static/img/yellow_thermo.svg");
 		}
-		else {
-			$(this).css("background-color", "#C73542");
+		if($(this).text() === "L") {
+			$(this).siblings().attr("src", "/static/img/green_thermo.svg");
 		}
-		
-		console.log($(this).find("h6").text());
+
 	});
 
-	var sec_level = $(".sec-level-rating-text h3");
-	var sec_color = $("sec-level-rating-color");
-
-		if (sec_level.text() === "Green") {
-			$("sec-level-rating-color").css("background-color", "C73542");
-		}
-
-		$( function() {
-			$( "#datepicker_from" ).datepicker({dateFormat: "yy-mm-dd"});
-	    	$( "#datepicker_to" ).datepicker({dateFormat: "yy-mm-dd"});
-	  } );
-
-	//console.log($("sec-level-rating-color"));
-	 }
-
-
-window.onload = main;
+});

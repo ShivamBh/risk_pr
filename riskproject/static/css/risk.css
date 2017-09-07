@@ -25,7 +25,7 @@ a, a:active, a:hover, a:visited, a:link {
 h1, h2, h3, h4, h5, h6, p{
 	padding: 0;
 	margin: 0;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 }
 
 .site-wrapper {
@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5, h6, p{
 .nav-links {
 	padding: 10px;
 	align-self: center;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Nunito Sans', sans-serif;
 	font-weight: bold;
 	color: #D2D2CE;
 }
@@ -148,7 +148,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .welcome {
 	align-self: center;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
 	color: #D2D2CE;
 }
@@ -158,7 +158,7 @@ h1, h2, h3, h4, h5, h6, p{
 	margin: 0;
 	padding: 0;
 	color: #D2D2CE;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 }
 
@@ -166,7 +166,7 @@ h1, h2, h3, h4, h5, h6, p{
 	padding: 5px;
 	align-self: center;
 	color: #D2D2CE;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 	font-size: 0.9em;
 }
@@ -175,7 +175,7 @@ h1, h2, h3, h4, h5, h6, p{
 	padding: 5px;
 	align-self: center;
 	color: #D2D2CE;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 	font-size: 0.9em;
 }
@@ -213,12 +213,16 @@ h1, h2, h3, h4, h5, h6, p{
 	align-self: center;
 }
 
+.cms-header {
+	width: 45%;
+}
+
 .section-header h1 {
 	padding: 10px;
 	align-self: center;
 	width: 50%;
 	font-weight: bold;
-	font-size: 1.7em;
+	font-size: 1.5em;
 	color: #4F4949;
 }
 
@@ -246,7 +250,7 @@ h1, h2, h3, h4, h5, h6, p{
 	height: 40px;
 	width: 40px;
 	border: none;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	background-color: #7898B0;
 }
 
@@ -260,14 +264,14 @@ h1, h2, h3, h4, h5, h6, p{
 
 .search-button:hover,
 .search-field:focus {
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .search-dropdown {
 	padding: 10px;
 	position: relative;
     display: block;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	
 	color: #4f4949;;
 	border-radius: 5px;
@@ -285,14 +289,14 @@ h1, h2, h3, h4, h5, h6, p{
 
 .dropdown-content input,
 .dropdown-content select {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	padding: 5px;
 	margin-bottom: 10px;
 	border: 1px solid #111;
 }
 
 .dropdown-content p {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	padding: 5px;
 	
 	
@@ -322,7 +326,7 @@ h1, h2, h3, h4, h5, h6, p{
 	width: 100%;
 	/*height: 50vh;*/
 	background-color: #F4F2F2;
-	/*box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);*/
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .secondary-content {
@@ -330,7 +334,7 @@ h1, h2, h3, h4, h5, h6, p{
 	width: 100%;
 	/*height: 50vh;*/
 	background-color: #F4F2F2;
-	/*box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);*/
+	/*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);*/
 }
 
 .c-tabs-nav {
@@ -349,7 +353,7 @@ h1, h2, h3, h4, h5, h6, p{
 	background-color: #b3b3b3;
 	text-align: center;
 	transition: color 0.3s;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 1em;
 	font-weight: 500;
 }
@@ -417,7 +421,7 @@ h1, h2, h3, h4, h5, h6, p{
 .main-header-text {
 	font-weight: bold;
 	font-size: 1.3em;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	padding-bottom: 5px;
 	color: #4F4949;
 	/*border-bottom: 1px solid #111;*/
@@ -492,7 +496,7 @@ h1, h2, h3, h4, h5, h6, p{
 	background-color: #d8cead;
 	border-radius: 6px;
 	color: #4f4949;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 }
 
 .country-detail-link:hover {
@@ -573,7 +577,12 @@ h1, h2, h3, h4, h5, h6, p{
 	background-color: #d8cead;
 	border-radius: 6px;
 	color: #4f4949;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
+}
+
+.view-full-cms {
+	margin-top: 0;
+	margin-right: 10px;
 }
 
 .view-full:hover {
@@ -594,7 +603,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .report-title h3 {
 	padding: 10px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
 }
 
@@ -612,7 +621,7 @@ h1, h2, h3, h4, h5, h6, p{
 	margin: 0;
 	padding: 0;
 	text-align: center;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 }
 
 .report-detail {
@@ -624,7 +633,7 @@ h1, h2, h3, h4, h5, h6, p{
 .report-detail a {
 	color: #4F4949;
 	padding: 5px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
 }
 
@@ -642,7 +651,7 @@ h1, h2, h3, h4, h5, h6, p{
 	display: flex;
 	justify-content: center;
 	background-color: #F4F2F2;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .logout-text {
@@ -653,28 +662,28 @@ h1, h2, h3, h4, h5, h6, p{
 
 .logout-text h1 {
 	color: #4F4949;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
 }
 
 .logout-text p {
 	color: #4F4949;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
 }
 
 .logout-text p a {
 	color: #5389A6;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
 	padding: 2px;
 }
 
 .logout-text p a:hover {
 	color: #5389A6;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .login-wrapper {
@@ -683,7 +692,7 @@ h1, h2, h3, h4, h5, h6, p{
 	justify-content: center;
 	flex-direction: column;
 	background-color: #F4F2F2;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .login-text {
@@ -694,13 +703,13 @@ h1, h2, h3, h4, h5, h6, p{
 
 .login-text h1 {
 	color: #4F4949;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
 }
 
 .login-text p {
 	color: #4F4949;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
 }
 
@@ -715,7 +724,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .field-label {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 1.2em;
 	font-weight: 300;
 }
@@ -723,7 +732,7 @@ h1, h2, h3, h4, h5, h6, p{
 .field-input input {
 	margin: 10px 0 10px 0;
 	border: none;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 }
 
@@ -734,13 +743,13 @@ h1, h2, h3, h4, h5, h6, p{
 .login-btn {
 	border: none;
 	padding: 10px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	
 }
 
 .login-btn:hover {
 	cursor: pointer;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 /* END LOGIN/LOGOUT */
@@ -768,7 +777,7 @@ h1, h2, h3, h4, h5, h6, p{
 .profile-edit .profile-edit-link {
 	color: #4f4949;
 	font-size: 1em;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 700;
 }
 
@@ -829,9 +838,13 @@ h1, h2, h3, h4, h5, h6, p{
 	transform: translateX(-50%);
 }
 
-.rating-img svg {
+.rating-img img {
 	height: 100%;
 	width: 100%;
+}
+
+.rating-span {
+	display: none;
 }
 
 .rating-text {
@@ -842,7 +855,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .rating-text p {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 0.9em;
 	font-weight: 500;
 }
@@ -851,7 +864,7 @@ h1, h2, h3, h4, h5, h6, p{
 	width: 48%;
 	height: 95%;
 	/*background-color: lightcoral*/;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -902,7 +915,7 @@ h1, h2, h3, h4, h5, h6, p{
 .level-table {
 	height: 100%;
 	width: 100%;
-	/*box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);*/
+	/*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);*/
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -914,38 +927,38 @@ h1, h2, h3, h4, h5, h6, p{
 
 .country-bg {
 	margin-top: 40px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	/*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);*/
 }
 
 .country-bg-header {
-	padding: 10px;
+	padding: 20px;
 	color: #4f4949;
 	
 }
 
 .country-bg-header h2 {
-	font-weight: lighter;
-	font-size: 2em;
+	font-weight: 600;
+	font-size: 1.4em;
 }
 
 .country-bg-text {
-	padding: 20px;
+	padding: 0 20px 40px 20px;
 }
 
 .country-bg-text p {
 	padding: 0; 
 	margin: 0;
-	font-family: 'Roboto', 'sans-serif';
-	font-weight: 500;
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-weight: 300;
 	color: #4f4949;
-	text-align: justify;
+	text-align: left;
 }
 
 .maps-wrapper {
 	margin-top: 20px;
 	
 	width: 100%;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .country-maps-header {
@@ -955,7 +968,7 @@ h1, h2, h3, h4, h5, h6, p{
 .country-maps-header h2 {
 	font-weight: lighter;
 	font-size: 2em;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	color: #4f4949;
 }
 
@@ -967,7 +980,7 @@ h1, h2, h3, h4, h5, h6, p{
 #country-maps {
 	height: 60vh;
 	width: 100%;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 	margin-bottom: 40px;
 	overflow: visible;
 }
@@ -999,7 +1012,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .report-title .title-text h3 {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 1.4em;
 	color: #2F2B2B;
 	font-weight: 700;
@@ -1016,7 +1029,7 @@ h1, h2, h3, h4, h5, h6, p{
 	padding: 0;
 	margin:0;
 	width: 60%;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
 	font-size: 0.9em;
 	color: #2F2B2B;
@@ -1027,38 +1040,38 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .report-assess .assess-text p .report-bold{
-	font-weight: 500;
+	font-weight: 600;
 	color: #2F2B2B;
 	font-size: 1.4em;
 	margin-bottom: 5px;
-	font-family: "Roboto", 'sans-serif';
+	font-family: "Nunito Sans", 'sans-serif';
 	display: block;
 }
 
 .report-advice .advice-text p .report-bold{
-	font-weight: 500;
+	font-weight: 600;
 	color: #2F2B2B;
 	font-size: 1.4em;
 	margin-bottom: 5px;
-	font-family: "Roboto", 'sans-serif';
+	font-family: "Nunito Sans", 'sans-serif';
 	display: block;
 }
 
 .report-impacttc .impacttc-text p .report-bold{
-	font-weight: 500;
+	font-weight: 600;
 	color: #2F2B2B;
 	font-size: 1.4em;
 	margin-bottom: 5px;
-	font-family: "Roboto", 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	display: block;
 }
 
 .report-event-bg .event-bg-text p .report-bold{
-	font-weight: 500;
+	font-weight: 600;
 	color: #2F2B2B;
 	font-size: 1.4em;
 	margin-bottom: 5px;
-	font-family: "Roboto", 'sans-serif';
+	font-family: "Nunito Sans", 'sans-serif';
 	display: block;
 
 }
@@ -1066,9 +1079,9 @@ h1, h2, h3, h4, h5, h6, p{
 .report-summary .summary-text p {
 	padding: 0;
 	margin: 0;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 0.9em;
-	text-align: justify;
+	text-align: left;
 	font-weight: 500;
 	color: #4F4949;
 }
@@ -1076,9 +1089,9 @@ h1, h2, h3, h4, h5, h6, p{
 .report-assess .assess-text p {
 	padding: 0;
 	margin: 0;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 0.9em;
-	text-align: justify;
+	text-align: left;
 	font-weight: 500;
 	color: #4F4949;
 }
@@ -1086,9 +1099,9 @@ h1, h2, h3, h4, h5, h6, p{
 .report-impacttc .impacttc-text p {
 	padding: 0;
 	margin: 0;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 0.9em;
-	text-align: justify;
+	text-align: left;
 	font-weight: 500;
 	color: #4F4949;
 }
@@ -1096,9 +1109,9 @@ h1, h2, h3, h4, h5, h6, p{
 .report-advice .advice-text p {
 	padding: 0;
 	margin: 0;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 0.9em;
-	text-align: justify;
+	text-align: left;
 	font-weight: 500;
 	color: #4F4949;
 }
@@ -1106,9 +1119,9 @@ h1, h2, h3, h4, h5, h6, p{
 .report-event-bg .event-bg-text {
 	padding: 0;
 	margin: 0;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 0.9em;
-	text-align: justify;
+	text-align: left;
 	font-weight: 500;
 	color: #4F4949;
 }
@@ -1133,7 +1146,7 @@ h1, h2, h3, h4, h5, h6, p{
 .report-maps-header h2 {
 	font-weight: 500;
 	font-size: 1.4em;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	color: #4f4949;
 }
 
@@ -1154,11 +1167,11 @@ h1, h2, h3, h4, h5, h6, p{
 /* CMS STYLES */
 
 .cms-home {
-	margin-top: 40px;
+	margin-top: 20px;
 	padding: 10px;
-	display: flex;
+	/*display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
+	justify-content: space-between;*/
 }
 
 .cms-nav-item {
@@ -1175,7 +1188,7 @@ h1, h2, h3, h4, h5, h6, p{
 .cms-nav-item-header h3 {
 	margin-bottom: 5px;
 	color: #4a4646;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 500;
 	font-size: 0.8em;
 }
@@ -1183,7 +1196,7 @@ h1, h2, h3, h4, h5, h6, p{
 .cms-nav-item-header h3 a{
 	margin-bottom: 5px;
 	color: #f4f2f2;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 500;
 }
 
@@ -1194,14 +1207,14 @@ h1, h2, h3, h4, h5, h6, p{
 .cms-nav-items {
 	display: flex;
 	flex-direction: column;
-	text-align: justify;
+	text-align: left;
 }
 
 .cms-links {
 	align-self: center;
 	padding: 2px;
 	color: #f4f2f2;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 500;
 	font-size: 0.8em;
 }
@@ -1212,7 +1225,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 /*.cms-rep-list {
 	padding: 10px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 	background-color: #f4f2f2;
 }
 
@@ -1228,7 +1241,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .rep-item h3 {
 	color: #4F4949;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 }
 
 .crud {
@@ -1238,7 +1251,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .crud-links {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
 	padding: 10px;
 	color: #4F4949;
@@ -1246,44 +1259,83 @@ h1, h2, h3, h4, h5, h6, p{
 
 .cms-co-list {
 	padding: 10px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 	background-color: #f4f2f2;
 }
 
 .cms-user-list {
 	padding: 10px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 	background-color: #f4f2f2;
 }
 
 .crud-links:hover {
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }*/
+
+.stats {
+	width: 100%;
+	padding: 20px;
+	/*background-color: #CBB1B1;*/
+}
+
+.stats-item {
+	display: inline-block;
+	padding: 20px;
+	background-color: #f4f2f2;
+	margin-right: 20px;
+	text-align: center;
+	text-decoration: none;
+	color: #4F4949;
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
+}
+
+.stats-item:hover {
+	cursor: pointer;
+	background-color: #C0DDF7;
+	transition: all 0.2s ease-in;
+}
+
+.stat-no {
+	margin-bottom: 10px;
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-weight: 500;
+	font-size: 1.2em;
+
+}
+
+.stat-name {
+	
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-weight: 500;
+	font-size: 1em;
+
+}
 
 .cms-rep-list {
 	width: 48%;
 	padding: 10px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .main-header-text {
-	font-family: 'Roboto', 'sans-serif';
-	font-weight: 500;
-	font-size: 1.3em;
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-weight: 600;
+	font-size: 1.4em;
 }
 
 .rep-item {
 	padding: 10px;
 	display: flex;
 	justify-content: space-between;
-	align-content: center;
+	align-items: center;
 }
 
 .rep-item h3 {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	width: 40%;
 	font-weight: 300;
-	font-size: 1em;
+	font-size: 1.1em;
 }
 
 .crud {
@@ -1294,7 +1346,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .crud-links {
 	padding: 5px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 700;
 	text-transform: uppercase;
 	font-size: 0.8em;
@@ -1302,19 +1354,19 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .crud-links:hover {
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .cms-co-list {
-	width: 48%;
-	padding: 10px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	width: 80%;
+	padding: 20px;
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .cms-user-list {
 	width: 48%;
 	padding: 10px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 
@@ -1322,7 +1374,7 @@ h1, h2, h3, h4, h5, h6, p{
 	padding: 10px;
 	margin-top: 40px;
 	background-color: #F4F2F2;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 } 
 
 .create-form form {
@@ -1361,11 +1413,11 @@ h1, h2, h3, h4, h5, h6, p{
 	margin-top: 20px;
 	border: 1px solid #A59C9C;
 	padding: 15px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 }
 
 .submit-btn:hover {
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .field-input select[name=sub_country] {
@@ -1383,11 +1435,11 @@ h1, h2, h3, h4, h5, h6, p{
 	width: 95%;
 	padding: 10px;
 	margin: 20px 0 20px 0;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .user-header h1 {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 	margin-bottom: 10px;
 }
@@ -1409,7 +1461,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .user-list-item h3 {
 	margin-bottom: 3px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 	font-size: 1em;
 }
@@ -1423,7 +1475,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 	padding: 5px;
 	width: 15%;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 500;
 	font-size: 0.8em;
 	color: #4f4949;
@@ -1433,13 +1485,13 @@ h1, h2, h3, h4, h5, h6, p{
 
 .user-edit-link:hover {
 
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .country_list {
 	margin-top: 20px;
 	padding: 20px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 	
 }
 
@@ -1450,14 +1502,14 @@ h1, h2, h3, h4, h5, h6, p{
 
 .country_list h1 {
 	width: 40%;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 	font-size: 1.5em;
 }
 
 .country_link {
 	padding: 5px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 500;
 	font-size: 0.8em;
 	color: #4f4949;
@@ -1466,13 +1518,13 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .country_link:hover {
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 
 .user-profile {
 	padding: 10px;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .profile-header {
@@ -1484,7 +1536,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .profile-header h1 {
 	
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 	color: #2F2B2B;
 }
@@ -1494,7 +1546,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .detail {
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
 	color: #2F2B2B;
 	margin: 5px 0 5px 0;
@@ -1508,10 +1560,10 @@ h1, h2, h3, h4, h5, h6, p{
 
 .cancel {
 	padding: 10px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
 	font-size: 1.2em;
-	box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 	color: #4f4949;
 }
 
@@ -1526,11 +1578,11 @@ h1, h2, h3, h4, h5, h6, p{
 
 .error strong {
 	padding: 5px;
-	font-family: 'Roboto', 'sans-serif';
+	font-family: 'Nunito Sans', 'sans-serif';
 	color: #EE4949;
 	font-weight: bold;
 	font-size: 1.2em;
-	/*box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.20);*/
+	/*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);*/
 
 }
 

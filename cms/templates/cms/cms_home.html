@@ -55,9 +55,19 @@
 	<main class="container">
 
 		<section class="header-wrapper">
-			<div class="section-header">
-				<h1>CMS Dashboard</h1>
+			<div class="section-header cms-header">
+				<h1>Admin Dashboard</h1>
 			</div>
+			
+			<!-- user settings -->
+			<div class="user-settings">
+				<a href="/logout/" class="profile-link">
+				    <i class="fa fa-sign-out fa-2x icons" aria-hidden="true"></i>
+				    
+				</a>
+				
+			</div>
+
 			
 		</section>
 		
@@ -71,7 +81,7 @@
 
 		<section class="cms-home">
 			
-			<div class="cms-rep-list">
+			<!-- <div class="cms-rep-list">
 				
 				<div class="main-header">
 					<h1 class="main-header-text">Latest Reports : </h1>
@@ -88,7 +98,30 @@
 				</div>
 				{% endfor %}
 				
-			</div>
+			</div> -->
+				<div class="stats">
+					<a href="#" class="stats-item">
+						<p class="stat-no">{{ active_reports }}</p>
+						<p class="stat-name">Active Reports</p>
+					</a>
+					<a href="#" class="stats-item">
+						<p class="stat-no">{{ archived_reports }}</p>
+						<p class="stat-name">Archived Reports</p>
+					</a>
+					<a href="#" class="stats-item">
+						<p class="stat-no">{{ total_countries }}</p>
+						<p class="stat-name">Countries</p>
+					</a>
+					<a href="#" class="stats-item">
+						<p class="stat-no">{{ active_clients }}</p>
+						<p class="stat-name">Active Subscribers</p>
+					</a>
+					<a href="#" class="stats-item">
+						<p class="stat-no">X</p>
+						<p class="stat-name">Trial Subscribers</p>
+					</a>
+					
+				</div>
 			<div class="cms-co-list">
 				<div class="main-header">
 					<h1 class="main-header-text">Country Pages : </h1>
@@ -98,9 +131,9 @@
 				<div class="rep-item">
 					<h3>{{ country.name }}</h3>
 					<div class="crud">
-						<a href="{% url "country_detail_cms" pk=country.id %}" class="crud-links">View</a>
-						<a href="{% url "update_country" pk=country.id %}" class="crud-links">Edit</a>
-						<a href="{% url "delete_country" pk=country.id %}" class="crud-links">Delete</a>
+						<a href="{% url "country_detail_cms" pk=country.id %}" class="view-full view-full-cms">View</a>
+						<a href="{% url "update_country" pk=country.id %}" class="view-full view-full-cms">Edit</a>
+						<a href="{% url "delete_country" pk=country.id %}" class="view-full view-full-cms">Delete</a>
 					</div>
 				</div>
 				{% endfor %}
@@ -126,6 +159,8 @@
 			{% endif %} -->
 
 		</section>
+
+
 
 	</main>
 
