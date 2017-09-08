@@ -826,15 +826,45 @@ h1, h2, h3, h4, h5, h6, p{
 	width: 100%;
 	background-color: #EBE9E9;
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 }
 
+.country-rating-items {
+	flex: 0 0 50%;
+	height: 100%;
+
+}
+
+.country-rating-legend {
+	flex: 0 0 20%;
+	padding: 10px;
+
+}
+
+.country-rating-legend p{
+	margin-top: 5px;
+	
+}
+
 .country-rating-item {
+	display: inline-block;
 	height: 95%;
-	width: 150px;
+	width: 90px;
 	margin-right: 10px;
 	/*background-color: #585454;*/
 	position: relative;
+}
+
+.country-rating-header {
+	padding: 10px;
+	flex: 0 0 30%;
+}
+
+.country-rating-header h3 {
+
+	font-weight: 300;
+	font-size: 1.3em;
 }
 
 .rating-img {
@@ -869,56 +899,83 @@ h1, h2, h3, h4, h5, h6, p{
 	font-weight: 500;
 }
 
-.security-level {
-	width: 48%;
-	height: 95%;
-	/*background-color: lightcoral*/;
-	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
+.sec-level-ratings {
+	padding: 10px;
+	margin-top: 20px;
+	height: 180px;
+	width: 100%;
+	background-color: #EBE9E9;
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	flex-direction: column;
+}
+
+.sec-level-item {
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	width: 95%;
+	/*background-color: #C19191;*/
 }
 
 .sec-level-header {
-	padding: 10px;
-	height: 20%;
+	
+	color: #4F4949;
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-size: 1em;
+	align-self: center;
+
 }
 
-.sec-level-rating {
-	height: 30%;
-	width: 90%;
-	display: flex;
-	justify-content: center;
-	align-content: center;
+.sec-level-header h3 {
+	font-size: 1.3em;
+	font-weight: 300;
 }
 
-.sec-level-rating-text {
-	width: 40%;
-	height: 60%;
-	/*align-self: center;*/
-}
-
-.sec-level-rating-text h3 {
-	text-align: center;
+.sec-level-header p {
 	margin-top: 10px;
+	font-size: 1.3em;
 	font-weight: bold;
 }
 
-.sec-level-rating-color {
-	width: 30%;
-	height: 60%;
-	background-color: orange;
-	/*align-self: center;*/
+.sec-level-svg {
+	
+	height: 80px;
+	width: 80px;
 }
 
-
 .sec-level-legend {
-	padding: 10px;
-	height: 40%;
-	width: 100%;
-	/*background-color: lightcoral;*/
-	border-top: 1px solid #111;
+	
+}
+
+.sec-level-legend p {
+	margin-top: 5px;
+}
+
+.st0 {
+	fill:none;
+	stroke:#B9B9BA;
+	stroke-width:4;
+	stroke-miterlimit:10;
+}
+
+.st1 {
+	fill:#6FC076;
+}
+
+.green {
+	fill: #6FC076;
+}
+
+.amber {
+	fill: #e58b58;
+}
+
+.yellow {
+	fill: #fde364;
+}
+
+.red {
+	fill: #c63542;
 }
 
 .level-table {
