@@ -826,7 +826,7 @@ h1, h2, h3, h4, h5, h6, p{
 	width: 100%;
 	background-color: #EBE9E9;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -837,15 +837,41 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .country-rating-legend {
-	flex: 0 0 20%;
-	padding: 10px;
+	
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	width: 60%;
+	flex-flow: row wrap;
+	margin: 0 auto;
 
 }
 
 .country-rating-legend p{
-	margin-top: 5px;
-	
+	font-size: 0.9em;
+	font-weight: 700;
+	padding: 10px;
+	text-align: center;
+	border-radius: 5px;
+	margin-right: 20px;
 }
+
+.co-leg-green {
+	background-color: #6FC076;
+}
+
+.co-leg-amber {
+	background-color: #e58b58;
+}
+
+.co-leg-yellow {
+	background-color: #fde364;
+}
+
+.co-leg-red {
+	background-color: #c63542;
+}
+
 
 .country-rating-item {
 	display: inline-block;
@@ -858,7 +884,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .country-rating-header {
 	padding: 10px;
-	flex: 0 0 30%;
+	
 }
 
 .country-rating-header h3 {
@@ -901,24 +927,25 @@ h1, h2, h3, h4, h5, h6, p{
 
 .sec-level-ratings {
 	padding: 10px;
-	margin-top: 20px;
+	margin-top: 10px;
 	height: 180px;
 	width: 100%;
 	background-color: #EBE9E9;
 	display: flex;
+	justify-content: center;
 	align-items: center;
 }
 
 .sec-level-item {
 	padding: 10px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	width: 95%;
 	/*background-color: #C19191;*/
 }
 
 .sec-level-header {
-	
+	margin-right: 80px;
 	color: #4F4949;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 1em;
@@ -944,11 +971,19 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .sec-level-legend {
+	width: 80%;
 	
+	margin: 10px auto;
+	padding: 10px;
 }
 
-.sec-level-legend p {
-	margin-top: 5px;
+.sec-row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.sec-row p {
+	width: 45%;
 }
 
 .st0 {
