@@ -202,6 +202,7 @@
 								{% for report in rel_reps %}
 									<span class="rel-name">{{ report.title }}</span>
 									<span class="rel-cord">{{ report.latitude }} {{ report.longitude }}</span>
+									<a href="{{ request.scheme }}://{{ request.get_host }}{% url 'report_detail' pk=report.id %}" class="rel-link">Rep link</a>
 								{% endfor %}
 							</div>
 							{% endif %}
@@ -213,11 +214,27 @@
 	</main>
 
 
-	<!-- <script>
+{% block load_js %}
+	<script>
+		$(document).ready(function() {
+			$('#mapviewBtn').click(function() {
+				$("#report-maps").delay('700').fadeIn();
+				setTimeout(loadScript, 1000);
+			});
+		});
+
+		function loadScript() {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBMySJy-jCub2jfs6z-cX5c6k55Ks3yRC4&callback=countryMap"
+			document.body.appendChild(script);
+		}
 
 		function countryMap() {
 
+
 			function getCoordinates(latLngList) {
+
 				var i = 0;
 				co_list = latLngList
 				var arr = []
@@ -239,8 +256,9 @@
 			}
 			
 
-			var latlng = document.querySelectorAll(".rel");
-			var x = Number(latlng[1].innerHTML.split(" ")[0]);
+			var latlng = document.querySelectorAll(".rel-cord");
+			console.log(latlng);
+			// var x = Number(latlng[1].innerHTML.split(" ")[0]);
 
 			locList = getCoordinates(latlng);
 			// console.log(locList[1].lat);
@@ -259,11 +277,35 @@
 
 			for( var i = 0; i < locList.length; i++ ) {
 				var position = new google.maps.LatLng(locList[i].lat, locList[i].lng);
+
+				
+				//marker
 				var marker = new google.maps.Marker({
 					position: position,
 					map: map
 				});
 				marker.setMap(map);
+
+				//infowindow
+				var infowindow  = new google.maps.InfoWindow({maxWidth: 180});
+
+				//build content for infowindow
+				var link = document.querySelectorAll(".rel-link")[i].href;
+				var title = document.querySelectorAll(".rel-name")[i].innerHTML;
+				var content = "<div class='info-window'><h3 class='info-window-text'>"+title+ "</h3>" +"<a class='info-window-link view-full' href='"+link+"'>View Report</a></div>"
+				console.log(content);
+
+				//call marker with infowindow and content
+				google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+					return function() {
+						
+						infowindow.setContent(content);
+						infowindow.open(map, marker);
+					}
+				})(marker, content, infowindow));
+				// marker.addListener('click', function() {
+				//     infowindow.open(map, marker);
+				// });
 			}
 
 			google.maps.event.addDomListener(window, 'load', countryMap);
@@ -284,8 +326,10 @@
 
 	</script>
 
-	<!-- MAPS API -->
-         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMySJy-jCub2jfs6z-cX5c6k55Ks3yRC4&callback=countryMap"
+{% endblock %}
+
+	<!-- Maps api -->
+         <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMySJy-jCub2jfs6z-cX5c6k55Ks3yRC4&callback=countryMap"
   type="text/javascript"></script> -->
 
 	

@@ -1090,6 +1090,8 @@ h1, h2, h3, h4, h5, h6, p{
 	display: none;
 }
 
+
+
 /* END COUNTRY_DETAIL */
 
 /*   REPORT_DETAIL STYLES*/
@@ -1264,6 +1266,30 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 /* END REPORT DETAIL */
+
+/* maps info window styles */
+.info-window {
+	padding: 10px;
+	
+}
+
+.info-window-text {
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-size: 1.3em;
+	font-weight: 300;
+	color: #4F4949;
+}
+
+.info-window-link {
+	margin-top: 10px;
+	font-size: 0.8em;
+	height: 35px;
+	width: 90px;
+	font-weight: 600;
+}
+
+/* end maps infowindow styles */
+
 
 /* CMS STYLES */
 

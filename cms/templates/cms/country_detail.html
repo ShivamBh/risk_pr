@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title  %}{{ country.name }}{% endblock %}
 
@@ -71,7 +72,7 @@
 			
 		</section>
 
-		<section class="content-wrapper">
+		<!-- <section class="content-wrapper">
 
 			<div class="main-content">
 				<div class="main-header">
@@ -199,8 +200,126 @@
 				</div>
 			</div>
 
-		</section>
-		<div class="secondary-content">
+		</section> -->
+		<div class="c-tab is-active">
+				<div class="c-tab__content">
+					<section class="content-wrapper">
+
+						<div class="main-content">
+
+							<div class="country-detail-wrapper">
+								<div class="country-intro">
+									<h3>{{ country.name }}</h3>
+								</div>
+
+								<div class="ratings">
+									<div class="country-ratings">
+										<div class="country-rating-header">
+											<h3>Country Ratings</h3>
+										</div>
+										<div class="country-rating-items">
+											<div class="country-rating-item">
+												<div class="rating-img political-rating">
+													<img src="{% static 'img/red_thermo.svg' %}" alt="Political Rating">
+													<span class="rating-span">{{ country.political_rating }}</span>
+												</div>
+												<div class="rating-text">
+													<p>Political</p>
+												</div>
+											</div>
+											<div class="country-rating-item">
+												<div class="rating-img terror-rating">
+													<img src="{% static 'img/yellow_thermo.svg' %}" alt="Terror Rating">
+													<span class="rating-span">{{ country.terror_rating }}</span>
+												</div>
+												<div class="rating-text">
+													<p>Terror</p>
+												</div>
+											</div>
+											<div class="country-rating-item">
+												<div class="rating-img security-rating">
+													<img src="{% static 'img/orange_thermo.svg' %}" alt="Security Rating">
+													<span class="rating-span">{{ country.security_rating }}</span>
+												</div>
+												<div class="rating-text">
+													<p>Security</p>
+												</div>
+											</div>
+											<div class="country-rating-item">
+												<div class="rating-img travel-rating">
+													<img src="{% static 'img/green_thermo.svg' %}" alt="Travel Rating">
+													<span class="rating-span">{{ country.travel_rating }}</span>
+												</div>
+												<div class="rating-text">
+													<p>Travel</p>
+												</div>
+											</div>
+										</div>
+										
+										
+									</div>
+									<div class="country-rating-legend">
+										<p class="co-leg-green">Green  :  Low</p>
+										<p class="co-leg-yellow">Yellow :  Medium</p>
+										<p class="co-leg-amber">Amber  :  High</p>
+										<p class="co-leg-red">Red    :  Extreme</p>
+									</div>
+
+									<div class="sec-level-ratings">
+										<div class="sec-level-item">
+											<div class="sec-level-header">
+												<h3>Security Preparedness Level</h3>
+												<p>{{ country.sec_level }}</p>
+											</div>
+											<svg version="1.1" class="sec-level-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 193.1 267.5" style="enable-background:new 0 0 193.1 267.5;" xml:space="preserve">
+												<!-- <style type="text/css">
+													
+												</style> -->
+												<path id="XMLID_2_" class="st0" d="M18.7,8.2c36.6-8.3,119-8.3,155.6,0c9.8,2.2,16.7,10.8,16.7,20.8v135.1c0,2.9-0.6,5.8-1.7,8.5
+													c-12,28.3-53.9,77.2-83.6,91c-5.7,2.7-12.4,2.6-18.1-0.2c-30.2-14.6-72.5-63.5-84.1-91.6c-1-2.4-1.3-4.9-1.4-7.5L2,29.1
+													C2,19.1,8.9,10.5,18.7,8.2z"/>
+												<path id="shield-core" class="st1" d="M38.2,39.7c27.4-6.2,89.2-6.2,116.6,0c7.3,1.7,12.5,8.1,12.5,15.6v101.2c0,2.2-0.4,4.3-1.3,6.4
+													c-9,21.2-40.4,57.8-62.7,68.1c-4.3,2-9.3,1.9-13.5-0.2c-22.6-11-54.4-47.6-63-68.6c-0.7-1.8-1-3.7-1-5.6L25.7,55.3
+													C25.7,47.8,30.9,41.4,38.2,39.7z"/>
+											</svg>
+											
+
+										</div>
+
+									</div>
+									<div class="sec-level-legend">
+										<div class="sec-row">
+											<p>Green : Monitor</p>
+											<p>Yellow : Review Security Posture</p>
+										</div>
+										<div class="sec-row">
+											<p>Amber : Prepare Emergency Response Option</p>
+											<p>Red : Adopt Emergency Response</p>
+										</div>
+										
+										
+									</div>								
+
+								
+								</div>
+								<div class="country-bg">
+									<div class="country-bg-header">
+										<h2>Country Background :</h2>
+									</div>
+									<div class="country-bg-text">
+										<p>{{ country.risk_bg|safe }}</p>
+									</div>
+								</div>
+								
+								
+							</div>
+						</div>
+
+					</section>
+				</div>
+		</div>
+
+		<!-- <div class="secondary-content">
 
 				<div class="main-header">
 					<h1 class="main-header-text">Latest Reports : </h1>
@@ -220,6 +339,45 @@
 								<a href="{% url 'report_detail_cms' pk=report.id %}">Details</a>
 							</div>
 
+						</div>
+					{% endfor %}
+				</div>
+		</div> -->
+		<div class="secondary-content">
+
+				<div class="main-header">
+					<h2 class="main-header-text">Latest Reports : </h2>
+				</div>
+
+				<div class="report-list">
+					{% for report in rel_reps %}
+						<div class="report-item">
+							<div class="report-main">
+								<div class="report-item-name">
+									<h3>{{ report.title }}</h3>
+								</div>
+
+								<a href="{% url 'report_detail_cms' pk=report.id %}" class="view-full">
+								View Full Report
+							</a>
+							</div>
+							
+							<div class="report-meta">
+								<div class="report-item-type">
+									{% if report.report_type == "T" %}
+										<p>Travel</p>
+									{% else %}
+										<p>Country</p>
+									{% endif %}
+								</div>
+								<div class="report-item-loc">
+									<p>{{ report.location.name }}</p>
+								</div>	
+								<div class="report-item-date">
+									<p>{{ report.created_at }}</p>
+								</div>
+							</div>
+							
 						</div>
 					{% endfor %}
 				</div>

@@ -74,59 +74,65 @@
 		
 		<section class="report-content-wrapper">
 
-			<div class="report-wrapper">
-				<div class="report-title">
-					<div class="title-text">
-						<h3>Title : {{ report.title }}</h3>
-						<div class="report-metadata">
-							<p id="report-date">{{ report.created_at }} , {{ report.location }}</p>
-							
+			<div class="c-tab__content">
+					<section class="report-content-wrapper" id="detail">
+
+						<div class="report-wrapper">
+							<div class="report-title">
+								<div class="title-text">
+									<h3>{{ report.title }}</h3>
+									<div class="report-metadata">
+										<p id="report-date">{{ report.created_at }} , {{ report.location }}</p>
+										
+									</div>
+								</div>
+							</div>
+							<div class="report-summary">
+								<div class="summary-text">
+									<p id="rep_desc">{{ report.summary|safe }}</p>
+								</div>
+							</div>
+
+							{% if report.assessment %}
+							<div class="report-assess">
+								<div class="assess-text">
+									<p><span class="report-bold">Assessment : </span> {{ report.assessment|safe }}</p>
+								</div>
+							</div>
+							{% endif %}
+
+							{% if report.impact_tc %}
+							<div class="report-impacttc">
+								<div class="impacttc-text">
+									<p><span class="report-bold">Impact to Client : </span> {{ report.impact_tc }}</p>
+								</div>
+							</div>
+							{% endif %}
+
+							{% if report.advice %}
+							<div class="report-advice">
+								<div class="advice-text">
+									<p><span class="report-bold">Advice : </span> {{ report.advice|safe }}</p>
+								</div>
+							</div>
+							{% endif %}
+
+							{% if report.event_bg_title %}
+							<div class="report-event-bg">
+								<div class="event-bg-text">
+									<p>
+										<span class="report-bold">{{ report.event_bg_title }} : </span>
+										<br class="report-divider">
+										{{ report.event_bg_text|safe }}
+									</p>
+								</div>
+							</div>
+							{% endif %}
+
 						</div>
-					</div>
-				</div>
-				<div class="report-summary">
-					<div class="summary-text">
-						<p id="rep_desc">{{ report.summary|safe }}</p>
-					</div>
-				</div>
 
-				{% if report.assessment %}
-				<div class="report-assess">
-					<div class="assess-text">
-						<p><span class="report-bold">Assessment : </span> {{ report.assessment|safe }}</p>
-					</div>
+					</section>
 				</div>
-				{% endif %}
-
-				{% if report.impact_tc %}
-				<div class="report-impacttc">
-					<div class="impacttc-text">
-						<p><span class="report-bold">Impact to Client : </span> {{ report.impact_tc }}</p>
-					</div>
-				</div>
-				{% endif %}
-
-				{% if report.advice %}
-				<div class="report-advice">
-					<div class="advice-text">
-						<p><span class="report-bold">Advice : </span> {{ report.advice|safe }}</p>
-					</div>
-				</div>
-				{% endif %}
-
-				{% if report.event_bg_title %}
-				<div class="report-event-bg">
-					<div class="event-bg-text">
-						<p>
-							<span class="report-bold">{{ report.event_bg_title }} : </span>
-							<br class="report-divider">
-							{{ report.event_bg_text|safe }}
-						</p>
-					</div>
-				</div>
-				{% endif %}
-
-			</div>
 			
 
 		</section>
