@@ -56,23 +56,23 @@
 				<div class="profile">
 					
 					<div class="profile-entry">
-					<h3>Name: {{ user.first_name }} {{ user.last_name }}</h3>
+						<h3><span class="profile-bold">Name:</span> {{ user.first_name }} {{ user.last_name }}</h3>
 					</div>
 					<div class="profile-entry">
-						<h3>Username: {{ user.username }}</h3>
+						<h3><span class="profile-bold">Username:</span> {{ user.username }}</h3>
 					</div>
 					<div class="profile-entry">
-						<h3>Email: {{ user.email }}</h3>
+						<h3><span class="profile-bold">Email:</span> {{ user.email }}</h3>
 					</div>
 					<div class="profile-entry">
-						<h3>Company/Organization: {{ user.profile.company }}</h3>
+						<h3><span class="profile-bold">Company:</span> {{ user.profile.company }}</h3>
 					</div>
 					<div class="profile-entry">
-						<h3>Phone Number: {{ user.profile.phone_number }}</h3>
+						<h3><span class="profile-bold">Phone:</span> {{ user.profile.phone_number }}</h3>
 					</div>
 					<div class="profile-entry">
 						
-							<h3 class="profile-country">Subscribed Countries: 
+							<h3 class="profile-country"><span class="profile-bold">Subscribed Countries:</span> 
 							{% for country in user.profile.sub_country.all %}
 								<a href="{% url 'country_detail' pk=country.id %}" class="profile-country-link">{{ country.name }}</a>
 							{% endfor %}
@@ -80,20 +80,19 @@
 							
 					</div>
 					<div class="profile-entry">
-						<h3>Subscription Type: {{ sub }}
+						<h3><span class="profile-bold">Subscription Type:</span> {{ sub }}
 						</h3>
 					</div>
 
 					<div class="profile-entry">
-						<h3>Validity : VALIDITY
+						<h3><span class="profile-bold">Valid Till:</span> VALIDITY
 						</h3>
 					</div>
 					<div class="profile-edit">
-						<a href="{% url 'user_profile_edit' %}" class="profile-edit-link user-edit-link">Edit Info</a>
+						<a href="{% url 'user_profile_edit' %}" class="view-full user-profile-link">Edit Info</a>
+						<a href="{% url 'change_password_intel' %}" class="view-full user-profile-link">Change Password</a>
 					</div>
-					<div class="profile-edit">
-						<a href="{% url 'change_password_intel' %}" class="profile-edit-link user-edit-link">Change Password</a>
-					</div>
+					
 					<!-- FAQ and other things go here -->
 				</div>
 			</div>
@@ -105,9 +104,4 @@
 
 {% endblock %}
 
-{% block user_profile %}
-
-	<a href="/profile/" class="profile-link">My Profile</a>
-
-{% endblock %}
 

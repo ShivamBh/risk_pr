@@ -783,23 +783,37 @@ h1, h2, h3, h4, h5, h6, p{
 
 .profile {
 	padding: 10px;
-	display: flex;
-	flex-direction: column;
-}
-
-.profile-entry {
-	margin: 10px 0 10px 0;
 	
 }
 
+.profile-entry {
+	margin: 15px 0 10px 0;
+	
+}
+
+.profile-entry .profile-bold {
+	font-weight: 600;
+}
+
+.profile-entry h3 {
+	font-weight: 300;
+}
+
 .profile-entry .profile-country-link {
-	padding: 3px;
+	padding: 8px;
 	color: #4f4949;
+	background-color: #ABE1E8;
+	border-radius: 8px;
 }
 
 .profile-entry .profile-country-link:hover {
 	padding: 3px;
 	color: #26567c;
+}
+
+.user-profile-link {
+	margin-right: 15px;
+	display: inline-block;
 }
 
 .country-intro {
@@ -814,24 +828,39 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .ratings {
-	display: block;
+	display: flex;
 	width: 100%;
-	/*height: 400px;*/
+	min-height: 20vh;
+	justify-content: space-between;
+	
+}
+
+.country-wrap {
+	display: inline-block;
+	width: 49%;
+	/*background-color: #EDA0A0;*/
+}
+
+.sec-wrap {
+	display: inline-block;
+	width: 49%;
 	
 }
 
 .country-ratings {
 	padding: 10px;
-	height: 180px;
+	height: 240px;
 	width: 100%;
 	background-color: #EBE9E9;
-	display: flex;
+	/*display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: center;*/
 }
 
 .country-rating-items {
-	flex: 0 0 50%;
+	/*flex: 0 0 50%;*/
+	width: 100%;
+	padding: 10px;
 	height: 100%;
 
 }
@@ -839,21 +868,21 @@ h1, h2, h3, h4, h5, h6, p{
 .country-rating-legend {
 	
 	padding: 20px;
-	display: flex;
-	justify-content: center;
-	width: 60%;
-	flex-flow: row wrap;
+	
+	width: 90%;
+	
 	margin: 0 auto;
 
 }
 
 .country-rating-legend p{
-	font-size: 0.9em;
+	display: inline-block;
+	font-size: 0.75em;
 	font-weight: 700;
-	padding: 10px;
+	padding: 8px;
 	text-align: center;
 	border-radius: 5px;
-	margin-right: 20px;
+	/*margin-right: 10px;*/
 }
 
 .co-leg-green {
@@ -875,7 +904,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .country-rating-item {
 	display: inline-block;
-	height: 95%;
+	height: 150px;
 	width: 90px;
 	margin-right: 10px;
 	/*background-color: #585454;*/
@@ -927,38 +956,39 @@ h1, h2, h3, h4, h5, h6, p{
 
 .sec-level-ratings {
 	padding: 10px;
-	margin-top: 10px;
-	height: 180px;
+	height: 240px;
 	width: 100%;
 	background-color: #EBE9E9;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	
+	
 }
 
 .sec-level-item {
 	padding: 10px;
-	display: flex;
-	justify-content: center;
-	width: 95%;
+	background-color: #EBE9E9;
+	width: 100%;
+	height: 100%;
 	/*background-color: #C19191;*/
 }
 
 .sec-level-header {
-	margin-right: 80px;
+	
 	color: #4F4949;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-size: 1em;
-	align-self: center;
+	
 
 }
 
 .sec-level-header h3 {
+	margin-right: 30px;
+	display: inline;
 	font-size: 1.3em;
 	font-weight: 300;
 }
 
 .sec-level-header p {
+	display: inline;
 	margin-top: 10px;
 	font-size: 1.3em;
 	font-weight: bold;
@@ -966,15 +996,18 @@ h1, h2, h3, h4, h5, h6, p{
 
 .sec-level-svg {
 	
-	height: 80px;
-	width: 80px;
+	display: block;
+	margin: 40px auto;
+
+	height: 100px;
+	width: 100px;
 }
 
 .sec-level-legend {
-	width: 80%;
+	padding: 20px;
 	
-	margin: 10px auto;
-	padding: 10px;
+	width: 100%;
+
 }
 
 .sec-row {
@@ -983,6 +1016,8 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .sec-row p {
+	font-size: 0.8em;
+	font-weight: 600;
 	width: 45%;
 }
 
