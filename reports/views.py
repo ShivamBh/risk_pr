@@ -11,12 +11,39 @@ from accounts.models import Profile
 
 # from .filters import UserFilter
 from .models import Report, Country
-from .forms import ProfileUpdateForm, SearchForm
+from .forms import ProfileUpdateForm, SearchForm,TrialSubProfileForm, TrialSubUserForm
 from functools import reduce
 import operator
 import datetime
 
 # Create your views here.
+
+def trial_sub_form(request):
+	template = 'reports/trial_sub.html'
+	if request.method == 'POST':
+		user_form = TrialSubUserForm(request.POST)
+		profile_form = TrialSubProfileForm(request.POST)
+		if all([user_form.is_valid(), profile_form.is_valid()]):
+			user = user_form.save()
+			user.profile.phone_number = profile_form.cleaned_data["phone_number"]
+			user.profile.company = profile_form.cleaned_data["company"]
+			user.profile.sub_country = profile_form.cleaned_data["sub_country"]
+			user.profile.sub_model = profile_form.cleaned_data["sub_model"]
+			user.profile.trial_sub = True
+			#generate random password
+			new_password = User.objects.make_random_password()
+			user.set_password(new_password)
+			user.save()
+			user.profile.save()
+
+			#get current site, subject for email
+			
+	else:
+		user_form = TrialSubUserForm()
+		profile_form = TrialSubProfileForm()
+
+	return render(request, template, {'user_form': user_form, 'profile_form': profile_form})
+
 @login_required
 def user_profile_view(request):
 	template = 'reports/user_profile.html'

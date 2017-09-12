@@ -7,7 +7,7 @@
 	<main class="container">
 		<div class="login-wrapper">
 			<div class="login-text">
-				<h1>Log-In</h1>
+				<h1>Sign Up for Trial Subscription</h1>
 				{% if form.errors %}
 					<p>Your username and password didn't match. Please try again.</p>
 				{% else %}
@@ -25,8 +25,11 @@
 							</div>
 						{% endfor %}
 						<input type="hidden" name="next" value="{{ next }}">
-						<input type="submit" value="Log-in" class="login-btn">
+						<input type="submit" value="Log-in" class="login-btn view-full">
 					</form>
+					<div class="trial-info">
+						<p class="trial-text">If you don't have an account with us yet but would like to test out the application, you can register for a trial version <a href="{% url 'trial_sub' %}" class="trial-link">Here</a>.</p>
+					</div>
 				</div>
 			</div>
 

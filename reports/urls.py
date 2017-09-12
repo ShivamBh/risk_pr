@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 
 
-from .views import user_profile_view, user_profile_edit, change_password, search , ReportListView, CountryListView, ReportDetailView, CountryDetailView, index
+from .views import trial_sub_form, user_profile_view, user_profile_edit, change_password, search , ReportListView, CountryListView, ReportDetailView, CountryDetailView, index
 
 
 urlpatterns = [
@@ -13,6 +13,7 @@ urlpatterns = [
 	url(r'^change-password/$', change_password, name='change_password_intel'),
 	url(r'^reports/$', ReportListView.as_view(), name='report_list'),
 	url(r'^search/$', search, name='report_search'),
+	url(r'^trial/$', trial_sub_form, name='trial_sub'),
 	url(r'^country/$', CountryListView.as_view(), name='country_list'),
 	url(r'^profile/$', user_profile_view, name='user_profile'),
 	url(r'^edit-profile/$', user_profile_edit, name='user_profile_edit'),

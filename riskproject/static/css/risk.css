@@ -648,15 +648,22 @@ h1, h2, h3, h4, h5, h6, p{
 
 .logout-wrapper {
 	margin-top: 40px;
-	display: flex;
-	justify-content: center;
+	height: 300px;
+	width: 600px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 	background-color: #F4F2F2;
 	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .logout-text {
-	padding: 10px;
-	align-self: center;
+	text-align: center;
+	padding: 20px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	
 
 }
 
@@ -667,9 +674,11 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .logout-text p {
+	margin-top: 10px;
 	color: #4F4949;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
+	font-size: 1.2em;
 }
 
 .logout-text p a {
@@ -687,12 +696,16 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .login-wrapper {
-	margin-top: 40px;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	background-color: #F4F2F2;
+	padding: 20px;
+	margin-top: 80px;
+	min-height: 300px;
+	width: 600px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #EBE9E9;
 	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
+	border-radius: 8px;
 }
 
 .login-text {
@@ -708,6 +721,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .login-text p {
+	margin-top: 10px;
 	color: #4F4949;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
@@ -717,6 +731,7 @@ h1, h2, h3, h4, h5, h6, p{
 	margin-top: 40px;
 	margin-bottom: 20px;
 	align-self: center;
+	color: #4F4949;
 }
 
 .form-group {
@@ -730,10 +745,12 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .field-input input {
+	padding: 0 10px;
 	margin: 10px 0 10px 0;
 	border: none;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
+	border-radius: 8px;
 }
 
 .field-input input:focus {
@@ -750,6 +767,20 @@ h1, h2, h3, h4, h5, h6, p{
 .login-btn:hover {
 	cursor: pointer;
 	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
+}
+
+.trial-info {
+	margin-top: 40px;
+
+}
+
+.trial-text {
+	font-size: 1.1em;
+}
+
+.trial-link {
+	font-weight: 700;
+	color: #2D2D2D;
 }
 
 /* END LOGIN/LOGOUT */

@@ -126,6 +126,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+CELERY_IMPORTS = ('reports.tasks',)
 CELERY_TIMEZONE = TIME_ZONE
 
 # Static files (CSS, JavaScript, Images)
