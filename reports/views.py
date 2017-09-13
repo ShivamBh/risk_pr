@@ -6,7 +6,9 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
 from django.views.generic import ListView, DetailView
+from django.template.loader import render_to_string, get_template
 from accounts.models import Profile
 
 # from .filters import UserFilter
@@ -25,6 +27,8 @@ def trial_sub_form(request):
 		profile_form = TrialSubProfileForm(request.POST)
 		if all([user_form.is_valid(), profile_form.is_valid()]):
 			user = user_form.save()
+			#activate trial user
+			user.is_active = True
 			user.profile.phone_number = profile_form.cleaned_data["phone_number"]
 			user.profile.company = profile_form.cleaned_data["company"]
 			user.profile.sub_country = profile_form.cleaned_data["sub_country"]
@@ -37,6 +41,16 @@ def trial_sub_form(request):
 			user.profile.save()
 
 			#get current site, subject for email
+			current_site = get_current_site(request)
+			subject = 'ISSRISK Trial Subscription'
+
+			#email user with account cred
+			message = render_to_string('reports/trial_activation_email.html', {
+				'user': user,
+				'domain': current_site.domain,
+				'password': new_password
+			})
+			user.email_user(subject, message)
 			
 	else:
 		user_form = TrialSubUserForm()

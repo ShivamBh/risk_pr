@@ -89,6 +89,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'riskproject.wsgi.application'
 
+PARENT_HOST = 'issrisk.com'
 
 
 LOGIN_REDIRECT_URL = '/'
