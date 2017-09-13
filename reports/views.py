@@ -168,7 +168,7 @@ class CountryDetailView(LoginRequiredMixin, DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(CountryDetailView, self).get_context_data(**kwargs)
-		rel_reps = Report.objects.filter(location__name__icontains=self.object.name)
+		rel_reps = Report.objects.filter(location__name__icontains=self.object.name).order_by('-created_at')
 		context["rel_reps"] = rel_reps
 		return context
 

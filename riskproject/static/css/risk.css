@@ -787,6 +787,8 @@ h1, h2, h3, h4, h5, h6, p{
 
 /* COUNTRY_DETAIL STYLES */
 
+
+
 .main-header-text .country-name-header {
 	font-size: 2em;
 	font-weight: lighter;
@@ -1156,6 +1158,13 @@ h1, h2, h3, h4, h5, h6, p{
 	display: none;
 }
 
+.secondary-country-page {
+	margin-top: 20px;
+}
+
+.country-page-header {
+	padding: 0 20px;
+}
 
 
 /* END COUNTRY_DETAIL */
