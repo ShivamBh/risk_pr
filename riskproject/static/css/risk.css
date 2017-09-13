@@ -415,7 +415,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .main-header {
 	padding: 10px;
-
+	width: 50%;
 }
 
 .main-header-text {
@@ -505,9 +505,13 @@ h1, h2, h3, h4, h5, h6, p{
 	transition: all 0.2s ease-in-out;
 }
 
+.report-list-secondary {
+	position: relative;
+}
+
 .report-list {
 	padding: 10px;
-	width: 100%;
+	width: 55%;
 }
 
 .report-item {
@@ -566,6 +570,45 @@ h1, h2, h3, h4, h5, h6, p{
 	width: 15%;
 }
 
+.report-archive {
+	min-height: 10vh;
+	
+	width: 40%;
+	/*background-color: #D5D5D5;*/
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-radius: 8px;
+	margin-top: 20px;
+	
+}
+
+.report-archive-header {
+	margin-left: 10px;
+	padding: 10px;
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-weight: 300;
+	font-size: 1.1em;
+	color: #4F4949;
+}
+
+.archived-list {
+	padding: 10px;
+}
+
+.archived-item {
+	border-radius: 8px;
+	margin-bottom: 10px;
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
+	padding: 20px;
+}
+
+.archived-title {
+	font-weight: 500;
+	color: #4F4949;
+}
+
+
 .view-full {
 	align-self: center;
 	margin-top: 20px;
@@ -583,7 +626,21 @@ h1, h2, h3, h4, h5, h6, p{
 .view-full-cms {
 	margin-top: 0;
 	margin-right: 10px;
+
 }
+
+.archived-link {
+	height: 35px;
+	width: 100px;
+	margin-bottom: 10px;
+	padding: 10px;
+	color: #4F4949;
+}
+
+.archived-link:hover {
+	color: #2F2B2B;
+}
+
 
 .view-full:hover {
 	background-color: #BFB080;
@@ -596,13 +653,20 @@ h1, h2, h3, h4, h5, h6, p{
 	color: #111;
 }
 
+.cms-rep {
+	margin-right: 10px;
+	height: 40px;
+	width: 110px;
+	display: inline-block;
+	margin-top: 10px;
+}
 
 .report-title {
 	/*width: 60%;*/
 }
 
 .report-title h3 {
-	padding: 10px;
+	padding: 10px 0 10px 0;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
 }
@@ -625,17 +689,17 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .report-detail {
-	width: 15%;
-	display: flex;
-	justify-content: center;
+	/*width: 15%;*/
+	display: inline-block;
+	
 }
 
-.report-detail a {
+/*.report-detail a {
 	color: #4F4949;
 	padding: 5px;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
-}
+}*/
 
 .report-detail a:hover {
 	color: #85C3CB;
@@ -1700,6 +1764,7 @@ h1, h2, h3, h4, h5, h6, p{
 .country-wrapper {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .country_list h1 {

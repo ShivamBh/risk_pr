@@ -71,30 +71,42 @@
 			
 		</section>
 
-		<div class="secondary-content">
+		<div class="secondary-content report-list-secondary">
 
 				<div class="main-header">
-					<h1 class="main-header-text">Latest Reports : </h1>
+					<h1 class="main-header-text">Active Reports : </h1>
 				</div>
 
 				<div class="report-list">
-					{% for report in report_list %}
+					{% for report in act_rep %}
 						<div class="report-item">
 							
 							<div class="report-title">
-								<h3>Title : <span class="rep-title-text">{{ report.title|truncatechars:40 }}</span></h3>
+								<h3>{{ report.title }}</h3>
 							</div>
 							
 							<div class="report-detail">
-								<a href="{% url 'report_detail_cms' pk=report.id %}" class="country_link">Details</a>
-								<a href="{% url 'update_report' pk=report.id %}" class="country_link">Edit</a>
-								<a href="{% url 'delete_report' pk=report.id %}" class="country_link">Delete</a>
+								<a href="{% url 'report_detail_cms' pk=report.id %}" class="cms-rep view-full">View</a>
+								<a href="{% url 'update_report' pk=report.id %}" class="cms-rep view-full">Edit</a>
+								<a href="{% url 'delete_report' pk=report.id %}" class="cms-rep view-full">Delete</a>
 
 
 							</div>
 
 						</div>
 					{% endfor %}
+				</div>
+
+				<div class="report-archive">
+					<h3 class="report-archive-header">Archived Reports</h3>
+					<div class="archived-list">
+						{% for report in arch_rep %}
+							<div class="archived-item">
+								
+								<a href="{% url 'report_detail_cms' pk=report.id %}" class="archived-link">{{ report.title }}</a>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
 			</div>
 	</main>	

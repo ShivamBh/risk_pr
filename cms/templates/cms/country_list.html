@@ -75,9 +75,9 @@
 			{% for country in country_list %}
 			<div class="country-wrapper">
 				<h1>{{ country }}</h1>
-				<a href="{% url 'country_detail_cms' pk=country.id %}" class="country_link">View</a>
-				<a href="{% url 'update_country' pk=country.id %}" class="country_link">Edit</a>
-				<a href="{% url 'delete_country' pk=country.id %}" class="country_link">Delete</a>
+				<a href="{% url 'country_detail_cms' pk=country.id %}" class="view-full">View</a>
+				<a href="{% url 'update_country' pk=country.id %}" class="view-full">Edit</a>
+				<a href="{% url 'delete_country' pk=country.id %}" class="view-full">Delete</a>
 			</div>
 				
 			{% endfor %}

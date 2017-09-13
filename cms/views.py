@@ -292,6 +292,14 @@ class ReportListView(PermissionRequiredMixin, ListView):
 	template_name = 'cms/report_list.html'
 	context_object_name = 'report_list'
 
+	def get_context_data(self, **kwargs):
+		context = super(ReportListView, self).get_context_data(**kwargs)
+		arch_rep = Report.objects.filter(archive=True).order_by('-created_at')
+		act_rep = Report.objects.filter(archive=False).order_by('-created_at')
+		context["arch_rep"] = arch_rep
+		context["act_rep"] = act_rep
+		return context
+
 class ReportDetailView(PermissionRequiredMixin, DetailView):
 	permission_required = ('reports.add_report')
 	model = Report
