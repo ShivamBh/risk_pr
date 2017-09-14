@@ -32,6 +32,7 @@ class Profile(models.Model):
 	email_confirmed = models.BooleanField(default=False)
 	is_moderator = models.NullBooleanField(default=False, null=True)
 	is_publisher = models.NullBooleanField(default=False, null=True)
+	trial_sub = models.NullBooleanField(default=False, null=True)
 
 	def __str__(self):
 		return self.user.username

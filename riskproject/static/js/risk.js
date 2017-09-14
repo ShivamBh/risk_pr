@@ -2,6 +2,28 @@ $(document).ready(function() {
 
 	var ratingSpan = $(".rating-span");
 	//console.log(ratingSpan);
+	var shield =$("#shield-core")
+	var secLevel = $(".sec-level-color");	
+
+	// amber = e58b58, yellow = fde364, red = c63542, green = 6FC076
+	
+	console.log(secLevel);
+	if (secLevel.text() == "Green") {
+		shield.css("fill", "#6FC076");
+	}
+	else if (secLevel.text() == "Red") {
+		shield.css("fill", "#c63542");
+	}
+	else if (secLevel.text() == "Yellow") {
+		shield.css("fill", "#fde364");
+	}
+
+	else {
+		shield.css("fill", "#e58b58");
+	}
+
+	
+
 
 	ratingSpan.each(function() {
 		// console.log($(this).siblings().attr('src'));
@@ -20,5 +42,7 @@ $(document).ready(function() {
 		}
 
 	});
+
+
 
 });

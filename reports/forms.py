@@ -18,3 +18,23 @@ class ProfileUpdateForm(forms.ModelForm):
 class SearchForm(forms.Form):
 	from_date = forms.DateField()
 	to_date = forms.DateField()
+
+class TrialSubProfileForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = (
+			"phone_number",
+			"company",
+			"sub_country",
+			"sub_model",
+			)
+
+class TrialSubUserForm(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = (
+			"username",
+			"first_name",
+			"last_name",
+			"email",
+			)

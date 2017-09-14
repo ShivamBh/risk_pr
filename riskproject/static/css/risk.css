@@ -415,7 +415,7 @@ h1, h2, h3, h4, h5, h6, p{
 
 .main-header {
 	padding: 10px;
-
+	width: 50%;
 }
 
 .main-header-text {
@@ -505,9 +505,13 @@ h1, h2, h3, h4, h5, h6, p{
 	transition: all 0.2s ease-in-out;
 }
 
+.report-list-secondary {
+	position: relative;
+}
+
 .report-list {
 	padding: 10px;
-	width: 100%;
+	width: 55%;
 }
 
 .report-item {
@@ -566,6 +570,45 @@ h1, h2, h3, h4, h5, h6, p{
 	width: 15%;
 }
 
+.report-archive {
+	min-height: 10vh;
+	
+	width: 40%;
+	/*background-color: #D5D5D5;*/
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-radius: 8px;
+	margin-top: 20px;
+	
+}
+
+.report-archive-header {
+	margin-left: 10px;
+	padding: 10px;
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-weight: 300;
+	font-size: 1.1em;
+	color: #4F4949;
+}
+
+.archived-list {
+	padding: 10px;
+}
+
+.archived-item {
+	border-radius: 8px;
+	margin-bottom: 10px;
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
+	padding: 20px;
+}
+
+.archived-title {
+	font-weight: 500;
+	color: #4F4949;
+}
+
+
 .view-full {
 	align-self: center;
 	margin-top: 20px;
@@ -583,7 +626,21 @@ h1, h2, h3, h4, h5, h6, p{
 .view-full-cms {
 	margin-top: 0;
 	margin-right: 10px;
+
 }
+
+.archived-link {
+	height: 35px;
+	width: 100px;
+	margin-bottom: 10px;
+	padding: 10px;
+	color: #4F4949;
+}
+
+.archived-link:hover {
+	color: #2F2B2B;
+}
+
 
 .view-full:hover {
 	background-color: #BFB080;
@@ -596,13 +653,20 @@ h1, h2, h3, h4, h5, h6, p{
 	color: #111;
 }
 
+.cms-rep {
+	margin-right: 10px;
+	height: 40px;
+	width: 110px;
+	display: inline-block;
+	margin-top: 10px;
+}
 
 .report-title {
 	/*width: 60%;*/
 }
 
 .report-title h3 {
-	padding: 10px;
+	padding: 10px 0 10px 0;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
 }
@@ -625,17 +689,17 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .report-detail {
-	width: 15%;
-	display: flex;
-	justify-content: center;
+	/*width: 15%;*/
+	display: inline-block;
+	
 }
 
-.report-detail a {
+/*.report-detail a {
 	color: #4F4949;
 	padding: 5px;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: bold;
-}
+}*/
 
 .report-detail a:hover {
 	color: #85C3CB;
@@ -648,15 +712,22 @@ h1, h2, h3, h4, h5, h6, p{
 
 .logout-wrapper {
 	margin-top: 40px;
-	display: flex;
-	justify-content: center;
+	height: 300px;
+	width: 600px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 	background-color: #F4F2F2;
 	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
 .logout-text {
-	padding: 10px;
-	align-self: center;
+	text-align: center;
+	padding: 20px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	
 
 }
 
@@ -667,9 +738,11 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .logout-text p {
+	margin-top: 10px;
 	color: #4F4949;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
+	font-size: 1.2em;
 }
 
 .logout-text p a {
@@ -687,12 +760,16 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .login-wrapper {
-	margin-top: 40px;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	background-color: #F4F2F2;
+	padding: 20px;
+	margin-top: 80px;
+	min-height: 300px;
+	width: 600px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #EBE9E9;
 	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
+	border-radius: 8px;
 }
 
 .login-text {
@@ -708,6 +785,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .login-text p {
+	margin-top: 10px;
 	color: #4F4949;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: lighter;
@@ -717,6 +795,7 @@ h1, h2, h3, h4, h5, h6, p{
 	margin-top: 40px;
 	margin-bottom: 20px;
 	align-self: center;
+	color: #4F4949;
 }
 
 .form-group {
@@ -730,10 +809,12 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .field-input input {
+	padding: 0 10px;
 	margin: 10px 0 10px 0;
 	border: none;
 	font-family: 'Nunito Sans', 'sans-serif';
 	font-weight: 300;
+	border-radius: 8px;
 }
 
 .field-input input:focus {
@@ -752,9 +833,25 @@ h1, h2, h3, h4, h5, h6, p{
 	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 }
 
+.trial-info {
+	margin-top: 40px;
+
+}
+
+.trial-text {
+	font-size: 1.1em;
+}
+
+.trial-link {
+	font-weight: 700;
+	color: #2D2D2D;
+}
+
 /* END LOGIN/LOGOUT */
 
 /* COUNTRY_DETAIL STYLES */
+
+
 
 .main-header-text .country-name-header {
 	font-size: 2em;
@@ -1125,6 +1222,13 @@ h1, h2, h3, h4, h5, h6, p{
 	display: none;
 }
 
+.secondary-country-page {
+	margin-top: 20px;
+}
+
+.country-page-header {
+	padding: 0 20px;
+}
 
 
 /* END COUNTRY_DETAIL */
@@ -1660,6 +1764,7 @@ h1, h2, h3, h4, h5, h6, p{
 .country-wrapper {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .country_list h1 {

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load hosts %}
 
 {% block title %}Login{% endblock %}
 
@@ -25,8 +26,15 @@
 							</div>
 						{% endfor %}
 						<input type="hidden" name="next" value="{{ next }}">
-						<input type="submit" value="Log-in" class="login-btn">
+						<input type="submit" value="Log-in" class="login-btn view-full">
 					</form>
+					{% if "intel" in request.get_host %}
+						<div class="trial-info">
+							<p class="trial-text">If you don't have an account with us yet but would like to test out the application, you can register for a trial version <a href="{% url 'trial_sub' %}" class="trial-link">Here</a>.</p>
+						</div>
+					{% endif %}
+					
+
 				</div>
 			</div>
 

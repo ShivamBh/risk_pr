@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'cms',
     'storages',
     'tinymce',
+    'django_celery_beat',
+    'django_celery_results',
     
 ]
+
 
 MIDDLEWARE = [
     'django_hosts.middleware.HostsRequestMiddleware',
@@ -86,6 +89,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'riskproject.wsgi.application'
 
+PARENT_HOST = 'issrisk.com'
 
 
 LOGIN_REDIRECT_URL = '/'
@@ -116,6 +120,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+# celery config
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_IMPORTS = ('reports.tasks',)
+CELERY_TIMEZONE = TIME_ZONE
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
