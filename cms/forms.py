@@ -50,6 +50,7 @@ class ProfileCreateForm(forms.ModelForm):
 			"sub_model",
 			"is_moderator",
 			"is_publisher",
+			"valid_till"
 			)
 
 class ReportForm(forms.ModelForm):
@@ -128,6 +129,9 @@ class UserForm(forms.ModelForm):
 			raise forms.ValidationError('Email address already exists')
 		return email
 
+class DateInput(forms.DateInput):
+	input_type = 'date'
+
 class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
@@ -139,4 +143,8 @@ class ProfileForm(forms.ModelForm):
 			"email_confirmed",
 			"is_moderator",
 			"is_publisher",
+			"valid_till"
 			)
+		widgets = {
+			'valid_till': DateInput(attrs= {'type': 'date'}),
+		}
