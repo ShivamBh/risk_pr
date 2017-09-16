@@ -37,5 +37,6 @@ urlpatterns = [
     # url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 ]
 
-urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
