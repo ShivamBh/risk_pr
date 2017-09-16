@@ -515,6 +515,10 @@ input[type="date"] {
 
 .report-list {
 	padding: 10px;
+	width: 75%;
+}
+
+.list-view {
 	width: 55%;
 }
 
@@ -1848,13 +1852,29 @@ input[type="date"] {
 }
 
 .error strong {
-	padding: 5px;
+	padding: 10px;
 	font-family: 'Nunito Sans', 'sans-serif';
 	color: #EE4949;
 	font-weight: bold;
-	font-size: 1.2em;
-	/*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);*/
+	font-size: 1.5em;
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
 
+}
+
+.messages {
+	padding: 20px;
+	box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.20);
+	background-color: #6FC076;
+	opacity: 0.85;
+	color: #4F4949;
+
+}
+
+.success {
+	font-family: 'Nunito Sans', 'sans-serif';
+	font-size: 1.3em;
+	font-weight: 600;
+	list-style: none;
 }
 
 
