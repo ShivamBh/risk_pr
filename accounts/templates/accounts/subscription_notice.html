@@ -1,0 +1,26 @@
+{% autoescape off %}
+	<h3>Hi, {{ user.username }}</h3>
+	<br>
+	{% if user.profile.trial_sub %}
+		{% if days == -1 %}
+			<p>Your trial period has expired. </p>
+			<p>If you want to continue using the ISSRISK application, please contact us at info@issrisk.com and we'll extend your validity to that of a regular client instead of a trial user.</p>
+		{% else %}
+			<p>Your trial expires in {{ days }} days.</p>
+			<p>If you want to continue using the ISSRISK application, please contact us at info@issrisk.com and we'll extend your validity to that of a regular client instead of a trial user.</p>
+		{% endif %}
+		
+	{% else %}
+		{% if days == -1 %}
+			<p>Your account's validity has expired.</p>
+			<p>If you want to continue using the ISSRISK application, please contact us at info@issrisk.com so that we can extend the validity of your account.</p>
+		{% else %}
+			<p>Your account in {{ days }} days.</p>
+			<p>If you want to continue using the ISSRISK application, please contact us at info@issrisk.com so that we can extend the validity of your account.</p>
+		{% endif %}
+	{% endif %}
+
+	<h3>Regards, <br> ISSRISK Team</h3>
+
+	
+{% endautoescape %}

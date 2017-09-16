@@ -16,7 +16,7 @@ from .models import Report, Country
 from .forms import ProfileUpdateForm, SearchForm,TrialSubProfileForm, TrialSubUserForm
 from functools import reduce
 import operator
-import datetime
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -34,6 +34,10 @@ def trial_sub_form(request):
 			user.profile.sub_country = profile_form.cleaned_data["sub_country"]
 			user.profile.sub_model = profile_form.cleaned_data["sub_model"]
 			user.profile.trial_sub = True
+
+			# if trial_sub get current date and set end date 14/30 days from now()
+			user.profile.valid_till = datetime.now().date() + timedelta(days=14)	
+
 			#generate random password
 			new_password = User.objects.make_random_password()
 			user.set_password(new_password)
