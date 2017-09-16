@@ -1,8 +1,21 @@
 {% autoescape off %}
+	
+	<div class="email-wrapper">
+		<div class="email">
+			<h3 class="email-header">
+				Report : {{ rep.title }} has been updated.
+			</h3>
+			<!-- <p class="email-text">
+				You can access the report at the follwing url :
+				{{ rep_url }}.
+			</p> -->
+			<a href="{{ rep_url }}" title="Report Update" class="view-full">View Report</a>
+		</div>
+	</div>
 
-		Report : {{ rep.title }} has been updated.
-		You can access the report at the follwing url :
-
-		{{ rep_url }}
+	<p>Regards,</p>
+	<p>ISSRISK Team</p>
+		
+		
 
 {% endautoescape %}

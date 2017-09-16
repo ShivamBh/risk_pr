@@ -1879,3 +1879,21 @@ input[type="date"] {
 
 
 /* END CMS STYLES */
+
+/*email styles*/
+
+.email-wrapper {
+	min-height: 30vh;
+	background-color: #F4F2F2;
+    box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.20); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.email {
+	color: #4F4949;
+}
+
+
+/*end email styles*/
