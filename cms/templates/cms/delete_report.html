@@ -75,7 +75,7 @@
 			
 			<form action="." method="post">
 				{% csrf_token %}
-				<h3>Are you sure you want to delete <strong>{{object}}</strong></h3>
+				<h3>Are you sure you want to delete <strong>{{object}}</strong> ?</h3>
 				{% for field in form %}
 					<div class="form-group">
 						<span class="field-label">{{ field.label_tag }}</span>

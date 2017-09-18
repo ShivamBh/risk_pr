@@ -1880,20 +1880,92 @@ input[type="date"] {
 
 /* END CMS STYLES */
 
-/*email styles*/
+/* MEDIA QUERIES */
 
-.email-wrapper {
-	min-height: 30vh;
-	background-color: #F4F2F2;
-    box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.20); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
 
-.email {
-	color: #4F4949;
-}
+	.section-header h1{
+		font-size: 1.2em;
+	}
 
+	.search-field {
+		width: 150px;
+	}
 
-/*end email styles*/
+	.search-dropdown p {
+		font-size: 0.75em;
+	}
+
+	.country-item {
+		width: 200px;
+		height: 150px;
+	}
+
+	.country-flag {
+		width: 50px;
+		height: 30px;
+	}
+
+	.report-list {
+		width: 100%;
+	}
+
+	.report-item {
+		padding: 10px;
+	}
+
+	.report-main {
+		width: 98%;
+	}
+
+	.ratings {
+		flex-direction: column;
+	}
+
+	.country-wrap {
+		width: 95%;
+	}
+
+	.sec-wrap {
+		width: 95%;
+		margin-bottom: 40px;
+	}
+
+	.view-full {
+		font-size: 0.9em;
+	}
+
+	.stats {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+
+	.stats-item {
+		margin-top: 10px;
+	}
+
+	.cms-co-list {
+		width: 98%;
+	}
+
+	.cms-header h1 {
+		font-size: 1.2em;
+	}
+
+	.cms-view-full {
+		width: 120px;
+		height: 40px;
+		margin-right: 10px;
+	}
+
+	.report-archive {
+		position: relative;
+		width: 98%;
+	}
+
+	.login-wrapper {
+		width: 480px;
+	}
+} 
+
