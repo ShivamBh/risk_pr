@@ -41,6 +41,7 @@ input[type="date"] {
 
 .site-header {
 	position: fixed;
+	z-index: 10;
 	height: 100%;
 	width: 160px;
 	box-shadow: 3px 3px 0px 0px rgba(0,0,0,0.25);
@@ -197,7 +198,7 @@ input[type="date"] {
 	left: 160px;
 	margin: 0 10px 0 10px;
 	width: calc(100% - 180px);
-	
+	z-index: 5;
 }
 
 .header-wrapper {
@@ -1880,9 +1881,13 @@ input[type="date"] {
 
 /* END CMS STYLES */
 
+.section-header .nav-mob {
+	display: none;
+}
+
 /* MEDIA QUERIES */
 
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
 
 	.section-header h1{
 		font-size: 1.2em;
@@ -1968,4 +1973,188 @@ input[type="date"] {
 		width: 480px;
 	}
 } 
+
+@media only screen and (min-width: 320px) and (max-width: 659px) {
+
+	.site-header {
+		display: none;
+	}
+
+
+
+	.header-wrapper {
+		flex-wrap: wrap;
+		min-height: 110px;
+		justify-content: space-between;
+	}
+
+	.section-header h1 {
+		display: none;
+	}
+
+	.section-header .nav-mob {
+		display: block;
+		padding: 10px;
+		width: initial;
+		font-size: 1em;
+	}
+
+	.search {
+		width: initial;
+	}
+
+	.user-settings {
+		padding: 10px;
+	}
+
+	.container {
+		width: 100%;
+		left: 0;
+		top: 0;
+		margin: 0 auto;
+	}
+
+	.section-header h1{
+		font-size: 1.2em;
+	}
+
+	.search-field {
+		width: 120px;
+		height: 30px;
+		font-size: 0.8em;
+	}
+
+	.search-button {
+		width: 30px;
+		height: 30px;
+	}
+
+	.search-dropdown p {
+		font-size: 0.6em;
+	}
+
+	.fa-2x {
+		font-size: 1.4em;
+	}
+
+	.main-header {
+		width: 80%;
+	}
+
+	.main-header-text {
+		font-size: 1.1em;
+	}
+
+	.country-item {
+		width: 150px;
+		height: 120px;
+		margin-right: 10px;
+	}
+
+	.country-name h4 {
+		font-size: 0.75em;
+	}
+
+	.country-detail-link {
+		width: 100px;
+		height: 35px;
+		font-size: 0.8em;
+	}
+
+	.country-flag {
+		width: 50px;
+		height: 30px;
+	}
+
+	.report-list {
+		width: 100%;
+	}
+
+	.report-item {
+		padding: 5px;
+	}
+
+	.report-main {
+		width: 98%;
+	}
+
+	.report-item-name {
+		flex: 0 0 60%;
+	}
+ 
+	.report-item-name h3 { 
+		font-size: 0.8em;
+	}
+
+	.report-item-type {
+		flex: 0 0 70px;
+	}
+
+	.report-item-loc {
+		flex: 0 0 110px;
+	}
+
+	.report-item-date {
+		flex: 0 0 150px;
+	}
+
+	.report-item-type p,
+	.report-item-loc p,
+	.report-item-date p {
+		margin-top: 8px;
+		font-size: 0.75em;
+	}
+
+	.ratings {
+		flex-direction: column;
+	}
+
+	.country-wrap {
+		width: 95%;
+	}
+
+	.sec-wrap {
+		width: 95%;
+		margin-bottom: 40px;
+	}
+
+	.view-full {
+		width: 100px;
+		height: 35px;
+		font-size: 0.8em;
+	}
+
+	.stats {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+
+	.stats-item {
+		margin-top: 10px;
+	}
+
+	.cms-co-list {
+		width: 98%;
+	}
+
+	.cms-header h1 {
+		font-size: 1.2em;
+	}
+
+	.cms-view-full {
+		width: 120px;
+		height: 40px;
+		margin-right: 10px;
+	}
+
+	.report-archive {
+		position: relative;
+		width: 98%;
+	}
+
+	.login-wrapper {
+		width: 480px;
+	}
+}
 

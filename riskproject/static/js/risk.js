@@ -1,5 +1,22 @@
 $(document).ready(function() {
 
+	var open = false
+	$(".nav-mob").on("click", function(e) {
+		$(".site-header").css("display","block");
+		open = true;
+		e.preventDefault();
+		console.log("click");
+	});
+
+	$(".container").on('click', function(e) {
+		if (open) {
+			$(".site-header").css("display","none");
+			open = false
+		}
+
+		
+	});
+
 	var ratingSpan = $(".rating-span");
 	//console.log(ratingSpan);
 	var shield =$("#shield-core")
