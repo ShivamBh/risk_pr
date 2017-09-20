@@ -1,14 +1,17 @@
 $(document).ready(function() {
 
 	var open = false
-	$(".nav-mob").on("click", function(e) {
+	$(".nav-mob").click(function(e) {
 		$(".site-header").css("display","block");
 		open = true;
-		
-		
+		e.stopPropagation();
 		
 		console.log("click");
 	});
+
+	$('html').click(function() {
+		$(".site-header").css("display","none");
+	})
 
 	// $(".container").on('click', function(e) {
 	// 	if (open) {
