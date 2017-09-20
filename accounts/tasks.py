@@ -29,24 +29,24 @@ def task_check_trial_sub():
 	queryset = User.objects.filter(is_staff=False)
 	for obj in queryset:
 		# check if user is a trial user
-		print('yolo')
+		
 		if obj.profile.valid_till is not None:
 
 			user_email = obj.email
 			user = obj
-			print('yolo2')
+			
 			# 7 day notification
 			if (obj.profile.valid_till.date() - today) == timedelta(7):
 				# send 7 days left notice
 				days = 7
 				send_notfication_mail(days, obj)
-				print('yolomail')
+				
 
 			if (obj.profile.valid_till.date() - today) == timedelta(2):
 				# send 2 days left notice
 				days = 2
 				send_notfication_mail(days, obj)
-				print('yolomail2')
+				
 
 			if (obj.profile.valid_till.date() - today) == timedelta(-1):
 				# switch active flag, send email, acc deactivated

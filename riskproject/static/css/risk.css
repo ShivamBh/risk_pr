@@ -1878,6 +1878,9 @@ input[type="date"] {
 	list-style: none;
 }
 
+.g-recaptcha {
+	margin-top: 15px;
+}
 
 /* END CMS STYLES */
 

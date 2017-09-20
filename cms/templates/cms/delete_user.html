@@ -2,6 +2,10 @@
 
 {% block title  %}Delete Report{% endblock %}
 
+{% block recaptcha %}
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
+
 {% block header %}
 	<nav class="side-nav">
 		<div class="cms-nav-menu">
@@ -83,6 +87,7 @@
 						<span class="field-input">{{ field }}</span>
 					</div>
 				{% endfor %}
+				<div class="g-recaptcha" data-sitekey="6LfKXzEUAAAAAOGm7ccqmLGB0QmUdf5D0DUnFKF2"></div>
 				<input type="submit" value="Delete User" class="submit-btn">
 			</form>	
 
