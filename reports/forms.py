@@ -9,10 +9,7 @@ class ProfileUpdateForm(forms.ModelForm):
 		model = Profile
 		fields = (
 			"phone_number",
-			"company",
-			"sub_country",
-			"sub_model",
-			
+			"company",			
 			)
 
 class SearchForm(forms.Form):

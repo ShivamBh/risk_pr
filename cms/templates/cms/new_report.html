@@ -288,23 +288,54 @@
 				
 
 				<div class="email">
+					<h1>A new report has been published originating from one of the countries you have subscribed to.</h1>
+					
 					<h3 class="email-header">
-						ISSRISK - New Report Published
+						Report : <strong>{{ rep.title }}</strong> <br>has been updated.
 					</h3>
-					<h3 class="email-header">
-						Report Title : {{ report.title }}
-					</h3>
+					<p>Location: {{ rep.location.name }}</p>
+					<p>Date: {{ rep.created_at }}</p>
 
 					<h3 class="email-header">
-						Country : {{ report.location.name }}
+						Summary:<br>
+						{{ rep.summary }}
 					</h3>
 
-					<p class="email-sub">Access Full Report at : {{ url }}</p>
+					{% if rep.assessment %}
+						<h3 class="email-header">
+							Assessment:<br>
+							{{ rep.assessment }}
+						</h3>
+					{% endif %}
+
+					{% if rep.impact_tc %}
+						<h3 class="email-header">
+							Impact :<br>
+							{{ rep.impact_tc }}
+						</h3>
+					{% endif %}
+
+					{% if rep.advice %}
+						<h3 class="email-header">
+							Advice:<br>
+							{{ rep.advice }}
+						</h3>
+					{% endif %}
+
+					{% if rep.event_bg_text %}
+						<h3 class="email-header">
+							Event background:<br>
+							{{ rep.event_bg_text }}
+						</h3>
+					{% endif %}
+
+
+					<p class="email-sub">To access the report, click on the link below.</p>
 					<!-- <p class="email-text">
 						You can access the report at the follwing url :
 						{{ rep_url }}.
 					</p> -->
-					
+					<a href="{{ rep_url }}" title="Report Update" class="view-full">View Report</a>
 				</div>
 
 				<div class="email-extras">

@@ -97,7 +97,16 @@ def user_list_view(request):
 	staff_users = User.objects.filter(is_staff=True)
 	inactive_users = User.objects.filter(is_active=False)
 
+	def user_comp_filter():
+		user_list = User.objects.filter(is_active=True).exclude(is_staff=True)
+		com_list = [item.profile.company for item in user_list]
+		com_set = set(com_list)
+		companies = [item for item in com_set]
+		return companies
+
+	comp_list = user_comp_filter()
 	context = {
+		'comp_list': comp_list,
 		'active_users': active_users,
 		'staff_users': staff_users,
 		'inactive_users': inactive_users,

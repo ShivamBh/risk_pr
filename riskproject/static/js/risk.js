@@ -1,17 +1,22 @@
 $(document).ready(function() {
 
-	var open = false
-	$(".nav-mob").click(function(e) {
-		$(".site-header").css("display","block");
-		open = true;
-		e.stopPropagation();
-		
-		console.log("click");
-	});
+	var mquery = Modernizr.mq('only screen and (min-width: 320px) and (max-width: 659px) ')
 
-	$('html').click(function() {
-		$(".site-header").css("display","none");
-	})
+	if mquery {
+		var open = false
+		$(".nav-mob").click(function(e) {
+			$(".site-header").css("display","block");
+			open = true;
+			e.stopPropagation();
+			
+			console.log("click");
+		});
+
+		$('html').click(function() {
+			$(".site-header").css("display","none");
+		})	
+	}
+	
 
 	// $(".container").on('click', function(e) {
 	// 	if (open) {

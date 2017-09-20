@@ -83,19 +83,26 @@
 			</div>
 			
 			<div class="user-list">
-				{% for user in active_users %}
-					<div class="user-list-item">
-						<h3>Name : {{ user.first_name }} {{ user.last_name }}</h3>
-						<h3>Email :{{ user.email }} </h3>
-						<h3>Subscription Model: <span>{{ user.profile.sub_model }}</span></h3>
-						
-						<div class="user-links">
-							<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
-							<a href="{% url 'delete_user' pk=user.pk %}" class="user-edit-link">Delete</a>
-							<a href="{% url 'user_detail' id=user.pk %}" class="user-edit-link">More</a>
+				{% for comp in comp_list %}
+					<h3 class="comp-header">{{ comp }}</h3>
+					{% for user in active_users %}
+						{% if user.profile.company == comp %}
+						<div class="user-list-item">
+							<h3>Name : {{ user.first_name }} {{ user.last_name }}</h3>
+							<h3>Email :{{ user.email }} </h3>
+							<h3>Subscription Model: <span>{{ user.profile.sub_model }}</span></h3>
+							
+							<div class="user-links">
+								<a href="{% url 'update_user' id=user.pk %}" class="user-edit-link">Edit</a>
+								<a href="{% url 'delete_user' pk=user.pk %}" class="user-edit-link">Delete</a>
+								<a href="{% url 'user_detail' id=user.pk %}" class="user-edit-link">More</a>
+							</div>
 						</div>
-						</div>
+						{% endif %}
+					{% endfor %}
+
 				{% endfor %}
+				
 			</div>
 			
 		</div>

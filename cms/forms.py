@@ -5,7 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from reports.models import Report, Country
 from accounts.models import Profile
 
-
+class DateInput(forms.DateInput):
+	input_type = 'date'
 
 class CMSLoginForm(forms.Form):
 	username = forms.CharField(error_messages={'required': 'Please enter your username'})
@@ -52,6 +53,9 @@ class ProfileCreateForm(forms.ModelForm):
 			"is_publisher",
 			"valid_till"
 			)
+		widgets = {
+			'valid_till': DateInput(attrs= {'type': 'date'}),
+		}
 
 class ReportForm(forms.ModelForm):
 	send_flash = forms.BooleanField(required=False)
@@ -129,8 +133,7 @@ class UserForm(forms.ModelForm):
 			raise forms.ValidationError('Email address already exists')
 		return email
 
-class DateInput(forms.DateInput):
-	input_type = 'date'
+
 
 class ProfileForm(forms.ModelForm):
 	class Meta:
