@@ -193,14 +193,21 @@ def create_user_view(request):
 			#print("after save")
 			current_site = get_current_site(request)
 			subject = 'Account Activation - ISSRISK'
-
-			message = render_to_string('cms/account_activation_email.html' , {
+			email_ctx = {
 				'user': user,
 				'domain': current_site.domain,
 				'uid': urlsafe_base64_encode(force_bytes(user.pk)),
 				'token': account_activation_token.make_token(user),
 				'password': new_password,
-			})
+			}
+			message = get_template('cms/account_activation_email.html').render(email_ctx)
+			# message = render_to_string('cms/account_activation_email.html' , {
+			# 	'user': user,
+			# 	'domain': current_site.domain,
+			# 	'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+			# 	'token': account_activation_token.make_token(user),
+			# 	'password': new_password,
+			# })
 
 			user.email_user(subject, message)
 			# print(user)
