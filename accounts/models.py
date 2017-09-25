@@ -33,7 +33,7 @@ class Profile(models.Model):
 	is_moderator = models.NullBooleanField(default=False, null=True)
 	is_publisher = models.NullBooleanField(default=False, null=True)
 	trial_sub = models.NullBooleanField(default=False, null=True)
-	valid_till = models.DateTimeField(null=True)
+	valid_till = models.DateTimeField(null=True, blank=True)
 
 	def __str__(self):
 		return self.user.username
