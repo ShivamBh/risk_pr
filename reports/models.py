@@ -59,16 +59,16 @@ class Report(models.Model):
 	updated_at = models.DateTimeField(auto_now=True)
 	title = models.CharField(max_length=500, blank=False, null=False)
 	# summary = models.TextField(blank=False, null=False)
-	summary = HTMLField()
-	assessment = HTMLField()
+	summary = HTMLField(blank=True)
+	assessment = HTMLField(blank=True)
 	impact_tc = models.CharField(max_length=500, blank=True)
-	advice = HTMLField()
+	advice = HTMLField(blank=True)
 	event_bg_title = models.CharField(max_length=300,blank=True)
-	event_bg_text = HTMLField()
+	event_bg_text = HTMLField(blank=True)
 	
-	latitude = models.DecimalField(max_digits=10, decimal_places=4)
-	longitude = models.DecimalField(max_digits=10, decimal_places=4)
-	impact_radius = models.IntegerField()
+	latitude = models.DecimalField(max_digits=10, decimal_places=4, blank=True, null=True) 
+	longitude = models.DecimalField(max_digits=10, decimal_places=4, blank=True, null=True)
+	impact_radius = models.IntegerField(blank=True, null=True)
 	report_type = models.CharField(
 		max_length=3,
 		choices=SUB_MODEL_CHOICES, 
