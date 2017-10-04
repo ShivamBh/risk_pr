@@ -304,10 +304,10 @@
 						Password: {{ password }}
 					</h3>
 					<p class="email-sub">Please click on the link below to confirm your registration:</p>
-					<!-- <p class="email-text">
+					<p class="email-text">
 						You can access the report at the follwing url :
 						{{ rep_url }}.
-					</p> -->
+					</p>
 					<p><strong>Link:</strong> http://{{ domain }}{% url 'activate_staff' uidb64=uid token=token %}</p>
 					<a href="http://{{ domain }}{% url 'activate_staff' uidb64=uid token=token %}" title="Report Update" class="view-full">View Report</a>
 				</div>
@@ -318,7 +318,9 @@
 					<p>Regards,</p>
 					<p>ISSRISK Team</p>
 				</div>
-		</div>
+
+				
+			</div>
 
 		
 	</body>
@@ -328,4 +330,6 @@
 		
 
 {% endautoescape %}
+
+				
 

@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-	var mquery = Modernizr.mq('only screen and (min-width: 320px) and (max-width: 659px) ')
+	var mquery = Modernizr.mq('only screen and (min-width: 320px) and (max-width: 659px) ');
 
-	if mquery {
+	if (mquery == true) {
 		var open = false
 		$(".nav-mob").click(function(e) {
 			$(".site-header").css("display","block");
