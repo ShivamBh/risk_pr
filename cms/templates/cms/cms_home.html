@@ -71,6 +71,7 @@
 			
 		</section>
 		
+		
 		{% if messages %}
 		<ul class="messages">
 		    {% for message in messages %}
@@ -117,7 +118,7 @@
 						<p class="stat-name">Active Subscribers</p>
 					</a>
 					<a href="#" class="stats-item">
-						<p class="stat-no">X</p>
+						<p class="stat-no">{{ trial_clients }}</p>
 						<p class="stat-name">Trial Subscribers</p>
 					</a>
 					

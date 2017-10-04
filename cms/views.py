@@ -48,6 +48,7 @@ def cms_home_view(request):
 	total_countries = Country.objects.all().count()
 	active_clients = User.objects.filter(is_active=True).count()
 	total_staff = User.objects.filter(is_staff=True).count()
+	trial_clients = Profile.objects.filter(trial_sub=True).count()
 	perm = Group.objects.all()
 	user_list = User.objects.all()
 	template = 'cms/cms_home.html'
@@ -60,7 +61,8 @@ def cms_home_view(request):
 				'archived_reports': archived_reports,
 				'total_countries': total_countries,
 				'active_clients': active_clients,
-				'total_staff': total_staff
+				'total_staff': total_staff,
+				'trial_clients': trial_clients
 
 			})
 
@@ -201,15 +203,26 @@ def create_user_view(request):
 				'password': new_password,
 			}
 			message = get_template('cms/account_activation_email.html').render(email_ctx)
-			# message = render_to_string('cms/account_activation_email.html' , {
-			# 	'user': user,
-			# 	'domain': current_site.domain,
-			# 	'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-			# 	'token': account_activation_token.make_token(user),
-			# 	'password': new_password,
-			# })
+			
 
-			user.email_user(subject, message)
+			receiver_email = user.email
+			from_email = DEFAULT_FROM_EMAIL
+			mail_obj = mail.EmailMessage(
+				subject,
+				message,
+				from_email,
+				[receiver_email],
+			)
+			mail_obj.content_subtype = 'html'
+			mail_list = []
+			mail_list.append(mail_obj)
+			connection = mail.get_connection()
+			connection.send_messages(mail_list)
+
+
+
+
+			# user.email_user(subject, message)
 			# print(user)
 			# print(user.profile)
 			if user.profile.is_moderator:
