@@ -21,9 +21,13 @@ from django.template.loader import render_to_string, get_template
 # from django.urls import reverse
 from django_hosts.resolvers import reverse
 from riskproject.settings import DEFAULT_FROM_EMAIL
+from riskproject.settings import EMAIL_HOST_PASSWORD
 import logging
 import pdb
-
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from django.template.loader import render_to_string
 from pyshorteners import Shortener
 
 from .forms import ReportForm, ReportUpdateForm,  CountryForm, ProfileForm, UserForm, UserCreateForm, ProfileCreateForm, CMSLoginForm
@@ -216,9 +220,35 @@ def create_user_view(request):
 			mail_obj.content_subtype = 'html'
 			mail_list = []
 			mail_list.append(mail_obj)
-			connection = mail.get_connection()
-			connection.send_messages(mail_list)
+			# connection = mail.get_connection()
+			# connection.send_messages(mail_list)
+			#--------------------------------
+			fromaddr = DEFAULT_FROM_EMAIL
+			password = EMAIL_HOST_PASSWORD
+			msg = MIMEMultipart()
+			msg['From'] = fromaddr
 
+			recipients = [receiver_email]
+			msg['To'] = ", ".join(recipients)
+
+			msg['Subject'] = subject
+
+			content_html = render_to_string('cms/account_activation_email.html', email_ctx)
+
+			test = MIMEText(content_html, 'html')
+			msg.attach(test)
+			server = smtplib.SMTP('smtp.gmail.com',587)
+			server.set_debuglevel(True)
+			server.ehlo()
+			server.starttls()
+			server.login(fromaddr, password)
+
+			text = msg.as_string()
+			try:
+				server.sendmail(fromaddr, recipients, text)
+				server.quit()
+			except Exception as t:
+				pass
 
 
 

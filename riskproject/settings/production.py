@@ -25,7 +25,7 @@ EMAIL_HOST_USER = 'issriskhk@gmail.com'
 EMAIL_HOST_PASSWORD = 'intelissrisk123'
 EMAIL_PORT = 587
 
-ALLOWED_HOSTS = ['intel.riskproject.local', 'cms.riskproject.local' , 'localhost', 'intel.issrisk.com', 'cms.issrisk.com']
+ALLOWED_HOSTS = ['intel.riskproject.local', 'cms.riskproject.local' , 'localhost', 'intel.issrisk.com', 'cms.issrisk.com','*']
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env) 
