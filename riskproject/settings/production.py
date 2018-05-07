@@ -13,12 +13,14 @@ TWILIO_PHONE_NUMBER = '+14159149102'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'ShivamBh'
-EMAIL_HOST_PASSWORD = 'sendgrid#123'
+EMAIL_HOST_USER = 'issriskhk'
+EMAIL_HOST_PASSWORD = 'intelissrisk*1'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'info@issrisk.com'
-SERVER_EMAIL = 'info@issrisk.com'
+# DEFAULT_FROM_EMAIL = 'info@issrisk.com'
+# SERVER_EMAIL = 'info@issrisk.com'
+DEFAULT_FROM_EMAIL = 'issriskhk@gmail.com'
+SERVER_EMAIL = 'issriskhk@gmail.com'
 
 ALLOWED_HOSTS = ['intel.riskproject.local', 'cms.riskproject.local' , 'localhost', 'intel.issrisk.com', 'cms.issrisk.com']
 
