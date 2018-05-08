@@ -220,35 +220,35 @@ def create_user_view(request):
 			mail_obj.content_subtype = 'html'
 			mail_list = []
 			mail_list.append(mail_obj)
-			# connection = mail.get_connection()
-			# connection.send_messages(mail_list)
+			connection = mail.get_connection()
+			connection.send_messages(mail_list)
 			#--------------------------------
-			fromaddr = DEFAULT_FROM_EMAIL
-			password = EMAIL_HOST_PASSWORD
-			msg = MIMEMultipart()
-			msg['From'] = fromaddr
+			# fromaddr = DEFAULT_FROM_EMAIL
+			# password = EMAIL_HOST_PASSWORD
+			# msg = MIMEMultipart()
+			# msg['From'] = fromaddr
 
-			recipients = [receiver_email]
-			msg['To'] = ", ".join(recipients)
+			# recipients = [receiver_email]
+			# msg['To'] = ", ".join(recipients)
 
-			msg['Subject'] = subject
+			# msg['Subject'] = subject
 
-			content_html = render_to_string('cms/account_activation_email.html', email_ctx)
+			# content_html = render_to_string('cms/account_activation_email.html', email_ctx)
 
-			test = MIMEText(content_html, 'html')
-			msg.attach(test)
-			server = smtplib.SMTP('smtp.gmail.com',587)
-			server.set_debuglevel(True)
-			server.ehlo()
-			server.starttls()
-			server.login(fromaddr, password)
+			# test = MIMEText(content_html, 'html')
+			# msg.attach(test)
+			# server = smtplib.SMTP('smtp.gmail.com',587)
+			# server.set_debuglevel(True)
+			# server.ehlo()
+			# server.starttls()
+			# server.login(fromaddr, password)
 
-			text = msg.as_string()
-			try:
-				server.sendmail(fromaddr, recipients, text)
-				server.quit()
-			except Exception as t:
-				pass
+			# text = msg.as_string()
+			# try:
+			# 	server.sendmail(fromaddr, recipients, text)
+			# 	server.quit()
+			# except Exception as t:
+			# 	pass
 
 
 
