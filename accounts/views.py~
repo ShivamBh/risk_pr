@@ -19,7 +19,7 @@ from django.contrib.sites.shortcuts import get_current_site
 
 from .models import Profile
 from .forms import LoginForm
-from sesame import utils
+
 
 # Create your views here.
 # def user_login(request):
@@ -49,11 +49,6 @@ from sesame import utils
 def index(request):
 	return render(request, 'accounts/home.html', {'section': 'dashboard'})
 
-@login_required
-def tokenurl(request):
-	user = request.user
-	token = utils.get_query_string(user)
-	return HttpResponse(token)
 # class ResetPasswordRequestView(FormView):
 # 	template_name = 'accounts/password_reset.html'
 # 	success_url = '/login/'
@@ -102,6 +97,5 @@ def tokenurl(request):
 # 			result = self.form_invalid(form)
 # 			messages.error(request, 'No user is associated with this email address. Contact admin for help.')
 # 			return result
-
 
 
