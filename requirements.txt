@@ -23,7 +23,7 @@ psycopg2==2.7.1
 PyJWT==1.5.0
 pyshorteners==0.6.1
 PySocks==1.6.7
-python-gnupg==0.4.1
+python-gnupg==0.4.4
 python-http-client==2.4.0
 pytz==2017.2
 PyYAML==3.12
